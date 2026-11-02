@@ -1,0 +1,18 @@
+name: Markdown checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Markdown parser
+        run: python3 -m pip install markdown-it-py==4.0.0
+      - name: Check rendered emphasis markers
+        run: python3 scripts/check_markdown.py

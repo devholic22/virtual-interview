@@ -91,7 +91,7 @@ COMMIT
 
 원자적으로 묶는 것은 **DB 변경과 outbox 기록**이다. 외부 캐시가 삭제될 때까지는 비동기적인 차이가 남는다. 같은 이벤트를 재전달해도 안전하도록 만들고, 순서·장기 실패·모니터링·재처리를 설계한다. 늦은 중복 삭제는 최신 캐시도 지워 적중률을 낮출 수 있으며, 삭제 재시도만으로 진행 중인 오래된 읽기의 재삽입까지 막지는 못한다.
 
-**CDC(Change Data Capture)**는 커밋 로그 등에서 변경을 포착해 전달하는 방식이다. Outbox와 같지는 않지만 함께 쓰거나 대안으로 검토할 수 있다. DB 행 변경을 어떤 캐시 키의 무효화로 연결할지 정의해야 한다. AWS는 이중 쓰기 문제에 대한 Outbox와 CDC 접근을 설명한다. [AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
+**CDC**(Change Data Capture)는 커밋 로그 등에서 변경을 포착해 전달하는 방식이다. Outbox와 같지는 않지만 함께 쓰거나 대안으로 검토할 수 있다. DB 행 변경을 어떤 캐시 키의 무효화로 연결할지 정의해야 한다. AWS는 이중 쓰기 문제에 대한 Outbox와 CDC 접근을 설명한다. [AWS Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
 
 ### C. 버전·세대·삭제 표시를 원자적으로 확인한다
 
