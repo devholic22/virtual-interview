@@ -28,7 +28,7 @@ RETURNING remaining;
 
 대기열·유입 제한 → 접수 API → 내구성 있는 큐 → 제한된 수의 처리기 → 주 DB의 발급 트랜잭션으로 구성하는 것을 검토한다. 큐에 안전하게 기록한 뒤 접수 완료를 알리고, 업무 결과를 커밋한 뒤 발급 확정을 구분한다.
 
-[큐의 다중 생산자·소비자 그림](../assets/queue-workers.png)
+![큐의 다중 생산자·소비자 그림](../assets/queue-workers.png)
 
 처리기는 재전달되어도 중복 발급하지 않아야 한다. 큐의 순서가 여러 처리기의 완료 순서까지 보장하지 않을 수 있다. 예를 들어 Kafka는 파티션 단위 순서와 소비자 배치를 고려해야 한다. [Kafka 설계](https://kafka.apache.org/41/design/design/)
 
