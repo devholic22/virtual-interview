@@ -503,7 +503,7 @@ Memtable에서 최근 쓰기를 모으고 읽되, 아직 파일로 플러시하�
 
 ### 책을 대조한 범위
 
-『가상 면접 사례로 배우는 대규모 시스템 설계 기초 1』 6장 「키-값 저장소 설계」의 본문 91~114쪽을 확인했다. API와 요구사항, 단일 서버, CAP, 데이터 분할·복제, N·R·W, 일관성 모델, 버저닝, 가십, 일시·영구·센터 장애, 분산 아키텍처와 단일 노드의 읽기·쓰기 경로를 순서에 반영했다.
+『가상 면접 사례로 배우는 대규모 시스템 설계 기초 1』 6장 「키-값 저장소 설계」의 본문 91–114쪽을 확인했다. API와 요구사항, 단일 서버, CAP, 데이터 분할·복제, N·R·W, 일관성 모델, 버저닝, 가십, 일시·영구·센터 장애, 분산 아키텍처와 단일 노드의 읽기·쓰기 경로를 순서에 반영했다.
 
 상품 정보와 장바구니, A·B·C 서버, 벡터 시계의 노드 이름과 머클 트리의 네 범위는 학습을 위한 재구성이다. 책의 그림을 스캔해 넣지 않고 같은 문제를 설명하는 개념도를 새로 만들었다.
 
@@ -528,7 +528,7 @@ Memtable에서 최근 쓰기를 모으고 읽되, 아직 파일로 플러시하�
 ### 추가 원문
 
 - [Gilbert·Lynch, Perspectives on the CAP Theorem](https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf): 분할 상황의 일관성·가용성 정의와 선택을 확인한다.
-- [DeCandia 외, Dynamo (2007)](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf): §4.4~4.8의 버전 문맥·요청 처리·임시 위탁·복구·멤버십을 책 설명과 대조했다. 본문의 중심 흐름은 책과 독립 예시로 설명한다. 원래 Dynamo와 현재 DynamoDB를 같은 구현으로 가정하지 않는다.
+- [DeCandia 외, Dynamo (2007)](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf): §4.4–4.8의 버전 문맥·요청 처리·임시 위탁·복구·멤버십을 책 설명과 대조했다. 본문의 중심 흐름은 책과 독립 예시로 설명한다. 원래 Dynamo와 현재 DynamoDB를 같은 구현으로 가정하지 않는다.
 - [Apache Cassandra — Dynamo](https://cassandra.apache.org/doc/stable/cassandra/architecture/dynamo.html): 분할·복제·가십의 관계와 Cassandra의 타임스탬프 기반 충돌 처리 차이를 확인한다.
 - [Apache Cassandra — Storage Engine](https://cassandra.apache.org/doc/stable/cassandra/architecture/storage-engine.html): 로그·Memtable·SSTable과 확인 응답/로그 동기화 구분을 참고한다.
 - [Apache Cassandra — Bloom Filters](https://cassandra.apache.org/doc/stable/cassandra/managing/operating/bloom_filters.html): 메모리·디스크 결과의 병합과 후보 파일 제외의 의미를 확인한다.
