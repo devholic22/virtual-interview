@@ -85,6 +85,15 @@ PARTS_ELEVEN = [
 ]
 
 
+PARTS_TWELVE = [
+    ("core-concepts", "연결에서 저장·동기화·접속 상태까지", "concepts.md"),
+    ("q1", "질문 01 · 메시지 ID와 안전한 동기화 커서", "questions/01-message-cursor.md"),
+    ("q2", "질문 02 · 전달 확인과 다중 단말의 접속 상태", "questions/02-delivery-presence.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -135,9 +144,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11"]
-    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -230,6 +239,16 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/11-news-feed", PARTS_ELEVEN, intro)
+
+    if "12" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 12장. 채팅 시스템 설계\n\n'
+            "두 사용자의 메시지 교환에서 시작해 연결·저장·재전송을 나눈다. "
+            "여러 단말과 소규모 그룹으로 확장한 뒤 누락 없는 동기화와 접속 상태 판정의 조건을 살펴본다.\n\n"
+            "책 12장과 제공된 메모를 바탕으로 재구성했다. 개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/12-chat", PARTS_TWELVE, intro)
 
 
 if __name__ == "__main__":
