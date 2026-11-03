@@ -5,6 +5,7 @@
 ## 장별 목차
 
 - [1장. 사용자 수에 따른 규모 확장성](chapters/01-scaling/README.md)
+- [4장. 처리율 제한 장치의 설계](chapters/04-rate-limiter/README.md)
 
 ## 참고 도서
 

@@ -17,6 +17,6 @@ jobs:
       - name: Check chapter assembly
         run: |
           python3 scripts/build_chapter.py
-          git diff --exit-code -- chapters/01-scaling/README.md
+          git diff --exit-code -- 'chapters/*/README.md'
       - name: Check rendered emphasis markers
         run: python3 scripts/check_markdown.py

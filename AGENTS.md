@@ -15,4 +15,4 @@
 - 표는 설명한 내용을 비교·복습할 때 사용한다. 정의·주의사항·예외를 본문보다 앞에 나열하지 않는다.
 - 그림에는 그 절까지 소개한 구성 요소를 우선 표시한다. 새로운 요소가 추가되면 그 이유와 흐름을 함께 설명한다.
 - 제품별 세부 설정과 추가 용어는 기본 흐름 뒤에 두고, 긴 추가 설명은 필요하면 접어 둔다. 중요한 조건과 실패 위험은 해당 동작을 설명한 뒤에 남긴다.
-- 1장 본문은 개념·질문·복습 등의 원본 문서를 수정한 뒤 `python3 scripts/build_chapter.py`로 조립한다. 이어 `uv run scripts/check_markdown.py`와 렌더링 확인을 수행한다.
+- 각 장 본문은 개념·질문·복습 등의 원본 문서를 수정한 뒤 `python3 scripts/build_chapter.py`로 조립한다. 특정 장만 조립하려면 장 번호를 넘긴다(예: `python3 scripts/build_chapter.py 4`). 이어 `uv run scripts/check_markdown.py`와 렌더링 확인을 수행한다.

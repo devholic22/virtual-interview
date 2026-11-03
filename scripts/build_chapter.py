@@ -1,7 +1,8 @@
-"""Assemble chapter 1 into its README without requiring separate reading pages."""
+"""Assemble each chapter into its README without separate reading pages."""
 from pathlib import Path
 import posixpath
 import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 CHAPTER = ROOT / "chapters/01-scaling"
@@ -17,9 +18,19 @@ PARTS = [
 ]
 
 
-def main():
-    anchors = {str((CHAPTER / path).resolve()): anchor for anchor, _, path in PARTS}
-    anchors[str((CHAPTER / "README.md").resolve())] = "contents"
+PARTS_FOUR = [
+    ("core-concepts", "요청을 제한하는 흐름 따라 읽기", "concepts.md"),
+    ("q1", "질문 01 · 토큰 버킷의 버스트와 동시성", "questions/01-token-bucket.md"),
+    ("q2", "질문 02 · Lua와 정렬 집합의 원자적 판정", "questions/02-atomic-redis.md"),
+    ("q3", "질문 03 · 중간 통신 실패와 재시도", "questions/03-network-failures.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
+def build(chapter, parts, intro=None):
+    anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
+    anchors[str((chapter / "README.md").resolve())] = "contents"
     pieces = [
         '<a id="top"></a>\n\n# 1장. 사용자 수에 따른 규모 확장성\n\n'
         "작은 상품 판매 서비스가 커진다고 가정한다. 서버 한 대에서 시작해, "
@@ -29,11 +40,13 @@ def main():
         "그 뒤의 질문별 심화는 그 구성에서 더 궁금해지는 이유와 실패 사례를 다룬다. "
         "설명·그림·복습 답안은 이 README 안에서 함께 볼 수 있다.\n\n"
         '<a id="contents"></a>\n\n## 목차\n\n'
-        + "\n".join(f"- [{label}](#{anchor})" for anchor, label, _ in PARTS)
+        + "\n".join(f"- [{label}](#{anchor})" for anchor, label, _ in parts)
         + "\n\n---\n"
     ]
-    for anchor, _, relative in PARTS:
-        source = CHAPTER / relative
+    if intro is not None:
+        pieces[0] = intro + "\n".join(f"- [{label}](#{anchor})" for anchor, label, _ in parts) + "\n\n---\n"
+    for anchor, _, relative in parts:
+        source = chapter / relative
         text = source.read_text(encoding="utf-8")
 
         def link(match):
@@ -41,7 +54,9 @@ def main():
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", url) or url.startswith("#"):
                 return match.group(0)
             target = (source.parent / url.split("#")[0]).resolve()
-            dest = "#" + anchors[str(target)] if str(target) in anchors else posixpath.relpath(str(target), str(CHAPTER))
+            dest = "#" + anchors[str(target)] if str(target) in anchors else posixpath.relpath(str(target), str(chapter))
+            if str(target) not in anchors and "#" in url:
+                dest += "#" + url.split("#", 1)[1]
             return f"{image}[{label}]({dest})"
 
         text = re.sub(r"(!?)\[([^\]]*)\]\(([^)]+)\)", link, text)
@@ -58,8 +73,26 @@ def main():
             + "\n".join(lines).strip()
             + "\n\n[목차로 돌아가기](#contents)\n\n---\n"
         )
-    (CHAPTER / "README.md").write_text("\n".join(pieces), encoding="utf-8")
-    print("Built chapters/01-scaling/README.md")
+    (chapter / "README.md").write_text("\n".join(pieces), encoding="utf-8")
+    print(f"Built {chapter.relative_to(ROOT)}/README.md")
+
+
+def main():
+    targets = sys.argv[1:] or ["1", "4"]
+    if any(value not in {"1", "4"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4 ...]")
+    if "1" in targets:
+        build(CHAPTER, PARTS)
+    if "4" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 4장. 처리율 제한 장치의 설계\n\n'
+            "상품 API에 요청이 몰리는 상황에서 출발해, 어디서 무엇을 세고 언제 허용할지 따라간다. "
+            "사용자가 제공한 메모와 책 4장의 흐름을 바탕으로 정리한 학습 노트다.\n\n"
+            "기본 알고리즘 뒤에는 토큰 차감의 동시성, Redis의 원자적 판정, "
+            "게이트웨이·큐 중간의 통신 실패를 따로 살펴본다. 설명·그림·복습 답안을 이 문서에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/04-rate-limiter", PARTS_FOUR, intro)
 
 
 if __name__ == "__main__":
