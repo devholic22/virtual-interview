@@ -28,6 +28,13 @@ PARTS_FOUR = [
 ]
 
 
+PARTS_FIVE = [
+    ("core-concepts", "서버 변경에서 해시 링과 가상 노드까지", "concepts.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -78,9 +85,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4"]
-    if any(value not in {"1", "4"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5"]
+    if any(value not in {"1", "4", "5"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -93,6 +100,17 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/04-rate-limiter", PARTS_FOUR, intro)
+
+    if "5" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 5장. 안정 해시 설계\n\n'
+            "상품 캐시 서버 한 대가 빠졌는데 정상 서버의 키까지 목적지가 바뀌는 상황에서 출발한다. "
+            "해시 링으로 변경 범위를 줄이고, 가상 노드로 분포의 편차를 완화하는 과정을 따라간다.\n\n"
+            "기본 개념·그림·복습 답안을 이 문서에서 함께 읽는다. "
+            "책 5장과 제공된 메모를 바탕으로 재구성했으며 추가 설명의 범위는 마지막에 구분한다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/05-consistent-hashing", PARTS_FIVE, intro)
 
 
 if __name__ == "__main__":
