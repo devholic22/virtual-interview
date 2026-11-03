@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Markdown parser
-        run: python3 -m pip install markdown-it-py==4.0.0
+        run: python3 -m pip install markdown-it-py==4.2.0
       - name: Check chapter assembly
         run: |
           python3 scripts/build_chapter.py
