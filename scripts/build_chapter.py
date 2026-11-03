@@ -94,6 +94,15 @@ PARTS_TWELVE = [
 ]
 
 
+PARTS_THIRTEEN = [
+    ("core-concepts", "빈도 테이블에서 트라이·집계·샤딩까지", "concepts.md"),
+    ("q1", "질문 01 · O(1)의 조건과 미리 계산하는 비용", "questions/01-complexity.md"),
+    ("q2", "질문 02 · 삭제 필터와 샤드 top-k 병합", "questions/02-filter-and-shards.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -144,9 +153,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
-    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12|13 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -249,6 +258,16 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/12-chat", PARTS_TWELVE, intro)
+
+    if "13" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 13장. 검색어 자동완성 시스템\n\n'
+            "접두어에 맞는 인기 검색어 다섯 개를 고르는 문제에서 출발한다. "
+            "트라이와 상위 후보 캐시로 읽기를 줄이고, 집계·빌드·버전 교체·삭제·샤딩의 조건을 따라간다.\n\n"
+            "책 13장과 제공된 메모를 바탕으로 재구성했다. 개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/13-autocomplete", PARTS_THIRTEEN, intro)
 
 
 if __name__ == "__main__":
