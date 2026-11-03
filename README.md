@@ -10,6 +10,7 @@
 - [6장. 키-값 저장소 설계](chapters/06-key-value-store/README.md)
 - [7장. 분산 시스템을 위한 유일 ID 생성기 설계](chapters/07-unique-id/README.md)
 - [8장. URL 단축기 설계](chapters/08-url-shortener/README.md)
+- [9장. 웹 크롤러 설계](chapters/09-web-crawler/README.md)
 
 ## 참고 도서
 

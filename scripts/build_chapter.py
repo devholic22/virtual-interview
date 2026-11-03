@@ -57,6 +57,16 @@ PARTS_EIGHT = [
 ]
 
 
+PARTS_NINE = [
+    ("core-concepts", "발견·수집·재수집의 흐름 따라 읽기", "concepts.md"),
+    ("q1", "질문 01 · 호스트 수와 논리 큐·작업자 수", "questions/01-host-queues.md"),
+    ("q2", "질문 02 · 블룸 필터가 반복 등장하는 이유", "questions/02-bloom-filter.md"),
+    ("q3", "질문 03 · 안정 해시의 공통 목적", "questions/03-consistent-hashing.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -107,9 +117,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8"]
-    if any(value not in {"1", "4", "5", "6", "7", "8"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -169,6 +179,18 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/08-url-shortener", PARTS_EIGHT, intro)
+
+    if "9" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 9장. 웹 크롤러 설계\n\n'
+            "검색용 페이지를 모으는 단순한 링크 탐색에서 출발해 "
+            "우선순위·호스트 예절·실패 복구·재수집을 갖춘 흐름으로 확장한다. "
+            "많은 논리 큐를 운영하는 방법과 블룸 필터·안정 해시의 공통 목적도 연결한다.\n\n"
+            "책 9장과 제공된 메모를 바탕으로 재구성했다. "
+            "개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/09-web-crawler", PARTS_NINE, intro)
 
 
 if __name__ == "__main__":
