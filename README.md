@@ -22,6 +22,8 @@
 
 - [14장. 유튜브 설계](chapters/14-youtube/README.md)
 
+- [15장. 구글 드라이브 설계](chapters/15-google-drive/README.md)
+
 ## 참고 도서
 
 알렉스 쉬, 『가상 면접 사례로 배우는 대규모 시스템 설계 기초』, 인사이트, 이병준 옮김.

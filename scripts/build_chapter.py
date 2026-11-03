@@ -113,6 +113,15 @@ PARTS_FOURTEEN = [
 ]
 
 
+PARTS_FIFTEEN = [
+    ("core-concepts", "단일 서버에서 블록·버전·단말 동기화까지", "concepts.md"),
+    ("q1", "질문 01 · 강한 일관성과 캐시·충돌 판정", "questions/01-consistency-and-conflicts.md"),
+    ("q2", "질문 02 · 델타 전송·중복 제거·블록 회수", "questions/02-delta-and-retention.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -163,9 +172,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
-    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12|13|14 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12|13|14|15 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -288,6 +297,16 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/14-youtube", PARTS_FOURTEEN, intro)
+
+    if "15" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 15장. 구글 드라이브 설계\n\n'
+            "파일 한 개를 보관하는 단일 서버에서 출발해 블록·버전·변경 로그를 나눈다. "
+            "업로드 확정과 충돌 판정, 다른 단말의 다운로드, 오프라인 복구와 이력 보존을 따라간다.\n\n"
+            "책 15장과 제공된 메모를 바탕으로 재구성했다. 개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/15-google-drive", PARTS_FIFTEEN, intro)
 
 
 if __name__ == "__main__":
