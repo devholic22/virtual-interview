@@ -20,6 +20,8 @@
 
 - [13장. 검색어 자동완성 시스템](chapters/13-autocomplete/README.md)
 
+- [14장. 유튜브 설계](chapters/14-youtube/README.md)
+
 ## 참고 도서
 
 알렉스 쉬, 『가상 면접 사례로 배우는 대규모 시스템 설계 기초』, 인사이트, 이병준 옮김.

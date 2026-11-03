@@ -103,6 +103,16 @@ PARTS_THIRTEEN = [
 ]
 
 
+PARTS_FOURTEEN = [
+    ("core-concepts", "업로드에서 변환·재생·복구까지", "concepts.md"),
+    ("q1", "질문 01 · GOP·업로드 파트와 병렬 처리", "questions/01-chunks-and-parallelism.md"),
+    ("q2", "질문 02 · 재생 준비와 멱등한 완료 처리", "questions/02-ready-and-retries.md"),
+    ("q3", "질문 03 · CDN·원본 전송과 변환 비용", "questions/03-delivery-cost.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -153,9 +163,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
-    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12|13 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10|11|12|13|14 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -268,6 +278,16 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/13-autocomplete", PARTS_THIRTEEN, intro)
+
+    if "14" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 14장. 유튜브 설계\n\n'
+            "원본 비디오를 올리고 모바일·웹·TV에서 재생하기까지의 흐름을 따라간다. "
+            "파일 수신·변환·게시·미디어 전송을 나누고 병렬 처리·재시도·보호·비용의 조건을 살펴본다.\n\n"
+            "책 14장과 제공된 메모를 바탕으로 재구성했다. 개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/14-youtube", PARTS_FOURTEEN, intro)
 
 
 if __name__ == "__main__":
