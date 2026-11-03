@@ -67,6 +67,15 @@ PARTS_NINE = [
 ]
 
 
+PARTS_TEN = [
+    ("core-concepts", "접수에서 외부 전송과 결과 추적까지", "concepts.md"),
+    ("q1", "질문 01 · 정확히 한 번 전달의 경계", "questions/01-exactly-once.md"),
+    ("q2", "질문 02 · 큐 적체와 작업자 증설", "questions/02-worker-scaling.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -117,9 +126,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9"]
-    if any(value not in {"1", "4", "5", "6", "7", "8", "9"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7", "8", "9", "10"]
+    if any(value not in {"1", "4", "5", "6", "7", "8", "9", "10"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7|8|9|10 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -191,6 +200,16 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/09-web-crawler", PARTS_NINE, intro)
+
+    if "10" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 10장. 알림 시스템 설계\n\n'
+            "주문 안내가 사용자에게 도착하는 경로에서 출발해 접수·큐·외부 전송·결과 확인을 나눈다. "
+            "장애 때 생기는 누락과 중복, 외부 업체가 느려졌을 때의 대응을 따라간다.\n\n"
+            "책 10장과 제공된 메모를 바탕으로 재구성했다. 개념·그림·심화 질문·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/10-notification", PARTS_TEN, intro)
 
 
 if __name__ == "__main__":

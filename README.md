@@ -12,6 +12,8 @@
 - [8장. URL 단축기 설계](chapters/08-url-shortener/README.md)
 - [9장. 웹 크롤러 설계](chapters/09-web-crawler/README.md)
 
+- [10장. 알림 시스템 설계](chapters/10-notification/README.md)
+
 ## 참고 도서
 
 알렉스 쉬, 『가상 면접 사례로 배우는 대규모 시스템 설계 기초』, 인사이트, 이병준 옮김.
