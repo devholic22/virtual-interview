@@ -42,6 +42,13 @@ PARTS_SIX = [
 ]
 
 
+PARTS_SEVEN = [
+    ("core-concepts", "후보 비교에서 스노우플레이크와 운영 조건까지", "concepts.md"),
+    ("review", "스스로 답하기 · 답안 토글", "review.md"),
+    ("sources", "책과 추가 설명의 범위", "sources.md"),
+]
+
+
 def build(chapter, parts, intro=None):
     anchors = {str((chapter / path).resolve()): anchor for anchor, _, path in parts}
     anchors[str((chapter / "README.md").resolve())] = "contents"
@@ -92,9 +99,9 @@ def build(chapter, parts, intro=None):
 
 
 def main():
-    targets = sys.argv[1:] or ["1", "4", "5", "6"]
-    if any(value not in {"1", "4", "5", "6"} for value in targets):
-        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6 ...]")
+    targets = sys.argv[1:] or ["1", "4", "5", "6", "7"]
+    if any(value not in {"1", "4", "5", "6", "7"} for value in targets):
+        raise SystemExit("Usage: python3 scripts/build_chapter.py [1|4|5|6|7 ...]")
     if "1" in targets:
         build(CHAPTER, PARTS)
     if "4" in targets:
@@ -130,6 +137,18 @@ def main():
             '<a id="contents"></a>\n\n## 목차\n\n'
         )
         build(ROOT / "chapters/06-key-value-store", PARTS_SIX, intro)
+
+    if "7" in targets:
+        intro = (
+            '<a id="top"></a>\n\n# 7장. 분산 시스템을 위한 유일 ID 생성기 설계\n\n'
+            "여러 주문 서버가 서로 겹치지 않는 ID를 만드는 문제에서 출발한다. "
+            "후보들을 비교한 뒤 64비트의 역할을 나누고, 같은 밀리초·시계 이상·재시작 때도 "
+            "유일성의 조건을 지키는 과정을 따라간다.\n\n"
+            "책 7장과 제공된 메모를 바탕으로 재구성했다. "
+            "개념·그림·복습 답안을 이 README에서 함께 읽는다.\n\n"
+            '<a id="contents"></a>\n\n## 목차\n\n'
+        )
+        build(ROOT / "chapters/07-unique-id", PARTS_SEVEN, intro)
 
 
 if __name__ == "__main__":
