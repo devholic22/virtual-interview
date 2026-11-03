@@ -1,0 +1,140 @@
+{
+  "slug": "fund-resource-waits",
+  "chapter": "fundamentals",
+  "title": "처리보다 대기가 길면 풀과 큐가 먼저 찬다",
+  "caption": "화살표는 의존 호출이다. 외부 API를 기다리는 동안 DB 연결까지 보유하면 공유 풀 고갈이 다른 요청으로 번질 수 있다.",
+  "mode": "topology",
+  "icon_sources": "Lucide",
+  "boundaries": [
+    "공통 원리"
+  ],
+  "nodes": [
+    {
+      "id": "u",
+      "label": "동시 요청",
+      "role": "유입이 계속됨",
+      "icon": "icon5",
+      "group": "0"
+    },
+    {
+      "id": "q",
+      "label": "요청 대기",
+      "role": "빈 실행 자원 대기",
+      "icon": "icon3",
+      "group": "0"
+    },
+    {
+      "id": "a",
+      "label": "애플리케이션",
+      "role": "CPU 계산 · 결과 구성",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "p",
+      "label": "DB 연결 풀",
+      "role": "획득 대기 · 점유 시간",
+      "icon": "icon4",
+      "group": "0"
+    },
+    {
+      "id": "db",
+      "label": "DB",
+      "role": "SQL 실행",
+      "icon": "icon2",
+      "group": "0"
+    },
+    {
+      "id": "ext",
+      "label": "외부 API",
+      "role": "네트워크 응답 대기",
+      "icon": "icon6",
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "u",
+      "to": "q",
+      "label": "요청 도착",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "q",
+      "to": "a",
+      "label": "실행 자원 할당",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "a",
+      "to": "p",
+      "label": "연결 획득",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "p",
+      "to": "db",
+      "label": "SQL 전송",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "a",
+      "to": "ext",
+      "label": "원격 호출",
+      "kind": "secondary"
+    }
+  ],
+  "layout": {
+    "width": 1160,
+    "height": 820,
+    "positions": {
+      "u": [
+        200,
+        150
+      ],
+      "q": [
+        580,
+        150
+      ],
+      "a": [
+        580,
+        400
+      ],
+      "p": [
+        210,
+        400
+      ],
+      "db": [
+        210,
+        650
+      ],
+      "ext": [
+        950,
+        400
+      ]
+    },
+    "groups": [
+      [
+        60,
+        100,
+        1040,
+        180,
+        "유입과 대기",
+        "blue"
+      ],
+      [
+        60,
+        330,
+        1040,
+        460,
+        "처리와 공유 자원 · CPU 사용률만으로 포화를 알 수 없다",
+        "amber"
+      ]
+    ]
+  }
+}

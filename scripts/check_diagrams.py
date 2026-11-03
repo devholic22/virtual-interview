@@ -11,7 +11,7 @@ def main():
     selected=set(sys.argv[1:]);js=(ROOT/'scripts/diagram_checks.js').read_text();failures=[];count=0;arrows=labels=0
     with sync_playwright() as pw:
         browser=pw.chromium.launch();page=browser.new_page(viewport={'width':1800,'height':1200})
-        for path in sorted(ROOT.glob('chapters/*/assets/*.html')):
+        for path in sorted([*ROOT.glob('chapters/*/assets/*.html'), *ROOT.glob('fundamentals/assets/*.html')]):
             if selected and path.stem not in selected:continue
             count+=1;page.goto(path.as_uri());page.evaluate('document.fonts.ready');page.wait_for_function('Array.from(document.images).every(i=>i.complete&&i.naturalWidth>0)');result=page.evaluate(js)
             arrows+=result['arrows'];labels+=result['labels']

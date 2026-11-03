@@ -1,12 +1,15 @@
 # 그림 원본과 재생성
 
-각 장 README의 그림은 [stack-diagram](https://stack-diagram.com/)의 템플릿·아이콘 타일·격자 배경을 바탕으로 만든다. JSON에서 구성 요소·관계·논리적 역할 그룹을 정의하고, 자체 완결 HTML에서 밝은 PNG와 어두운 PNG를 생성한다. 출력은 각 장의 `assets`에 둔다.
+각 장 README의 그림은 [stack-diagram](https://stack-diagram.com/)의 템플릿·아이콘 타일·격자 배경을 바탕으로 만든다. JSON에서 구성 요소·관계·논리적 역할 그룹을 정의하고, 자체 완결 HTML에서 밝은 PNG와 어두운 PNG를 생성한다. 출력은 각 장의 `assets`에 두고, 공통 지식용 그림은 `fundamentals/assets`에 둔다.
+
+연결선은 장애물이 없는 직선이나 간단한 직각 경로를 우선한다. 불필요한 바깥 우회와 짧은 계단 모양 꺾임을 피하고, 라벨을 놓을 공간도 남긴다. 복잡한 구성에서는 역할별 층과 탑다운 배치를 이용한다.
 
 구성도는 실제 컴포넌트 사이의 연결을 표시한다. 그룹은 설명을 위한 논리적 역할 경계이며, 책에 없는 VPC·배포 제품·복제 보장을 의미하지 않는다. 해시 링·비트 배치·시간 창·버전 충돌·시퀀스 등은 원리를 설명하는 별도 구조로 유지한다. 같은 서버에서 일어나는 준비·확정을 서로 다른 서버처럼 표현하지 않는다.
 
 ```sh
 uv run scripts/redraw_diagrams.py --render
 uv run scripts/redraw_diagrams.py drive-upload cache-aside --render
+uv run scripts/redraw_diagrams.py fund-resource-waits fund-query-index --render
 uv run scripts/check_diagrams.py
 uv run scripts/check_markdown.py
 ```

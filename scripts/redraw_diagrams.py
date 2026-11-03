@@ -51,8 +51,6 @@ def topology(s,icons):
   return result
  def route(a,b,forced=None,relaxed=False):
   returning=(b["id"],a["id"]) in history
-  if not relaxed and forced is None and not returning and a["cy"]==b["cy"] and abs(a["cx"]-b["cx"])>colstep:forced=["B","B"]
-  if not relaxed and forced is None and a["cx"]==b["cx"] and abs(a["cy"]-b["cy"])>step:forced=["R","R"]
   history.add((a["id"],b["id"]))
   opts=[]
   for aa,ap,aside in ports(a):
@@ -61,6 +59,45 @@ def topology(s,icons):
     if forced and [aside,bside]!=forced:continue
     # Penalize facing away from the target and unnecessary vertical turns.
     dist=abs(ap[0]-bp[0])+abs(ap[1]-bp[1]);opts.append((dist,aa,ap,ba,bp,aside,bside))
+  # Try whole straight corridors first. Avoid grid-snapped staircase segments
+  # and short port stubs when a direct architectural connector is available.
+  def clear(points):
+   for u,v in zip(points,points[1:]):
+    for x1,y1,x2,y2 in obstacles:
+     if u[0]==v[0] and x1-3<u[0]<x2+3 and max(min(u[1],v[1]),y1-3)<min(max(u[1],v[1]),y2+3):return False
+     if u[1]==v[1] and y1-3<u[1]<y2+3 and max(min(u[0],v[0]),x1-3)<min(max(u[0],v[0]),x2+3):return False
+    for xx,yy in blocked:
+     if u[0]==v[0] and abs(xx*grid-u[0])<3 and min(u[1],v[1])<yy*grid<max(u[1],v[1]):return False
+     if u[1]==v[1] and abs(yy*grid-u[1])<3 and min(u[0],v[0])<xx*grid<max(u[0],v[0]):return False
+   return True
+  candidates=[]
+  for _,aa,ap,ba,bp,aside,bside in sorted(opts):
+   choices=[]
+   if ap[0]==bp[0] or ap[1]==bp[1]:choices.append([ap,bp])
+   choices += [[ap,(ap[0],bp[1]),bp],[ap,(bp[0],ap[1]),bp]]
+   for mid in [(ap[0]+bp[0])/2,ap[0],bp[0]]:choices.append([ap,(mid,ap[1]),(mid,bp[1]),bp])
+   for mid in [(ap[1]+bp[1])/2,ap[1],bp[1]]:choices.append([ap,(ap[0],mid),(bp[0],mid),bp])
+   for pts in choices:
+    pts=simplify(list(dict.fromkeys(pts)))
+    if len(pts)<2 or not clear(pts):continue
+    complete=simplify([aa]+pts+[ba])
+    # Reject backtracking caused by a side pointing away from the route.
+    bad=False
+    for u,v,z in zip(complete,complete[1:],complete[2:]):
+     if (v[0]-u[0])*(z[0]-v[0])+(v[1]-u[1])*(z[1]-v[1])<0:bad=True
+    if bad:continue
+    length=sum(abs(u[0]-v[0])+abs(u[1]-v[1]) for u,v in zip(complete,complete[1:]))
+    overlap=sum(occupancy.get((round(x/grid),round(y/grid)),0) for x,y in pts)
+    candidates.append((length+100*max(0,len(complete)-2)+overlap*60,complete,aside,bside))
+  if candidates:
+   _,pts,aside,bside=min(candidates,key=lambda c:c[0])
+   port_use[(a['id'],aside)]=port_use.get((a['id'],aside),0)+1
+   port_use[(b['id'],bside)]=port_use.get((b['id'],bside),0)+1
+   for u,v in zip(pts,pts[1:]):
+    length=abs(u[0]-v[0])+abs(u[1]-v[1])
+    for k in range(0,int(length)+1,10):
+     t=k/max(1,length);key=(round((u[0]+(v[0]-u[0])*t)/grid),round((u[1]+(v[1]-u[1])*t)/grid));occupancy[key]=occupancy.get(key,0)+1
+   return pts
   for _,aa,ap,ba,bp,aside,bside in sorted(opts)[:8]:
    start=tuple(round(v/grid) for v in ap);end=tuple(round(v/grid) for v in bp)
    if start in blocked or end in blocked:continue
@@ -143,8 +180,8 @@ def build(s,icons,head):
  if s['mode']=='topology':inner,w,h=topology(s,icons);cls='topology';top=0
  else:
   soup=BeautifulSoup(s['canvas'],'html.parser');canvas=soup.select_one('.canvas');inner=''.join(str(x) for x in canvas.contents);w=s['width'];h=s['height']+85;inner=f'<div style="position:absolute;left:0;top:85px;width:{w}px;height:{s["height"]}px">{inner}</div>';cls='structure'
- title=esc(s['title']);chapter=s['chapter'].split('-')[0]
- body=f'<body><main class="page"><div class="scroller"><div class="canvas {cls}" style="width:{w:g}px;height:{h:g}px"><div class="diagram-title">{title}</div><div class="diagram-kicker">CHAPTER {chapter} · STACK DIAGRAM</div>{inner}</div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">{esc(s["caption"])}</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: {s.get("icon_sources","Lucide")} · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>'
+ title=esc(s['title']);chapter=s['chapter'].split('-')[0];kicker='FUNDAMENTALS' if s['chapter']=='fundamentals' else f'CHAPTER {chapter}'
+ body=f'<body><main class="page"><div class="scroller"><div class="canvas {cls}" style="width:{w:g}px;height:{h:g}px"><div class="diagram-title">{title}</div><div class="diagram-kicker">{kicker} · STACK DIAGRAM</div>{inner}</div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">{esc(s["caption"])}</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: {s.get("icon_sources","Lucide")} · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>'
  return re.sub(r'<title>.*?</title>',f'<title>{title}</title>',head)+f'<style>{CSS}</style></head>'+body
 
 REPAIR_LABELS=(ROOT/'scripts/diagram_label_layout.js').read_text()
@@ -155,7 +192,7 @@ def main():
   if spec.name=='icons.json' or '.layout.' in spec.name:continue
   s=json.loads(spec.read_text())
   if slugs and s['slug'] not in slugs:continue
-  p=ROOT/'chapters'/s['chapter']/'assets'/f'{s["slug"]}.html';p.write_text(build(s,icons,head));paths.append(p);print('built',s['slug'],flush=True)
+  folder=ROOT/'fundamentals' if s['chapter']=='fundamentals' else ROOT/'chapters'/s['chapter'];p=folder/'assets'/f'{s["slug"]}.html';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(build(s,icons,head));paths.append(p);print('built',s['slug'],flush=True)
  if render:
   from playwright.sync_api import sync_playwright
   with sync_playwright() as pw:

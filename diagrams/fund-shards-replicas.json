@@ -1,0 +1,122 @@
+{
+  "slug": "fund-shards-replicas",
+  "chapter": "fundamentals",
+  "title": "다른 데이터의 담당을 나누고 각 담당의 사본을 둔다",
+  "caption": "샤딩은 서로 다른 데이터의 분할이고 복제는 같은 데이터의 사본이다. 응답 성공 조건과 복제 지연은 별도로 정한다.",
+  "mode": "topology",
+  "icon_sources": "Lucide",
+  "boundaries": [
+    "공통 원리"
+  ],
+  "nodes": [
+    {
+      "id": "a",
+      "label": "애플리케이션",
+      "role": "키에 따라 담당 선택",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "s1",
+      "label": "샤드 A · 주 서버",
+      "role": "상품 1–100",
+      "icon": "icon2",
+      "group": "0"
+    },
+    {
+      "id": "r1",
+      "label": "샤드 A · 복제본",
+      "role": "같은 상품 1–100",
+      "icon": "icon2",
+      "group": "0"
+    },
+    {
+      "id": "s2",
+      "label": "샤드 B · 주 서버",
+      "role": "상품 101–200",
+      "icon": "icon2",
+      "group": "0"
+    },
+    {
+      "id": "r2",
+      "label": "샤드 B · 복제본",
+      "role": "같은 상품 101–200",
+      "icon": "icon2",
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "a",
+      "to": "s1",
+      "label": "A 담당 키",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "a",
+      "to": "s2",
+      "label": "B 담당 키",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "s1",
+      "to": "r1",
+      "label": "변경 복제",
+      "kind": "secondary"
+    },
+    {
+      "id": "e3",
+      "from": "s2",
+      "to": "r2",
+      "label": "변경 복제",
+      "kind": "secondary"
+    }
+  ],
+  "layout": {
+    "width": 1160,
+    "height": 800,
+    "positions": {
+      "a": [
+        580,
+        130
+      ],
+      "s1": [
+        300,
+        380
+      ],
+      "r1": [
+        300,
+        610
+      ],
+      "s2": [
+        850,
+        380
+      ],
+      "r2": [
+        850,
+        610
+      ]
+    },
+    "groups": [
+      [
+        70,
+        320,
+        470,
+        430,
+        "담당 A · 같은 데이터의 사본",
+        "blue"
+      ],
+      [
+        620,
+        320,
+        470,
+        430,
+        "담당 B · 같은 데이터의 사본",
+        "amber"
+      ]
+    ]
+  }
+}

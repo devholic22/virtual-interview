@@ -1,0 +1,119 @@
+{
+  "slug": "fund-cache-path",
+  "chapter": "fundamentals",
+  "title": "캐시 적중은 원본 조회를 줄이고 미스는 원본으로 향한다",
+  "caption": "화살표는 조회·채움의 의존 경로다. 응답 경로는 생략했다. 캐시가 동시에 비면 원본으로 미스가 집중될 수 있다.",
+  "mode": "topology",
+  "icon_sources": "Lucide",
+  "boundaries": [
+    "공통 원리"
+  ],
+  "nodes": [
+    {
+      "id": "u",
+      "label": "상품 조회",
+      "role": "같은 키 반복 요청",
+      "icon": "icon5",
+      "group": "0"
+    },
+    {
+      "id": "a",
+      "label": "애플리케이션",
+      "role": "캐시 미스 처리",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "c",
+      "label": "상품 캐시",
+      "role": "반복 조회 결과",
+      "icon": "icon1",
+      "group": "0"
+    },
+    {
+      "id": "db",
+      "label": "원본 DB",
+      "role": "상품의 기준 데이터",
+      "icon": "icon2",
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "u",
+      "to": "a",
+      "label": "상품 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "a",
+      "to": "c",
+      "label": "① 캐시 조회",
+      "kind": "primary",
+      "ports": [
+        "L",
+        "T"
+      ]
+    },
+    {
+      "id": "e2",
+      "from": "a",
+      "to": "db",
+      "label": "② 미스 때 조회",
+      "kind": "secondary"
+    },
+    {
+      "id": "e3",
+      "from": "a",
+      "to": "c",
+      "label": "③ 미스 결과 채움",
+      "kind": "secondary",
+      "ports": [
+        "B",
+        "R"
+      ]
+    }
+  ],
+  "layout": {
+    "width": 1160,
+    "height": 680,
+    "positions": {
+      "u": [
+        250,
+        155
+      ],
+      "a": [
+        800,
+        155
+      ],
+      "c": [
+        250,
+        440
+      ],
+      "db": [
+        800,
+        440
+      ]
+    },
+    "groups": [
+      [
+        60,
+        100,
+        1040,
+        200,
+        "요청 처리",
+        "blue"
+      ],
+      [
+        60,
+        370,
+        1040,
+        240,
+        "저장 계층 · 원본과 파생 값",
+        "amber"
+      ]
+    ]
+  }
+}

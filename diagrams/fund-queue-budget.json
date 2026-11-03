@@ -1,0 +1,137 @@
+{
+  "slug": "fund-queue-budget",
+  "chapter": "fundamentals",
+  "title": "큐는 유입과 처리를 분리하지만 하류의 한도는 남는다",
+  "caption": "작업자를 늘리기 전에 DB·외부 API의 여유를 확인한다. 큐 길이와 가장 오래된 작업의 나이를 함께 본다.",
+  "mode": "topology",
+  "icon_sources": "Lucide",
+  "boundaries": [
+    "공통 원리"
+  ],
+  "nodes": [
+    {
+      "id": "p",
+      "label": "생산자",
+      "role": "유입 2,000건/초",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "q",
+      "label": "내구성 있는 큐",
+      "role": "처리 1,000건/초라면 적체",
+      "icon": "icon3",
+      "group": "0"
+    },
+    {
+      "id": "w1",
+      "label": "작업자 A",
+      "role": "재시도·멱등 처리",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "w2",
+      "label": "작업자 B",
+      "role": "재시도·멱등 처리",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "d",
+      "label": "공유 DB / 외부 API",
+      "role": "전체 처리 예산은 유한",
+      "icon": "icon2",
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "p",
+      "to": "q",
+      "label": "작업 접수",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "q",
+      "to": "w1",
+      "label": "작업 인출",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "q",
+      "to": "w2",
+      "label": "작업 인출",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "w1",
+      "to": "d",
+      "label": "업무 처리",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "w2",
+      "to": "d",
+      "label": "업무 처리",
+      "kind": "primary"
+    }
+  ],
+  "layout": {
+    "width": 1160,
+    "height": 820,
+    "positions": {
+      "p": [
+        250,
+        155
+      ],
+      "q": [
+        850,
+        155
+      ],
+      "w1": [
+        250,
+        400
+      ],
+      "w2": [
+        850,
+        400
+      ],
+      "d": [
+        550,
+        645
+      ]
+    },
+    "groups": [
+      [
+        70,
+        110,
+        1020,
+        180,
+        "접수 · 유입 제한과 유한한 대기열",
+        "blue"
+      ],
+      [
+        70,
+        350,
+        1020,
+        180,
+        "작업 처리 · 동시 진행 수 제한",
+        "violet"
+      ],
+      [
+        330,
+        590,
+        500,
+        180,
+        "하류 · 공유 자원 예산",
+        "amber"
+      ]
+    ]
+  }
+}

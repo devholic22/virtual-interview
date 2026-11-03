@@ -1,0 +1,137 @@
+{
+  "slug": "fund-durable-recovery",
+  "chapter": "fundamentals",
+  "title": "메모리 변경과 장애 뒤 복구할 수 있는 기록은 다르다",
+  "caption": "WAL은 변경의 로그를 먼저 영속화한다. 그림은 원리만 나타내며 실제 성공 반환 시점은 DB의 커밋·동기화 설정에 따른다.",
+  "mode": "topology",
+  "icon_sources": "Lucide",
+  "boundaries": [
+    "공통 원리"
+  ],
+  "nodes": [
+    {
+      "id": "a",
+      "label": "애플리케이션",
+      "role": "트랜잭션 커밋 요청",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "db",
+      "label": "DB 엔진",
+      "role": "버퍼와 복구 절차 관리",
+      "icon": "icon0",
+      "group": "0"
+    },
+    {
+      "id": "log",
+      "label": "영속 로그 · WAL",
+      "role": "먼저 안전하게 기록",
+      "icon": "icon3",
+      "group": "0"
+    },
+    {
+      "id": "data",
+      "label": "데이터 파일",
+      "role": "변경 페이지 반영",
+      "icon": "icon2",
+      "group": "0"
+    },
+    {
+      "id": "re",
+      "label": "복구 절차",
+      "role": "체크포인트 이후 재생",
+      "icon": "icon4",
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "a",
+      "to": "db",
+      "label": "커밋 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "db",
+      "to": "log",
+      "label": "① 로그 영속화",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "db",
+      "to": "data",
+      "label": "② 페이지 반영",
+      "kind": "secondary"
+    },
+    {
+      "id": "e3",
+      "from": "log",
+      "to": "re",
+      "label": "장애 후 로그 읽기",
+      "kind": "secondary"
+    },
+    {
+      "id": "e4",
+      "from": "re",
+      "to": "data",
+      "label": "필요한 변경 재생",
+      "kind": "secondary"
+    }
+  ],
+  "layout": {
+    "width": 1160,
+    "height": 820,
+    "positions": {
+      "a": [
+        250,
+        160
+      ],
+      "db": [
+        850,
+        160
+      ],
+      "log": [
+        250,
+        410
+      ],
+      "data": [
+        850,
+        410
+      ],
+      "re": [
+        550,
+        650
+      ]
+    },
+    "groups": [
+      [
+        60,
+        110,
+        1040,
+        180,
+        "정상 처리",
+        "blue"
+      ],
+      [
+        60,
+        350,
+        1040,
+        190,
+        "영속 저장장치",
+        "amber"
+      ],
+      [
+        360,
+        590,
+        440,
+        180,
+        "재시작 시 복구",
+        "violet"
+      ]
+    ]
+  }
+}
