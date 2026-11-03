@@ -7,6 +7,7 @@
 - [1장. 사용자 수에 따른 규모 확장성](chapters/01-scaling/README.md)
 - [4장. 처리율 제한 장치의 설계](chapters/04-rate-limiter/README.md)
 - [5장. 안정 해시 설계](chapters/05-consistent-hashing/README.md)
+- [6장. 키-값 저장소 설계](chapters/06-key-value-store/README.md)
 
 ## 참고 도서
 
