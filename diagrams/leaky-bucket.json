@@ -1,0 +1,70 @@
+{
+  "slug": "leaky-bucket",
+  "chapter": "04-rate-limiter",
+  "title": "누출 버킷 · 대기시킨 뒤 일정하게 내보낸다",
+  "caption": "대기 공간 3개, 초당 2개 배출인 FIFO 큐 모형이다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 530.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "동시 요청 5개",
+      "role": "첫 배출 전에 도착",
+      "icon": "icon5",
+      "x": 94.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "유한한 FIFO 큐",
+      "role": "대기 용량 3개",
+      "icon": "icon3",
+      "x": 484.0,
+      "y": 60.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "처리 대상 서버",
+      "role": "0.5초마다 1개 전달",
+      "icon": "icon0",
+      "x": 934.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "추가 요청 거부",
+      "role": "큐가 가득 찬 경우",
+      "icon": "icon0",
+      "x": 484.0,
+      "y": 350.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n3",
+      "label": "공간이 있으면 접수",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n3",
+      "to": "n2",
+      "label": "일정한 간격으로 배출",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 200 1160 530\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M196 290 H514\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"350\" y=\"275\">공간이 있으면 접수</text><path class=\"e\" d=\"M586 290 H964\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"790\" y=\"275\">일정한 간격으로 배출</text><path class=\"e\" d=\"M550 366 V544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"665\" y=\"465\">가득 차면 거부</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"550\" y=\"685\">이 예시에서는 3건 대기 · 2건 거부</text></svg><div class=\"node\" style=\"left:94px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>동시 요청 5개</span></div><div class=\"role\"><span>첫 배출 전에 도착</span></div></div><div class=\"node\" style=\"left:484px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LW9yZGVyZWQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xMSA1aDEwIiAvPgogIDxwYXRoIGQ9Ik0xMSAxMmgxMCIgLz4KICA8cGF0aCBkPSJNMTEgMTloMTAiIC8+CiAgPHBhdGggZD0iTTQgNGgxdjUiIC8+CiAgPHBhdGggZD0iTTQgOWgyIiAvPgogIDxwYXRoIGQ9Ik02LjUgMjBIMy40YzAtMSAyLjYtMS45MjUgMi42LTMuNWExLjUgMS41IDAgMCAwLTIuNi0xLjAyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>유한한 FIFO 큐</span></div><div class=\"role\"><span>대기 용량 3개</span></div></div><div class=\"node\" style=\"left:934px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>처리 대상 서버</span></div><div class=\"role\"><span>0.5초마다 1개 전달</span></div></div><div class=\"node\" style=\"left:484px;top:350px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>추가 요청 거부</span></div><div class=\"role\"><span>큐가 가득 찬 경우</span></div></div>\n</div>",
+  "boundaries": [
+    "서비스 처리",
+    "비동기·작업 처리"
+  ],
+  "icon_sources": "Lucide"
+}

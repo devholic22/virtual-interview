@@ -1,0 +1,27 @@
+{
+  "slug": "bloom-lookup",
+  "chapter": "08-url-shortener",
+  "title": "블룸 필터는 캐시 미스 중 DB로 갈 후보를 줄인다",
+  "caption": "없다는 판정을 쓸 조건이 안 되면 필터 결과로 404를 확정하지 않고 DB를 확인한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 1010.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "원본 DB",
+      "role": "코드 → 실제 URL 조회",
+      "icon": "icon2",
+      "x": 834.0,
+      "y": 620.0,
+      "group": "0"
+    }
+  ],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 1010\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"340\" x=\"410\" y=\"40\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"73\">값 캐시 조회</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"107\">코드의 실제 URL을 찾음</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"300\" x=\"805\" y=\"40\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"955.0\" y=\"73\">캐시 적중</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"955.0\" y=\"107\">실제 URL로 이동 응답</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"340\" x=\"410\" y=\"315\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"348\">DB 키 집합의 블룸 필터</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"382\">부재 확정의 안전 조건 확인</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"330\" x=\"55\" y=\"620\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"220.0\" y=\"653\">안전한 음성 → 404</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"220.0\" y=\"687\">해당 DB 읽기 생략</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"460\" x=\"650\" y=\"845\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"880.0\" y=\"878\">DB 결과로 응답</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"880.0\" y=\"912\">존재하면 URL · 없으면 404</text><path class=\"e\" d=\"M756 85 H799\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"60\">적중</text><path class=\"e\" d=\"M580 141 V309\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"680\" y=\"235\">캐시 미스</text><path class=\"e\" d=\"M500 431 L220 614\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"285\" y=\"520\">완전한 집합의 없음</text><path class=\"e\" d=\"M660 431 L900 614\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"900\" y=\"525\">양성 또는 불완전</text><path class=\"e\" d=\"M900 726 V839\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1000\" y=\"795\">실제 값 확인</text></svg><div class=\"node\" style=\"left:834px;top:620px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>원본 DB</span></div><div class=\"role\"><span>코드 → 실제 URL 조회</span></div></div>\n</div>",
+  "boundaries": [
+    "데이터 보관"
+  ],
+  "icon_sources": "Lucide"
+}

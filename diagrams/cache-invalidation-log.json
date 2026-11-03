@@ -1,0 +1,124 @@
+{
+  "slug": "cache-invalidation-log",
+  "chapter": "01-scaling",
+  "title": "커밋 로그에 연결한 캐시 무효화",
+  "caption": "논문 §4.1의 흐름을 단순화했다. MCSqueal은 로그를 읽고 MCrouter는 삭제를 전달한다.",
+  "mode": "topology",
+  "width": 1240.0,
+  "height": 700.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "업무 DB",
+      "role": "값 변경",
+      "icon": "icon2",
+      "x": 89.0,
+      "y": 140.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "커밋 로그",
+      "role": "무효화 키도 기록",
+      "icon": "icon3",
+      "x": 284.0,
+      "y": 140.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "MCSqueal",
+      "role": "로그 읽기 · 삭제 추출",
+      "icon": "icon0",
+      "x": 284.0,
+      "y": 445.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "MCrouter",
+      "role": "삭제 라우팅",
+      "icon": "icon4",
+      "x": 614.0,
+      "y": 445.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "캐시 1",
+      "role": "관련 키 삭제",
+      "icon": "icon1",
+      "x": 894.0,
+      "y": 150.0,
+      "group": "2"
+    },
+    {
+      "id": "n5",
+      "label": "캐시 2",
+      "role": "관련 키 삭제",
+      "icon": "icon1",
+      "x": 894.0,
+      "y": 445.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "기록",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "커밋 후 처리",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "삭제 묶음",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "삭제",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n3",
+      "to": "n5",
+      "label": "삭제",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "DB · 커밋된 변경",
+      "x": 60.0,
+      "y": 70.0,
+      "w": 385.0,
+      "h": 230.0
+    },
+    {
+      "label": "여러 캐시로 전파",
+      "x": 780.0,
+      "y": 70.0,
+      "w": 370.0,
+      "h": 550.0
+    }
+  ],
+  "boundaries": [
+    "DB · 커밋된 변경",
+    "서비스 처리",
+    "여러 캐시로 전파"
+  ],
+  "icon_sources": "Lucide"
+}

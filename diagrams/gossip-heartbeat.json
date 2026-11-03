@@ -1,0 +1,95 @@
+{
+  "slug": "gossip-heartbeat",
+  "chapter": "06-key-value-store",
+  "title": "가십 · 일부 이웃과 관찰 정보를 교환해 퍼뜨린다",
+  "caption": "B의 하트비트가 더 커졌다는 소식을 C가 A에게 전달하는 한 라운드의 예시다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 720.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "A",
+      "role": "B의 새 진행 관찰",
+      "icon": "icon0",
+      "x": 109.0,
+      "y": 130.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "C",
+      "role": "B 정보를 A에 전달",
+      "icon": "icon0",
+      "x": 464.0,
+      "y": 360.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "B",
+      "role": "자기 카운터 증가",
+      "icon": "icon0",
+      "x": 109.0,
+      "y": 490.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n2",
+      "to": "n1",
+      "label": "B: 7 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n0",
+      "label": "B: 7 전파",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "A가 가진 관찰 목록의 일부",
+      "x": 760.0,
+      "y": 75.0,
+      "w": 335.0,
+      "h": 535.0
+    }
+  ],
+  "boundaries": [
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        160,
+        180
+      ],
+      "n1": [
+        500,
+        180
+      ],
+      "n2": [
+        330,
+        460
+      ]
+    },
+    "groups": [
+      [
+        50,
+        110,
+        560,
+        500,
+        "노드 간 멤버십 정보 전파",
+        "blue"
+      ]
+    ],
+    "width": 700,
+    "height": 680
+  }
+}

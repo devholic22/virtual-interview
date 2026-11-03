@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels -->
-<head>
+<!DOCTYPE html><html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels --><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>시간 정보로 정렬하기와 전역 실제 순서를 구분한다</title>
@@ -82,7 +80,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 
 .scroller { overflow-x: auto; border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); }
 /* CANVAS SIZE: set width/height here AND on svg.edges AND its viewBox — keep the three in sync */
-.canvas { position: relative; width: 1160px; height: 580px; background: var(--color-paper);
+.canvas { position: relative; width: 1200px; height: 610px; background: var(--color-paper);
   background-image:
     linear-gradient(var(--color-rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
@@ -133,7 +131,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 .node .name span, .node .role span { background: var(--color-veil); backdrop-filter: blur(1.5px);
   padding: 0 var(--space-xs); border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-svg.edges { position:absolute; inset:0; width:1160px; height:580px; pointer-events:none; }
+svg.edges { position:absolute; inset:0; width:1200px; height:610px; pointer-events:none; }
 .e  { stroke: var(--color-accent); stroke-width:1.6; fill:none; }   /* primary flow */
 .n  { stroke: var(--color-neutral); stroke-width:1.4; fill:none; }  /* internal */
 path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
@@ -155,32 +153,17 @@ path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
 .foot a { color: inherit; text-decoration-color: var(--color-rule-2); text-underline-offset: 2px; }
 .foot a:hover { color: var(--color-accent); }
 .e,.read,.n{stroke-width:1.5}.e,.n{stroke:var(--color-neutral)}.read{stroke:var(--color-accent);stroke-dasharray:6 5;fill:none}.el,.el.a{fill:var(--color-ink-2);font-family:var(--font-body)}.canvas{background-image:none}.node .role{font-family:var(--font-body)} </style>
-</head>
-<body>
-<div class="page">
-
-  <header class="head">
-    <div>
-      <div class="kicker">CHAPTER 07</div>
-      <h1>시간 정보로 정렬하기와 전역 실제 순서를 구분한다</h1>
-    </div>
-    <p class="lede">예시는 생성기 사이 시각 편차를 나타낸다. 같은 생성기의 시계 역행과도 다른 문제다.</p>
-  </header>
-
-  <div class="scroller">
-  <div class="canvas">
-
-<svg class="edges" viewBox="0 0 1160 580" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><text class="el" x="580" y="55" text-anchor="middle" style="font-size:24px">서버 시계의 오차가 있는 두 요청</text><text class="el" x="300" y="145" text-anchor="middle" style="font-size:20px">실제로 먼저 처리한 A</text><text class="el" x="860" y="145" text-anchor="middle" style="font-size:20px">실제로 나중에 처리한 B</text><rect x="110" y="205" width="380" height="105" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="300.0" y="238" text-anchor="middle" style="font-size:19px">기록한 상대 시각 1003ms</text><text class="el" x="300.0" y="272" text-anchor="middle" style="font-size:16px">센터 1 · 서버 2 · 일련번호 0</text><rect x="670" y="205" width="380" height="105" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="860.0" y="238" text-anchor="middle" style="font-size:19px">기록한 상대 시각 1001ms</text><text class="el" x="860.0" y="272" text-anchor="middle" style="font-size:16px">센터 1 · 서버 3 · 일련번호 0</text><path class="e" d="M496 255 H664" marker-end="url(#ar)"/><text class="el a" x="580" y="235" text-anchor="middle">실제 진행 순서</text><text class="el" x="580" y="420" text-anchor="middle" style="font-size:22px">ID 정렬에서는 1001ms인 B가 1003ms인 A보다 먼저 온다</text><text class="el" x="580" y="500" text-anchor="middle" style="font-size:19px">같은 밀리초라도 서로 다른 서버는 센터·서버 필드 순서로 정렬</text></svg>
-  </div>
-  </div>
-
-<div class="legend">정수 정렬은 기록된 시간 기준 · 엄격한 전역 발급·응답 순서에는 추가 조율 필요</div>
-
-  <div class="foot">
-    <span>7장 학습용 재구성 · 예시는 생성기 사이 시각 편차를 나타낸다. 같은 생성기의 시계 역행과도 다른 문제다.</span>
-    <span>icons: Lucide · made with <a href="https://github.com/caru-ini/stack-diagram" target="_blank" rel="noopener">stack-diagram</a></span>
-  </div>
-
-</div>
-</body>
-</html>
+<style>
+body{padding:24px;background:var(--color-paper);font-family:var(--font-body)}
+.page{max-width:100%;margin:auto;width:fit-content}.head{display:none}.scroller{max-width:100%;overflow:auto;border:1px solid var(--color-rule-2);border-radius:8px}.canvas{position:relative;background-color:var(--color-paper);background-image:linear-gradient(var(--color-rule) 1px,transparent 1px),linear-gradient(90deg,var(--color-rule) 1px,transparent 1px);background-size:20px 20px;overflow:visible}
+.diagram-title{position:absolute;left:30px;top:22px;font-size:20px;font-weight:750;letter-spacing:-.02em;color:var(--color-ink)}.diagram-kicker{position:absolute;left:30px;top:55px;font:11px var(--font-mono);color:var(--color-muted)}
+.group{position:absolute;border:1.3px solid var(--group-stroke);background:var(--group-fill);border-radius:6px;z-index:0}.group.blue,.group.gb{--group-stroke:#78b3d0;--group-fill:#e6f3fc66;--group-ink:#286d94}.group.amber{--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.group.violet{--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}.group.green{--group-stroke:#80bba6;--group-fill:#e6f6ec66;--group-ink:#337a60}.group.slate{--group-stroke:#a0afbf;--group-fill:#edf1f666;--group-ink:#566577}
+[data-theme=dark] .group{background:color-mix(in srgb,var(--group-stroke) 9%,transparent);border-color:color-mix(in srgb,var(--group-stroke) 70%,transparent)}[data-theme=dark] .g-label{color:var(--color-ink-2)}
+.g-label{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;line-height:1.4;color:var(--group-ink);max-width:calc(100% - 28px)}
+.edges,svg.edges{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.edges .e{fill:none;stroke:var(--color-accent);stroke-width:1.7}.edges .n{fill:none;stroke:var(--color-neutral);stroke-width:1.45}.edge-halo{fill:none;stroke:var(--color-paper);stroke-width:5}.edges .el{font-family:var(--font-body);font-size:12px;fill:var(--color-neutral);paint-order:stroke;stroke:var(--color-paper);stroke-width:5;stroke-linejoin:round;letter-spacing:0}.edges .el.a{fill:var(--color-accent)}
+.node{position:absolute;width:148px;text-align:center;z-index:2}.node .tile{width:54px;height:54px;margin:0 auto;background:#fff;border:1px solid #c9d2db;border-radius:7px;box-shadow:0 1px 2px #23374b12;display:flex;align-items:center;justify-content:center}.node .tile img{max-width:34px;max-height:34px;width:34px;height:34px}.node .name,.node .role,.g-label{word-break:keep-all;overflow-wrap:normal}.node .name{font:700 14px/1.45 var(--font-body);color:var(--color-ink);margin-top:9px}.node .role{font:11px/1.5 var(--font-body);color:var(--color-muted);margin-top:3px;letter-spacing:0}.node .name span,.node .role span{background:var(--color-veil);box-shadow:3px 0 var(--color-veil),-3px 0 var(--color-veil)}
+.structure .node{width:132px}.structure .node .tile{width:60px;height:60px}.structure .node .name{font-size:14px;margin-top:7px}.structure .node .role{font-size:11px}.structure .edges .el{font-size:14px}.structure .group:nth-of-type(3n+2){--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.structure .group:nth-of-type(3n+3){--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}
+.legend{font:12px/1.6 var(--font-body);margin:14px 0;color:var(--color-muted);letter-spacing:0}.foot{font:11px/1.7 var(--font-body);margin-top:12px;color:var(--color-muted);letter-spacing:0}.foot a{color:inherit}.caption{font:13px/1.8 var(--font-body);max-width:1050px;margin:16px 0;color:var(--color-ink-2)}
+</style></head><body><main class="page"><div class="scroller"><div class="canvas structure" style="width:1160px;height:665px"><div class="diagram-title">시간 정보로 정렬하기와 전역 실제 순서를 구분한다</div><div class="diagram-kicker">CHAPTER 07 · STACK DIAGRAM</div><div style="position:absolute;left:0;top:85px;width:1160.0px;height:580.0px">
+<svg aria-hidden="true" class="edges" viewBox="0 0 1160 580"><defs><marker id="ar" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"></path></marker></defs><text class="el" style="font-size:24px" text-anchor="middle" x="580" y="55">서버 시계의 오차가 있는 두 요청</text><text class="el" style="font-size:20px" text-anchor="middle" x="300" y="145">실제로 먼저 처리한 A</text><text class="el" style="font-size:20px" text-anchor="middle" x="860" y="145">실제로 나중에 처리한 B</text><rect fill="var(--color-paper)" height="105" rx="12" stroke="var(--color-neutral)" width="380" x="110" y="205"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="300.0" y="238">기록한 상대 시각 1003ms</text><text class="el" style="font-size:16px" text-anchor="middle" x="300.0" y="272">센터 1 · 서버 2 · 일련번호 0</text><rect fill="var(--color-paper)" height="105" rx="12" stroke="var(--color-neutral)" width="380" x="670" y="205"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="860.0" y="238">기록한 상대 시각 1001ms</text><text class="el" style="font-size:16px" text-anchor="middle" x="860.0" y="272">센터 1 · 서버 3 · 일련번호 0</text><path class="e" d="M496 255 H664" marker-end="url(#ar)" data-edge="s0"></path><text class="el a" text-anchor="middle" x="580" y="235" data-edge="s0">실제 진행 순서</text><text class="el" style="font-size:22px" text-anchor="middle" x="580" y="420">ID 정렬에서는 1001ms인 B가 1003ms인 A보다 먼저 온다</text><text class="el" style="font-size:19px" text-anchor="middle" x="580" y="500">같은 밀리초라도 서로 다른 서버는 센터·서버 필드 순서로 정렬</text></svg>
+</div></div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">예시는 생성기 사이 시각 편차를 나타낸다. 같은 생성기의 시계 역행과도 다른 문제다.</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: Lucide · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>

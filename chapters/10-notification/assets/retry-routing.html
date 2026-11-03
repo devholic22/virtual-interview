@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels -->
-<head>
+<!DOCTYPE html><html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels --><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>결과에 따라 기다리거나 수정하거나 종료한다</title>
@@ -82,7 +80,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 
 .scroller { overflow-x: auto; border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); }
 /* CANVAS SIZE: set width/height here AND on svg.edges AND its viewBox — keep the three in sync */
-.canvas { position: relative; width: 1160px; height: 840px; background: var(--color-paper);
+.canvas { position: relative; width: 1200px; height: 610px; background: var(--color-paper);
   background-image:
     linear-gradient(var(--color-rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
@@ -133,7 +131,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 .node .name span, .node .role span { background: var(--color-veil); backdrop-filter: blur(1.5px);
   padding: 0 var(--space-xs); border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-svg.edges { position:absolute; inset:0; width:1160px; height:840px; pointer-events:none; }
+svg.edges { position:absolute; inset:0; width:1200px; height:610px; pointer-events:none; }
 .e  { stroke: var(--color-accent); stroke-width:1.6; fill:none; }   /* primary flow */
 .n  { stroke: var(--color-neutral); stroke-width:1.4; fill:none; }  /* internal */
 path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
@@ -155,32 +153,17 @@ path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
 .foot a { color: inherit; text-decoration-color: var(--color-rule-2); text-underline-offset: 2px; }
 .foot a:hover { color: var(--color-accent); }
 .e,.read,.n{stroke-width:1.5}.e,.n{stroke:var(--color-neutral)}.read{stroke:var(--color-accent);stroke-dasharray:6 5;fill:none}.el,.el.a{fill:var(--color-ink-2);font-family:var(--font-body)}.canvas{background-image:none}.node .role{font-family:var(--font-body)} </style>
-</head>
-<body>
-<div class="page">
-
-  <header class="head">
-    <div>
-      <div class="kicker">CHAPTER 10</div>
-      <h1>결과에 따라 기다리거나 수정하거나 종료한다</h1>
-    </div>
-    <p class="lede">타임아웃은 상대가 처리하지 않았다는 확정 증거가 아니다.</p>
-  </header>
-
-  <div class="scroller">
-  <div class="canvas">
-
-<svg class="edges" viewBox="0 0 1160 840" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect x="410" y="45" width="340" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="77" text-anchor="middle" style="font-size:19px">외부 호출 결과</text><text class="el" x="580.0" y="110" text-anchor="middle" style="font-size:16px">성공 · 일시 오류 · 영구 오류 · 미확인</text><rect x="45" y="340" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="205.0" y="372" text-anchor="middle" style="font-size:19px">일시 오류 · 429</text><text class="el" x="205.0" y="405" text-anchor="middle" style="font-size:16px">지침 · 백오프 · 지터</text><rect x="420" y="340" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="372" text-anchor="middle" style="font-size:19px">영구 오류</text><text class="el" x="580.0" y="405" text-anchor="middle" style="font-size:16px">무효 토큰 · 잘못된 주소</text><rect x="795" y="340" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="955.0" y="372" text-anchor="middle" style="font-size:19px">결과 미확인</text><text class="el" x="955.0" y="405" text-anchor="middle" style="font-size:16px">조회 · 중복 위험 판단</text><rect x="45" y="650" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="205.0" y="682" text-anchor="middle" style="font-size:19px">재시도 예약</text><text class="el" x="205.0" y="715" text-anchor="middle" style="font-size:16px">전체 호출 한도 · 기한 안에서</text><rect x="420" y="650" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="682" text-anchor="middle" style="font-size:19px">종료 · 필요 시 격리</text><text class="el" x="580.0" y="715" text-anchor="middle" style="font-size:16px">원인 저장 · 수정 후 재처리</text><rect x="795" y="650" width="320" height="100" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="955.0" y="682" text-anchor="middle" style="font-size:19px">결과 확인 또는 재시도</text><text class="el" x="955.0" y="715" text-anchor="middle" style="font-size:16px">같은 작업 ID 유지</text><path class="e" d="M470 151 L205 334" marker-end="url(#ar)"/><text class="el a" x="285" y="255" text-anchor="middle">일시</text><path class="e" d="M580 151 V334" marker-end="url(#ar)"/><text class="el a" x="650" y="255" text-anchor="middle">영구</text><path class="e" d="M690 151 L955 334" marker-end="url(#ar)"/><text class="el a" x="870" y="255" text-anchor="middle">미확인</text><path class="e" d="M205 446 V644" marker-end="url(#ar)"/><text class="el a" x="290" y="555" text-anchor="middle">기한 내</text><path class="e" d="M580 446 V644" marker-end="url(#ar)"/><text class="el a" x="690" y="555" text-anchor="middle">반복해도 해결 안 됨</text><path class="e" d="M955 446 V644" marker-end="url(#ar)"/><text class="el a" x="1040" y="555" text-anchor="middle">정책 적용</text></svg>
-  </div>
-  </div>
-
-<div class="legend">화살표: 요청·작업 흐름 / 응답·저장 세부 경로 일부 생략</div>
-
-  <div class="foot">
-    <span>10장 학습용 재구성 · 타임아웃은 상대가 처리하지 않았다는 확정 증거가 아니다.</span>
-    <span>icons: Lucide · made with <a href="https://github.com/caru-ini/stack-diagram" target="_blank" rel="noopener">stack-diagram</a></span>
-  </div>
-
-</div>
-</body>
-</html>
+<style>
+body{padding:24px;background:var(--color-paper);font-family:var(--font-body)}
+.page{max-width:100%;margin:auto;width:fit-content}.head{display:none}.scroller{max-width:100%;overflow:auto;border:1px solid var(--color-rule-2);border-radius:8px}.canvas{position:relative;background-color:var(--color-paper);background-image:linear-gradient(var(--color-rule) 1px,transparent 1px),linear-gradient(90deg,var(--color-rule) 1px,transparent 1px);background-size:20px 20px;overflow:visible}
+.diagram-title{position:absolute;left:30px;top:22px;font-size:20px;font-weight:750;letter-spacing:-.02em;color:var(--color-ink)}.diagram-kicker{position:absolute;left:30px;top:55px;font:11px var(--font-mono);color:var(--color-muted)}
+.group{position:absolute;border:1.3px solid var(--group-stroke);background:var(--group-fill);border-radius:6px;z-index:0}.group.blue,.group.gb{--group-stroke:#78b3d0;--group-fill:#e6f3fc66;--group-ink:#286d94}.group.amber{--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.group.violet{--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}.group.green{--group-stroke:#80bba6;--group-fill:#e6f6ec66;--group-ink:#337a60}.group.slate{--group-stroke:#a0afbf;--group-fill:#edf1f666;--group-ink:#566577}
+[data-theme=dark] .group{background:color-mix(in srgb,var(--group-stroke) 9%,transparent);border-color:color-mix(in srgb,var(--group-stroke) 70%,transparent)}[data-theme=dark] .g-label{color:var(--color-ink-2)}
+.g-label{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;line-height:1.4;color:var(--group-ink);max-width:calc(100% - 28px)}
+.edges,svg.edges{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.edges .e{fill:none;stroke:var(--color-accent);stroke-width:1.7}.edges .n{fill:none;stroke:var(--color-neutral);stroke-width:1.45}.edge-halo{fill:none;stroke:var(--color-paper);stroke-width:5}.edges .el{font-family:var(--font-body);font-size:12px;fill:var(--color-neutral);paint-order:stroke;stroke:var(--color-paper);stroke-width:5;stroke-linejoin:round;letter-spacing:0}.edges .el.a{fill:var(--color-accent)}
+.node{position:absolute;width:148px;text-align:center;z-index:2}.node .tile{width:54px;height:54px;margin:0 auto;background:#fff;border:1px solid #c9d2db;border-radius:7px;box-shadow:0 1px 2px #23374b12;display:flex;align-items:center;justify-content:center}.node .tile img{max-width:34px;max-height:34px;width:34px;height:34px}.node .name,.node .role,.g-label{word-break:keep-all;overflow-wrap:normal}.node .name{font:700 14px/1.45 var(--font-body);color:var(--color-ink);margin-top:9px}.node .role{font:11px/1.5 var(--font-body);color:var(--color-muted);margin-top:3px;letter-spacing:0}.node .name span,.node .role span{background:var(--color-veil);box-shadow:3px 0 var(--color-veil),-3px 0 var(--color-veil)}
+.structure .node{width:132px}.structure .node .tile{width:60px;height:60px}.structure .node .name{font-size:14px;margin-top:7px}.structure .node .role{font-size:11px}.structure .edges .el{font-size:14px}.structure .group:nth-of-type(3n+2){--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.structure .group:nth-of-type(3n+3){--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}
+.legend{font:12px/1.6 var(--font-body);margin:14px 0;color:var(--color-muted);letter-spacing:0}.foot{font:11px/1.7 var(--font-body);margin-top:12px;color:var(--color-muted);letter-spacing:0}.foot a{color:inherit}.caption{font:13px/1.8 var(--font-body);max-width:1050px;margin:16px 0;color:var(--color-ink-2)}
+</style></head><body><main class="page"><div class="scroller"><div class="canvas structure" style="width:1160px;height:925px"><div class="diagram-title">결과에 따라 기다리거나 수정하거나 종료한다</div><div class="diagram-kicker">CHAPTER 10 · STACK DIAGRAM</div><div style="position:absolute;left:0;top:85px;width:1160.0px;height:840.0px">
+<svg aria-hidden="true" class="edges" viewBox="0 0 1160 840"><defs><marker id="ar" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"></path></marker></defs><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="340" x="410" y="45"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="77">외부 호출 결과</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="110">성공 · 일시 오류 · 영구 오류 · 미확인</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="45" y="340"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="205.0" y="372">일시 오류 · 429</text><text class="el" style="font-size:16px" text-anchor="middle" x="205.0" y="405">지침 · 백오프 · 지터</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="420" y="340"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="372">영구 오류</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="405">무효 토큰 · 잘못된 주소</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="795" y="340"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="955.0" y="372">결과 미확인</text><text class="el" style="font-size:16px" text-anchor="middle" x="955.0" y="405">조회 · 중복 위험 판단</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="45" y="650"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="205.0" y="682">재시도 예약</text><text class="el" style="font-size:16px" text-anchor="middle" x="205.0" y="715">전체 호출 한도 · 기한 안에서</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="420" y="650"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="682">종료 · 필요 시 격리</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="715">원인 저장 · 수정 후 재처리</text><rect fill="var(--color-paper)" height="100" rx="12" stroke="var(--color-neutral)" width="320" x="795" y="650"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="955.0" y="682">결과 확인 또는 재시도</text><text class="el" style="font-size:16px" text-anchor="middle" x="955.0" y="715">같은 작업 ID 유지</text><path class="e" d="M470 151 L205 334" marker-end="url(#ar)" data-edge="s0"></path><text class="el a" text-anchor="middle" x="285" y="255" data-edge="s0">일시</text><path class="e" d="M580 151 V334" marker-end="url(#ar)" data-edge="s1"></path><text class="el a" text-anchor="middle" x="602.1171875" y="247" data-edge="s1">영구</text><path class="e" d="M690 151 L955 334" marker-end="url(#ar)" data-edge="s2"></path><text class="el a" text-anchor="middle" x="870" y="255" data-edge="s2">미확인</text><path class="e" d="M205 446 V644" marker-end="url(#ar)" data-edge="s3"></path><text class="el a" text-anchor="middle" x="235.0078125" y="549.5" data-edge="s3">기한 내</text><path class="e" d="M580 446 V644" marker-end="url(#ar)" data-edge="s4"></path><text class="el a" text-anchor="middle" x="643.96875" y="549.5" data-edge="s4">반복해도 해결 안 됨</text><path class="e" d="M955 446 V644" marker-end="url(#ar)" data-edge="s5"></path><text class="el a" text-anchor="middle" x="991.0625" y="549.5" data-edge="s5">정책 적용</text></svg>
+</div></div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">타임아웃은 상대가 처리하지 않았다는 확정 증거가 아니다.</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: Lucide · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>

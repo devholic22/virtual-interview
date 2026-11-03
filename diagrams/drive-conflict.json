@@ -1,0 +1,109 @@
+{
+  "slug": "drive-conflict",
+  "chapter": "15-google-drive",
+  "title": "같은 기준 버전의 두 수정은 하나만 먼저 확정한다",
+  "caption": "이 예시는 A가 먼저 커밋한 경우다. 시작 시각·단말 시계가 승자를 결정하지 않는다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 900.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "단말 A",
+      "role": "v7을 기준으로 수정",
+      "icon": "icon5",
+      "x": 164.0,
+      "y": 45.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "단말 B",
+      "role": "v7을 기준으로 수정",
+      "icon": "icon5",
+      "x": 864.0,
+      "y": 45.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "현재 최신 포인터",
+      "role": "아직 v7",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 45.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "원자적 확정",
+      "role": "현재 버전 = 기준 버전?",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 345.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "A의 새 버전 v8",
+      "role": "현재 포인터 v8로 전이",
+      "icon": "icon2",
+      "x": 164.0,
+      "y": 670.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "B의 충돌 사본",
+      "role": "내용 보존 · 비교 필요",
+      "icon": "icon2",
+      "x": 864.0,
+      "y": 670.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n3",
+      "label": "후보 A · 기준 v7",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n3",
+      "label": "후보 B · 기준 v7",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "현재 상태 검사",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "A 먼저 성공",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n3",
+      "to": "n5",
+      "label": "B의 기준은 이미 과거",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 900\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M250 151 L560 339\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"300\" y=\"255\">후보 A · 기준 v7</text><path class=\"e\" d=\"M910 151 L600 339\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"860\" y=\"255\">후보 B · 기준 v7</text><path class=\"e\" d=\"M580 151 V339\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"670\" y=\"205\">현재 상태 검사</text><path class=\"e\" d=\"M560 451 L250 664\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"300\" y=\"560\">A 먼저 성공</text><path class=\"e\" d=\"M600 451 L910 664\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"860\" y=\"560\">B의 기준은 이미 과거</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"850\">알림은 낡은 편집을 줄이지만 원자적인 버전 비교를 대신하지 않는다</text></svg><div class=\"node\" style=\"left:164px;top:45px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>단말 A</span></div><div class=\"role\"><span>v7을 기준으로 수정</span></div></div><div class=\"node\" style=\"left:864px;top:45px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>단말 B</span></div><div class=\"role\"><span>v7을 기준으로 수정</span></div></div><div class=\"node\" style=\"left:514px;top:45px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>현재 최신 포인터</span></div><div class=\"role\"><span>아직 v7</span></div></div><div class=\"node\" style=\"left:514px;top:345px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1uZXR3b3JrIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB4PSIxNiIgeT0iMTYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxIiAvPgogIDxyZWN0IHg9IjIiIHk9IjE2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cmVjdCB4PSI5IiB5PSIyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cGF0aCBkPSJNNSAxNnYtM2ExIDEgMCAwIDEgMS0xaDEyYTEgMSAwIDAgMSAxIDF2MyIgLz4KICA8cGF0aCBkPSJNMTIgMTJWOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>원자적 확정</span></div><div class=\"role\"><span>현재 버전 = 기준 버전?</span></div></div><div class=\"node\" style=\"left:164px;top:670px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A의 새 버전 v8</span></div><div class=\"role\"><span>현재 포인터 v8로 전이</span></div></div><div class=\"node\" style=\"left:864px;top:670px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>B의 충돌 사본</span></div><div class=\"role\"><span>내용 보존 · 비교 필요</span></div></div>\n</div>",
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide"
+}

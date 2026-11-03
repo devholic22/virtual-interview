@@ -1,0 +1,15 @@
+{
+  "slug": "modulo-remap",
+  "chapter": "05-consistent-hashing",
+  "title": "나머지 해시 · 서버 수가 바뀌면 목적지를 다시 계산한다",
+  "caption": "동일한 해시값에 대해 N만 3에서 2로 바꾼 예시다. 서버 목록의 인덱스도 함께 달라진다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 650.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 650\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"290\" y=\"55\">변경 전 · [A, B, C] · % 3</text><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"860\" y=\"55\">B 제거 후 · [A, C] · % 2</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"120\">P0 · 해시 0 → A</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"120\">P0 · 해시 0 → A</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"186\">P1 · 해시 1 → B</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"186\">P1 · 해시 1 → C</text><path class=\"e\" d=\"M460 180 H685\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"572\" y=\"171\">변경</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"252\">P2 · 해시 2 → C</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"252\">P2 · 해시 2 → A</text><path class=\"e\" d=\"M460 246 H685\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"572\" y=\"237\">변경</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"318\">P3 · 해시 3 → A</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"318\">P3 · 해시 3 → C</text><path class=\"e\" d=\"M460 312 H685\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"572\" y=\"303\">변경</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"384\">P4 · 해시 4 → B</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"384\">P4 · 해시 4 → A</text><path class=\"e\" d=\"M460 378 H685\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"572\" y=\"369\">변경</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290\" y=\"450\">P5 · 해시 5 → C</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"450\">P5 · 해시 5 → C</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"575\" y=\"565\">P2: 정상인 C → A / P3: 정상인 A → C</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"575\" y=\"605\">장애 서버의 키뿐 아니라 정상 서버의 키도 목적지가 바뀐다</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

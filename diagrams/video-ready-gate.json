@@ -1,0 +1,171 @@
+{
+  "slug": "video-ready-gate",
+  "chapter": "14-youtube",
+  "title": "필수 산출물과 현재 게시 상태를 확인한 뒤 ready를 공개한다",
+  "caption": "모든 CDN 에지 예열이 아니라 검증된 산출물과 유효한 게시 버전을 기준으로 삼는다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 1260.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "처리 작업",
+      "role": "비디오 ID · 작업 버전",
+      "icon": "icon0",
+      "x": 514.0,
+      "y": 35.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "영상 출력",
+      "role": "기본 화질의 재생 조각",
+      "icon": "icon2",
+      "x": 164.0,
+      "y": 315.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "음성 출력",
+      "role": "시간축 · 언어 트랙",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 315.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "재생 목록",
+      "role": "존재하는 출력만 참조",
+      "icon": "icon2",
+      "x": 864.0,
+      "y": 315.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "완료 검증",
+      "role": "필수 결과 · 경로 확인",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 635.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "현재 게시 상태",
+      "role": "세대 · 삭제 표식",
+      "icon": "icon2",
+      "x": 164.0,
+      "y": 925.0,
+      "group": "1"
+    },
+    {
+      "id": "n6",
+      "label": "조건부 게시 전이",
+      "role": "현재 게시 버전 확인",
+      "icon": "icon0",
+      "x": 514.0,
+      "y": 925.0,
+      "group": "1"
+    },
+    {
+      "id": "n7",
+      "label": "미완성 · 오류",
+      "role": "대기 · 재시도 · 실패 처리",
+      "icon": "icon3",
+      "x": 864.0,
+      "y": 925.0,
+      "group": "1"
+    },
+    {
+      "id": "n8",
+      "label": "재생 준비 공개",
+      "role": "목록 버전 · 캐시 반영",
+      "icon": "icon6",
+      "x": 514.0,
+      "y": 1145.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "결과 저장",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "결과 저장",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "결과 저장",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n4",
+      "label": "같은 버전의 결과",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n2",
+      "to": "n4",
+      "label": "같은 버전의 결과",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n4",
+      "label": "같은 버전의 결과",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n4",
+      "to": "n6",
+      "label": "필수 결과 정상",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n4",
+      "to": "n7",
+      "label": "준비 미충족",
+      "kind": "primary"
+    },
+    {
+      "id": "e8",
+      "from": "n5",
+      "to": "n6",
+      "label": "현재 상태 확인",
+      "kind": "primary"
+    },
+    {
+      "id": "e9",
+      "from": "n6",
+      "to": "n8",
+      "label": "유효한 게시 전이",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 1260\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M560 141 L230 309\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"230\" y=\"240\">결과 저장</text><path class=\"e\" d=\"M580 141 L580 309\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"240\">결과 저장</text><path class=\"e\" d=\"M600 141 L930 309\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"930\" y=\"240\">결과 저장</text><path class=\"e\" d=\"M230 421 L560 629\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"230\" y=\"540\">같은 버전의 결과</text><path class=\"e\" d=\"M580 421 L580 629\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"540\">같은 버전의 결과</text><path class=\"e\" d=\"M930 421 L600 629\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"930\" y=\"540\">같은 버전의 결과</text><path class=\"e\" d=\"M580 741 V919\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"705\" y=\"835\">필수 결과 정상</text><path class=\"e\" d=\"M600 741 L930 919\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"930\" y=\"835\">준비 미충족</text><path class=\"e\" d=\"M266 955 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"400\" y=\"940\">현재 상태 확인</text><path class=\"e\" d=\"M580 1031 V1139\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"720\" y=\"1090\">유효한 게시 전이</text></svg><div class=\"node\" style=\"left:514px;top:35px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>처리 작업</span></div><div class=\"role\"><span>비디오 ID · 작업 버전</span></div></div><div class=\"node\" style=\"left:164px;top:315px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>영상 출력</span></div><div class=\"role\"><span>기본 화질의 재생 조각</span></div></div><div class=\"node\" style=\"left:514px;top:315px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>음성 출력</span></div><div class=\"role\"><span>시간축 · 언어 트랙</span></div></div><div class=\"node\" style=\"left:864px;top:315px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>재생 목록</span></div><div class=\"role\"><span>존재하는 출력만 참조</span></div></div><div class=\"node\" style=\"left:514px;top:635px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1uZXR3b3JrIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB4PSIxNiIgeT0iMTYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxIiAvPgogIDxyZWN0IHg9IjIiIHk9IjE2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cmVjdCB4PSI5IiB5PSIyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cGF0aCBkPSJNNSAxNnYtM2ExIDEgMCAwIDEgMS0xaDEyYTEgMSAwIDAgMSAxIDF2MyIgLz4KICA8cGF0aCBkPSJNMTIgMTJWOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>완료 검증</span></div><div class=\"role\"><span>필수 결과 · 경로 확인</span></div></div><div class=\"node\" style=\"left:164px;top:925px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>현재 게시 상태</span></div><div class=\"role\"><span>세대 · 삭제 표식</span></div></div><div class=\"node\" style=\"left:514px;top:925px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>조건부 게시 전이</span></div><div class=\"role\"><span>현재 게시 버전 확인</span></div></div><div class=\"node\" style=\"left:864px;top:925px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LW9yZGVyZWQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xMSA1aDEwIiAvPgogIDxwYXRoIGQ9Ik0xMSAxMmgxMCIgLz4KICA8cGF0aCBkPSJNMTEgMTloMTAiIC8+CiAgPHBhdGggZD0iTTQgNGgxdjUiIC8+CiAgPHBhdGggZD0iTTQgOWgyIiAvPgogIDxwYXRoIGQ9Ik02LjUgMjBIMy40YzAtMSAyLjYtMS45MjUgMi42LTMuNWExLjUgMS41IDAgMCAwLTIuNi0xLjAyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>미완성 · 오류</span></div><div class=\"role\"><span>대기 · 재시도 · 실패 처리</span></div></div><div class=\"node\" style=\"left:514px;top:1145px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jbG91ZCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBhdGggZD0iTTE3LjUgMTlIOWE3IDcgMCAxIDEgNi43MS05aDEuNzlhNC41IDQuNSAwIDEgMSAwIDlaIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>재생 준비 공개</span></div><div class=\"role\"><span>목록 버전 · 캐시 반영</span></div></div>\n</div>",
+  "boundaries": [
+    "비동기·작업 처리",
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide"
+}

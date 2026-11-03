@@ -1,0 +1,23 @@
+{
+  "slug": "notification-outbox",
+  "chapter": "10-notification",
+  "title": "접수 기록과 발행 의무를 같은 트랜잭션에 넣는다",
+  "caption": "DB 커밋 뒤 접수 성공. 큐 발행은 재시도하며 중복 발행 가능성을 소비자가 다룬다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 820.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [
+    {
+      "label": "알림 서비스의 한 DB 트랜잭션",
+      "x": 65.0,
+      "y": 55.0,
+      "w": 1030.0,
+      "h": 235.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:55px;width:1030px;height:235px\"><div class=\"g-label\">알림 서비스의 한 DB 트랜잭션</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 820\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"380\" x=\"120\" y=\"125\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"310.0\" y=\"157\">알림 기록</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"310.0\" y=\"190\">작업 ID · 대상 · 내용 · 상태</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"380\" x=\"660\" y=\"125\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"850.0\" y=\"157\">아웃박스 기록</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"850.0\" y=\"190\">같은 작업 ID · 미발행</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"265\">둘 다 커밋되거나 둘 다 취소된다</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"380\" x=\"660\" y=\"390\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"850.0\" y=\"422\">발행기</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"850.0\" y=\"455\">미발행 읽기 → 큐로 전송</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"380\" x=\"120\" y=\"390\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"310.0\" y=\"422\">채널별 큐</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"310.0\" y=\"455\">내구성 접수 확인</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"380\" x=\"120\" y=\"650\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"310.0\" y=\"682\">소비 작업자</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"310.0\" y=\"715\">같은 ID의 재처리 고려</text><path class=\"e\" d=\"M850 231 V384\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"965\" y=\"330\">미발행 조회</text><path class=\"e\" d=\"M654 435 H506\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"420\">발행</text><path class=\"e\" d=\"M310 496 V644\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"420\" y=\"580\">작업 전달</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"850\" y=\"620\">큐 접수 후 완료 표시 전에 죽으면</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"850\" y=\"665\">발행기가 같은 작업을 다시 보낼 수 있다</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,172 @@
+{
+  "slug": "content-extensions",
+  "chapter": "09-web-crawler",
+  "title": "문서 종류와 비용에 따라 처리 경로를 나눈다",
+  "caption": "기본 HTML에서 먼저 처리하고 필요하면 제한된 브라우저 렌더링 풀을 추가한다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 900.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "응답 분류",
+      "role": "종류 · 정책 · 크기 확인",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 40.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "HTML 파서",
+      "role": "바로 읽을 수 있는 문서",
+      "icon": "icon0",
+      "x": 164.0,
+      "y": 310.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "브라우저 렌더러",
+      "role": "JavaScript 실행 필요",
+      "icon": "icon0",
+      "x": 514.0,
+      "y": 310.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "미디어 처리기",
+      "role": "PNG 등 별도 형식",
+      "icon": "icon0",
+      "x": 864.0,
+      "y": 310.0,
+      "group": "2"
+    },
+    {
+      "id": "n4",
+      "label": "본문·링크 처리",
+      "role": "추출 결과를 예약 경로로",
+      "icon": "icon4",
+      "x": 334.0,
+      "y": 665.0,
+      "group": "0"
+    },
+    {
+      "id": "n5",
+      "label": "미디어 저장·분석",
+      "role": "별도 결과 보관",
+      "icon": "icon2",
+      "x": 864.0,
+      "y": 665.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "분기",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "분기",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "분기",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n4",
+      "label": "HTML 링크",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n2",
+      "to": "n4",
+      "label": "렌더링 후 DOM",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n5",
+      "label": "미디어 결과",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리",
+    "클라이언트·요청",
+    "비동기·작업 처리"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        100,
+        330
+      ],
+      "n1": [
+        450,
+        150
+      ],
+      "n2": [
+        450,
+        480
+      ],
+      "n3": [
+        800,
+        480
+      ],
+      "n4": [
+        800,
+        150
+      ],
+      "n5": [
+        1100,
+        480
+      ]
+    },
+    "groups": [
+      [
+        345,
+        80,
+        560,
+        205,
+        "HTML·본문·링크 처리",
+        "blue"
+      ],
+      [
+        345,
+        410,
+        210,
+        205,
+        "동적 페이지 렌더링",
+        "violet"
+      ],
+      [
+        695,
+        410,
+        510,
+        205,
+        "미디어 처리·보관",
+        "amber"
+      ]
+    ],
+    "width": 1280,
+    "height": 740
+  }
+}

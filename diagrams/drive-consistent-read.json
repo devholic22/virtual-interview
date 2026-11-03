@@ -1,0 +1,100 @@
+{
+  "slug": "drive-consistent-read",
+  "chapter": "15-google-drive",
+  "title": "최신 선택과 불변 내용 캐시를 나눠 읽는다",
+  "caption": "최신 포인터는 필요한 강한 읽기 경로에서 확인한다. TTL·사후 삭제만으로 최신을 보장하지 않는다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 1100.0,
+  "nodes": [
+    {
+      "id": "c",
+      "label": "클라이언트",
+      "role": "동일한 v8 목록으로 복원",
+      "icon": "icon5",
+      "group": "0",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "api",
+      "label": "파일 조회 서비스",
+      "role": "최신 버전 고정 · 권한 확인",
+      "icon": "icon0",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "db",
+      "label": "권위 메타데이터",
+      "role": "강한 읽기 · 현재 포인터 v8",
+      "icon": "icon2",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "cache",
+      "label": "버전별 캐시",
+      "role": "키: 파일 ID + v8",
+      "icon": "icon1",
+      "group": "2",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "origin",
+      "label": "버전 원본·블록",
+      "role": "v8의 순서 목록과 참조",
+      "icon": "icon2",
+      "group": "2",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "c",
+      "to": "api",
+      "label": "최신 파일 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "api",
+      "to": "db",
+      "label": "현재 버전·권한 확인",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "api",
+      "to": "cache",
+      "label": "선택한 v8 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "api",
+      "to": "origin",
+      "label": "미스 시 같은 v8 조회",
+      "kind": "secondary"
+    },
+    {
+      "id": "e4",
+      "from": "api",
+      "to": "c",
+      "label": "같은 버전의 결과 반환",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "요청 단말",
+    "최신 선택·권한 확인",
+    "버전별 내용 조회"
+  ],
+  "icon_sources": "Lucide"
+}

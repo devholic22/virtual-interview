@@ -1,0 +1,116 @@
+{
+  "slug": "crawl-cycle",
+  "chapter": "09-web-crawler",
+  "title": "수집은 순환한다 · 새 링크를 다음 작업으로 예약한다",
+  "caption": "논리적인 큰 흐름이다. 중복 본문 보관과 URL별 상태 기록은 별도로 판단한다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 1010.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "시작 URL",
+      "role": "같은 예약 경로로 입력",
+      "icon": "icon5",
+      "x": 184.0,
+      "y": 25.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "Frontier",
+      "role": "우선순위 · 예절로 배정",
+      "icon": "icon3",
+      "x": 184.0,
+      "y": 225.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "다운로더",
+      "role": "정책 · DNS · HTTP",
+      "icon": "icon0",
+      "x": 834.0,
+      "y": 225.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "문서 처리",
+      "role": "검증 · 파싱 · 내용 요약",
+      "icon": "icon0",
+      "x": 834.0,
+      "y": 550.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "새 URL 처리",
+      "role": "추출 · 필터 · 원자적 예약",
+      "icon": "icon4",
+      "x": 184.0,
+      "y": 550.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "콘텐츠 저장소",
+      "role": "새 본문 또는 기존 참조",
+      "icon": "icon2",
+      "x": 834.0,
+      "y": 825.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "처음 예약",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "지금 실행 가능한 URL",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "응답 문서",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "발견 링크",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n4",
+      "to": "n1",
+      "label": "다음 작업 예약",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n5",
+      "label": "본문 저장 판단",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "수집 예약",
+    "수집·추출",
+    "콘텐츠 보관"
+  ],
+  "icon_sources": "Lucide"
+}

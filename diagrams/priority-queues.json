@@ -1,0 +1,150 @@
+{
+  "slug": "priority-queues",
+  "chapter": "09-web-crawler",
+  "title": "Frontier 전단 · 중요도와 대기시간을 보고 선택한다",
+  "caption": "우선순위 선택과 호스트에 지금 요청 가능한지는 서로 다른 판단이다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 790.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "순위 결정",
+      "role": "중요도 · 변경 가능성",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 40.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "높은 등급 큐",
+      "role": "최근 변경된 중요 문서",
+      "icon": "icon3",
+      "x": 164.0,
+      "y": 300.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "중간 등급 큐",
+      "role": "일반 탐색 후보",
+      "icon": "icon3",
+      "x": 514.0,
+      "y": 300.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "낮은 등급 큐",
+      "role": "낮은 우선순위 후보",
+      "icon": "icon3",
+      "x": 864.0,
+      "y": 300.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "가중 선택",
+      "role": "호스트 예절 단계로 전달",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 595.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "분류",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "분류",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "분류",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n4",
+      "label": "선택 후보",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n2",
+      "to": "n4",
+      "label": "선택 후보",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n4",
+      "label": "선택 후보",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리",
+    "비동기·작업 처리"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        100,
+        360
+      ],
+      "n1": [
+        450,
+        150
+      ],
+      "n2": [
+        450,
+        360
+      ],
+      "n3": [
+        450,
+        570
+      ],
+      "n4": [
+        800,
+        360
+      ]
+    },
+    "groups": [
+      [
+        345,
+        80,
+        210,
+        630,
+        "우선순위별 미수집 URL",
+        "violet"
+      ],
+      [
+        695,
+        290,
+        210,
+        230,
+        "등급 사이의 선택",
+        "blue"
+      ]
+    ],
+    "width": 1030,
+    "height": 790
+  }
+}

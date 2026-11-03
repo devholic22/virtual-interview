@@ -1,0 +1,189 @@
+{
+  "slug": "autocomplete-sharding",
+  "chapter": "13-autocomplete",
+  "title": "큰 접두어 구간은 나누고 짧은 접두어는 요약한다",
+  "caption": "상단은 구간 매핑, 중간은 빌드 시 요약 생성, 하단은 짧은 접두어 읽기를 보여준다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 1040.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "접두어 구간 매핑",
+      "role": "분포 · 용량 · 요청량 반영",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 50.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "샤드 1",
+      "role": "예: ba 구간",
+      "icon": "icon2",
+      "x": 134.0,
+      "y": 355.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "샤드 2",
+      "role": "예: bb~bm 구간",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 355.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "샤드 3",
+      "role": "예: bn~bz 구간",
+      "icon": "icon2",
+      "x": 894.0,
+      "y": 355.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "짧은 접두어 b",
+      "role": "하위 구간에 걸친 요청",
+      "icon": "icon5",
+      "x": 114.0,
+      "y": 810.0,
+      "group": "0"
+    },
+    {
+      "id": "n5",
+      "label": "b 상위 요약",
+      "role": "같은 버전의 top-k",
+      "icon": "icon1",
+      "x": 514.0,
+      "y": 810.0,
+      "group": "0"
+    },
+    {
+      "id": "n6",
+      "label": "제안 응답",
+      "role": "현재 필터 적용",
+      "icon": "icon0",
+      "x": 914.0,
+      "y": 810.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "큰 구간 분할",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "구간 배치",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "작은 구간 묶기",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n5",
+      "label": "빌드 시 요약",
+      "kind": "secondary"
+    },
+    {
+      "id": "e4",
+      "from": "n2",
+      "to": "n5",
+      "label": "빌드 시 요약",
+      "kind": "secondary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n5",
+      "label": "빌드 시 요약",
+      "kind": "secondary"
+    },
+    {
+      "id": "e6",
+      "from": "n4",
+      "to": "n5",
+      "label": "읽기",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n5",
+      "to": "n6",
+      "label": "최대 5개",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        100,
+        180
+      ],
+      "n1": [
+        450,
+        180
+      ],
+      "n2": [
+        750,
+        180
+      ],
+      "n3": [
+        1050,
+        180
+      ],
+      "n4": [
+        100,
+        550
+      ],
+      "n5": [
+        700,
+        550
+      ],
+      "n6": [
+        1050,
+        550
+      ]
+    },
+    "groups": [
+      [
+        345,
+        110,
+        810,
+        210,
+        "서로 다른 접두어 구간",
+        "blue"
+      ],
+      [
+        595,
+        480,
+        560,
+        210,
+        "짧은 접두어의 사전 요약·응답",
+        "amber"
+      ]
+    ],
+    "width": 1240,
+    "height": 770
+  }
+}

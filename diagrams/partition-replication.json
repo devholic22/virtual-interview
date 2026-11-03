@@ -1,0 +1,100 @@
+{
+  "slug": "partition-replication",
+  "chapter": "06-key-value-store",
+  "title": "상품 42의 담당을 찾고 서로 다른 세 서버에 복제한다",
+  "caption": "중재자는 요청을 전달하고 응답을 모으는 역할이다. 실제로는 저장 노드도 이 역할을 맡는다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 670.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "클라이언트",
+      "role": "put(product:42, 값)",
+      "icon": "icon5",
+      "x": 514.0,
+      "y": 25.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "중재자",
+      "role": "담당 결정 · 확인 집계",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 205.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "복제 서버 A",
+      "role": "같은 상품 42의 사본",
+      "icon": "icon2",
+      "x": 184.0,
+      "y": 465.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "복제 서버 B",
+      "role": "같은 상품 42의 사본",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 465.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "복제 서버 C",
+      "role": "같은 상품 42의 사본",
+      "icon": "icon2",
+      "x": 844.0,
+      "y": 465.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "저장 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "같은 값 · 버전",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n3",
+      "label": "같은 값 · 버전",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n4",
+      "label": "같은 값 · 버전",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "복제 서버 · N=3",
+      "x": 65.0,
+      "y": 405.0,
+      "w": 1030.0,
+      "h": 210.0
+    }
+  ],
+  "boundaries": [
+    "요청 조정",
+    "서로 다른 복제 서버"
+  ],
+  "icon_sources": "Lucide"
+}

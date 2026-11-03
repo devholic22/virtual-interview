@@ -1,0 +1,143 @@
+{
+  "slug": "ticket-server",
+  "chapter": "07-unique-id",
+  "title": "티켓 서버 · 모든 주문 서버가 한 발급 지점을 찾는다",
+  "caption": "단순한 중앙 자동 증가 구성이다. 원격 왕복과 장애 시 영향을 함께 고려한다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 650.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "주문 서버 1",
+      "role": "ID 요청",
+      "icon": "icon0",
+      "x": 74.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "주문 서버 2",
+      "role": "ID 요청",
+      "icon": "icon0",
+      "x": 364.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "주문 서버 3",
+      "role": "ID 요청",
+      "icon": "icon0",
+      "x": 664.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "주문 서버 4",
+      "role": "ID 요청",
+      "icon": "icon0",
+      "x": 954.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "티켓 서버",
+      "role": "원자적인 다음 번호",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 405.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n4",
+      "label": "발급 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n4",
+      "label": "발급 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n4",
+      "label": "발급 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "발급 요청",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        150,
+        180
+      ],
+      "n1": [
+        1050,
+        180
+      ],
+      "n2": [
+        150,
+        580
+      ],
+      "n3": [
+        1050,
+        580
+      ],
+      "n4": [
+        600,
+        380
+      ]
+    },
+    "groups": [
+      [
+        45,
+        110,
+        210,
+        610,
+        "주문 애플리케이션",
+        "blue"
+      ],
+      [
+        945,
+        110,
+        210,
+        610,
+        "주문 애플리케이션",
+        "blue"
+      ],
+      [
+        495,
+        310,
+        210,
+        210,
+        "중앙 ID 발급",
+        "amber"
+      ]
+    ],
+    "width": 1200,
+    "height": 800
+  }
+}

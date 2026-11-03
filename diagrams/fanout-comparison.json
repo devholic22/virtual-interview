@@ -1,0 +1,181 @@
+{
+  "slug": "fanout-comparison",
+  "chapter": "11-news-feed",
+  "title": "언제 모을 것인가 · 게시할 때 배포하거나 읽을 때 모은다",
+  "caption": "왼쪽은 한 작성자에서 여러 수신자로, 오른쪽은 여러 작성자에서 한 읽기로 모인다.",
+  "mode": "structure",
+  "width": 1200.0,
+  "height": 940.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "새 글 저장",
+      "role": "작성자 A의 글 P",
+      "icon": "icon2",
+      "x": 234.0,
+      "y": 125.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "팬아웃 작업",
+      "role": "수신자별 ID 추가",
+      "icon": "icon0",
+      "x": 234.0,
+      "y": 355.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "B의 피드",
+      "role": "글 P 참조",
+      "icon": "icon1",
+      "x": 74.0,
+      "y": 675.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "C의 피드",
+      "role": "글 P 참조",
+      "icon": "icon1",
+      "x": 234.0,
+      "y": 675.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "D의 피드",
+      "role": "글 P 참조",
+      "icon": "icon1",
+      "x": 394.0,
+      "y": 675.0,
+      "group": "0"
+    },
+    {
+      "id": "n5",
+      "label": "사용자 B 읽기",
+      "role": "열 때 후보 조회",
+      "icon": "icon5",
+      "x": 834.0,
+      "y": 125.0,
+      "group": "1"
+    },
+    {
+      "id": "n6",
+      "label": "피드 조립",
+      "role": "정렬 · 중복 제거",
+      "icon": "icon0",
+      "x": 834.0,
+      "y": 355.0,
+      "group": "1"
+    },
+    {
+      "id": "n7",
+      "label": "A의 글 목록",
+      "role": "최근 글",
+      "icon": "icon2",
+      "x": 674.0,
+      "y": 675.0,
+      "group": "1"
+    },
+    {
+      "id": "n8",
+      "label": "C의 글 목록",
+      "role": "최근 글",
+      "icon": "icon2",
+      "x": 834.0,
+      "y": 675.0,
+      "group": "1"
+    },
+    {
+      "id": "n9",
+      "label": "D의 글 목록",
+      "role": "최근 글",
+      "icon": "icon2",
+      "x": 994.0,
+      "y": 675.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "발행 뒤 작업",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n5",
+      "to": "n6",
+      "label": "읽기 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n2",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n3",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n1",
+      "to": "n4",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n7",
+      "to": "n6",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n8",
+      "to": "n6",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n9",
+      "to": "n6",
+      "label": "",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "쓰기 시점 · 한 글 → 여러 수신자",
+      "x": 30.0,
+      "y": 45.0,
+      "w": 540.0,
+      "h": 840.0
+    },
+    {
+      "label": "읽기 시점 · 여러 작성자 → 한 사용자",
+      "x": 630.0,
+      "y": 45.0,
+      "w": 540.0,
+      "h": 840.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:30px;top:45px;width:540px;height:840px\"><div class=\"g-label\">쓰기 시점 · 한 글 → 여러 수신자</div></div><div class=\"group gb\" style=\"left:630px;top:45px;width:540px;height:840px\"><div class=\"g-label\">읽기 시점 · 여러 작성자 → 한 사용자</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1200 940\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M300 231 V349\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"400\" y=\"290\">발행 뒤 작업</text><path class=\"e\" d=\"M900 231 V349\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"995\" y=\"290\">읽기 요청</text><path class=\"e\" d=\"M280 461 L140 669\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"140\" y=\"580\"></text><path class=\"e\" d=\"M300 461 L300 669\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"300\" y=\"580\"></text><path class=\"e\" d=\"M320 461 L460 669\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"460\" y=\"580\"></text><path class=\"e\" d=\"M740 669 L880 461\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"740\" y=\"580\"></text><path class=\"e\" d=\"M900 669 L900 461\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"900\" y=\"580\"></text><path class=\"e\" d=\"M1060 669 L920 461\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1060\" y=\"580\"></text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"300\" y=\"840\">읽기는 빠르게 / 쓰기 작업 확대</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"900\" y=\"840\">게시 비용 절약 / 읽기 때 조회·병합</text></svg><div class=\"node\" style=\"left:234px;top:125px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>새 글 저장</span></div><div class=\"role\"><span>작성자 A의 글 P</span></div></div><div class=\"node\" style=\"left:234px;top:355px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>팬아웃 작업</span></div><div class=\"role\"><span>수신자별 ID 추가</span></div></div><div class=\"node\" style=\"left:74px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS16YXAiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xNS45MTQgNGExLjUgMS41IDAgMDAtMi40NzQtMS41NjFsLTkgOUExLjUgMS41IDAgMDA1LjUgMTRoNC4wMDJhLjUuNSAwIDAxLjQ3MS42NjZMOC4wODYgMjBhMS41IDEuNSAwIDAwMi40NzUgMS41Nmw5LTlBMS41IDEuNSAwIDAwMTguNSAxMGgtMy45OTdhLjUuNSAwIDAxLS40NzItLjY2N3oiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>B의 피드</span></div><div class=\"role\"><span>글 P 참조</span></div></div><div class=\"node\" style=\"left:234px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS16YXAiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xNS45MTQgNGExLjUgMS41IDAgMDAtMi40NzQtMS41NjFsLTkgOUExLjUgMS41IDAgMDA1LjUgMTRoNC4wMDJhLjUuNSAwIDAxLjQ3MS42NjZMOC4wODYgMjBhMS41IDEuNSAwIDAwMi40NzUgMS41Nmw5LTlBMS41IDEuNSAwIDAwMTguNSAxMGgtMy45OTdhLjUuNSAwIDAxLS40NzItLjY2N3oiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>C의 피드</span></div><div class=\"role\"><span>글 P 참조</span></div></div><div class=\"node\" style=\"left:394px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS16YXAiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xNS45MTQgNGExLjUgMS41IDAgMDAtMi40NzQtMS41NjFsLTkgOUExLjUgMS41IDAgMDA1LjUgMTRoNC4wMDJhLjUuNSAwIDAxLjQ3MS42NjZMOC4wODYgMjBhMS41IDEuNSAwIDAwMi40NzUgMS41Nmw5LTlBMS41IDEuNSAwIDAwMTguNSAxMGgtMy45OTdhLjUuNSAwIDAxLS40NzItLjY2N3oiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>D의 피드</span></div><div class=\"role\"><span>글 P 참조</span></div></div><div class=\"node\" style=\"left:834px;top:125px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>사용자 B 읽기</span></div><div class=\"role\"><span>열 때 후보 조회</span></div></div><div class=\"node\" style=\"left:834px;top:355px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>피드 조립</span></div><div class=\"role\"><span>정렬 · 중복 제거</span></div></div><div class=\"node\" style=\"left:674px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A의 글 목록</span></div><div class=\"role\"><span>최근 글</span></div></div><div class=\"node\" style=\"left:834px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>C의 글 목록</span></div><div class=\"role\"><span>최근 글</span></div></div><div class=\"node\" style=\"left:994px;top:675px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>D의 글 목록</span></div><div class=\"role\"><span>최근 글</span></div></div>\n</div>",
+  "boundaries": [
+    "쓰기 시점 · 한 글 → 여러 수신자",
+    "읽기 시점 · 여러 작성자 → 한 사용자"
+  ],
+  "icon_sources": "Lucide"
+}

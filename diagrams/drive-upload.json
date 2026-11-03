@@ -1,0 +1,149 @@
+{
+  "slug": "drive-upload",
+  "chapter": "15-google-drive",
+  "title": "업로드 · 준비 중 버전은 현재 버전을 바꾸지 않는다",
+  "caption": "API·DB를 단계마다 반복하지 않고 실제 컴포넌트 사이의 연결을 표시한다. 블록 준비와 조건부 확정 뒤 변경을 알린다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 1170.0,
+  "nodes": [
+    {
+      "id": "a",
+      "label": "단말 A",
+      "role": "기준 v7 · 재개할 업로드 ID",
+      "icon": "icon5",
+      "group": "0",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "b",
+      "label": "단말 B",
+      "role": "커서로 변경 조회",
+      "icon": "icon5",
+      "group": "0",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "api",
+      "label": "업로드 API 풀",
+      "role": "후보 등록 · 조건부 버전 확정",
+      "icon": "icon0",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "db",
+      "label": "메타데이터 DB",
+      "role": "pending은 v7 유지 · 확정 후 v8",
+      "icon": "icon2",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "blocks",
+      "label": "블록 서버 풀",
+      "role": "새 블록 · 압축 · 암호화",
+      "icon": "icon0",
+      "group": "2",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "objects",
+      "label": "객체 저장소",
+      "role": "검증된 불변 블록",
+      "icon": "icon2",
+      "group": "2",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "log",
+      "label": "변경 로그·발행 의무",
+      "role": "커밋과 연결 · 재시도",
+      "icon": "icon3",
+      "group": "3",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "notify",
+      "label": "알림 서비스",
+      "role": "롱 폴링 · 변경 신호",
+      "icon": "icon0",
+      "group": "3",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "a",
+      "to": "api",
+      "label": "① 업로드 세션 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "api",
+      "to": "db",
+      "label": "② 후보 등록\n⑥ 준비·기준 버전 검증·확정",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "a",
+      "to": "blocks",
+      "label": "③ 필요한 새 블록 전송",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "blocks",
+      "to": "objects",
+      "label": "④ 저장·검증",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "blocks",
+      "to": "api",
+      "label": "⑤ 준비 완료 보고",
+      "kind": "secondary"
+    },
+    {
+      "id": "e5",
+      "from": "db",
+      "to": "log",
+      "label": "⑦ 확정된 변경",
+      "kind": "secondary"
+    },
+    {
+      "id": "e6",
+      "from": "log",
+      "to": "notify",
+      "label": "발행 의무 처리",
+      "kind": "secondary"
+    },
+    {
+      "id": "e7",
+      "from": "notify",
+      "to": "b",
+      "label": "⑧ 변경 신호",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "단말",
+    "업로드·버전 제어",
+    "블록 전송·보관",
+    "변경 전달"
+  ],
+  "icon_sources": "Lucide"
+}

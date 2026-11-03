@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels -->
-<head>
+<!DOCTYPE html><html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels --><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>키의 위치에서 시계 방향의 첫 서버를 찾는다</title>
@@ -82,7 +80,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 
 .scroller { overflow-x: auto; border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); }
 /* CANVAS SIZE: set width/height here AND on svg.edges AND its viewBox — keep the three in sync */
-.canvas { position: relative; width: 1160px; height: 610px; background: var(--color-paper);
+.canvas { position: relative; width: 1200px; height: 610px; background: var(--color-paper);
   background-image:
     linear-gradient(var(--color-rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
@@ -133,7 +131,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 .node .name span, .node .role span { background: var(--color-veil); backdrop-filter: blur(1.5px);
   padding: 0 var(--space-xs); border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-svg.edges { position:absolute; inset:0; width:1160px; height:610px; pointer-events:none; }
+svg.edges { position:absolute; inset:0; width:1200px; height:610px; pointer-events:none; }
 .e  { stroke: var(--color-accent); stroke-width:1.6; fill:none; }   /* primary flow */
 .n  { stroke: var(--color-neutral); stroke-width:1.4; fill:none; }  /* internal */
 path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
@@ -155,32 +153,17 @@ path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
 .foot a { color: inherit; text-decoration-color: var(--color-rule-2); text-underline-offset: 2px; }
 .foot a:hover { color: var(--color-accent); }
 .e,.read,.n{stroke-width:1.5}.e,.n{stroke:var(--color-neutral)}.read{stroke:var(--color-accent);stroke-dasharray:6 5;fill:none}.el,.el.a{fill:var(--color-ink-2);font-family:var(--font-body)}.canvas{background-image:none}.node .role{font-family:var(--font-body)} </style>
-</head>
-<body>
-<div class="page">
-
-  <header class="head">
-    <div>
-      <div class="kicker">CHAPTER 05</div>
-      <h1>키의 위치에서 시계 방향의 첫 서버를 찾는다</h1>
-    </div>
-    <p class="lede">실제 네트워크 순회가 아니라 담당 서버를 계산하는 규칙이다. 99 다음은 0이다.</p>
-  </header>
-
-  <div class="scroller">
-  <div class="canvas">
-
-<svg class="edges" viewBox="0 0 1160 610" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><circle cx="360" cy="285" r="155" fill="none" stroke="var(--color-neutral)" stroke-width="2"/><text class="el" x="360" y="265" text-anchor="middle" style="font-size:20px">0~99</text><text class="el" x="360" y="297" text-anchor="middle" style="font-size:14px">숫자 증가: 시계 방향</text><path class="n" d="M283.59 179.83 A130 130 0 0 1 351.84 155.26" marker-end="url(#ar)"/><circle cx="507.4137600257488" cy="237.10236587188314" r="12" fill="var(--color-ink)" stroke="var(--color-paper)" stroke-width="2"/><text class="el" x="548.3091902264404" y="228.8146351137604" text-anchor="middle" style="font-size:16px">A · 20</text><circle cx="360.0" cy="440.0" r="12" fill="var(--color-ink)" stroke="var(--color-paper)" stroke-width="2"/><text class="el" x="360.0" y="488.0" text-anchor="middle" style="font-size:16px">B · 50</text><circle cx="212.58623997425119" cy="237.10236587188317" r="12" fill="var(--color-ink)" stroke="var(--color-paper)" stroke-width="2"/><text class="el" x="171.69080977355958" y="228.81463511376043" text-anchor="middle" style="font-size:16px">C · 80</text><circle cx="451.10671410533337" cy="159.60236587188314" r="7" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2"/><text class="el" x="430.5342302750968" y="192.9179606750063" text-anchor="middle" style="font-size:14px">X 10</text><circle cx="485.39763412811686" cy="376.10671410533337" r="7" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2"/><text class="el" x="457.08203932499373" y="360.5342302750968" text-anchor="middle" style="font-size:14px">Y 35</text><circle cx="234.60236587188317" cy="376.10671410533337" r="7" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2"/><text class="el" x="262.9179606750063" y="360.5342302750968" text-anchor="middle" style="font-size:14px">Z 65</text><circle cx="268.89328589466663" cy="159.60236587188317" r="7" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="2"/><text class="el" x="289.4657697249032" y="192.91796067500633" text-anchor="middle" style="font-size:14px">W 90</text><path class="n" style="stroke:var(--color-accent);stroke-width:2" d="M488.68 391.45 A167 167 0 0 1 380.93 450.68" marker-end="url(#ar)"/><text class="el" x="870" y="125" text-anchor="middle" style="font-size:21px">같은 공간에 서버와 키를 배치</text><text class="el" x="870" y="200" text-anchor="middle" style="font-size:16px">X(10) → A(20)</text><text class="el" x="870" y="260" text-anchor="middle" style="font-size:16px">Y(35) → B(50)</text><text class="el" x="870" y="320" text-anchor="middle" style="font-size:16px">Z(65) → C(80)</text><text class="el" x="870" y="380" text-anchor="middle" style="font-size:16px">W(90) → 99 → 0 → A(20)</text><text class="el" x="580" y="550" text-anchor="middle" style="font-size:20px">Y에서 시계 방향으로 처음 만나는 서버는 B</text></svg>
-  </div>
-  </div>
-
-<div class="legend">링: 고정된 해시 공간 · 채운 점: 서버 위치 · 빈 점: 키 위치 · 굵은 호: 담당이 바뀌는 범위</div>
-
-  <div class="foot">
-    <span>5장 학습용 재구성 · 실제 네트워크 순회가 아니라 담당 서버를 계산하는 규칙이다. 99 다음은 0이다.</span>
-    <span>icons: Lucide · made with <a href="https://github.com/caru-ini/stack-diagram" target="_blank" rel="noopener">stack-diagram</a></span>
-  </div>
-
-</div>
-</body>
-</html>
+<style>
+body{padding:24px;background:var(--color-paper);font-family:var(--font-body)}
+.page{max-width:100%;margin:auto;width:fit-content}.head{display:none}.scroller{max-width:100%;overflow:auto;border:1px solid var(--color-rule-2);border-radius:8px}.canvas{position:relative;background-color:var(--color-paper);background-image:linear-gradient(var(--color-rule) 1px,transparent 1px),linear-gradient(90deg,var(--color-rule) 1px,transparent 1px);background-size:20px 20px;overflow:visible}
+.diagram-title{position:absolute;left:30px;top:22px;font-size:20px;font-weight:750;letter-spacing:-.02em;color:var(--color-ink)}.diagram-kicker{position:absolute;left:30px;top:55px;font:11px var(--font-mono);color:var(--color-muted)}
+.group{position:absolute;border:1.3px solid var(--group-stroke);background:var(--group-fill);border-radius:6px;z-index:0}.group.blue,.group.gb{--group-stroke:#78b3d0;--group-fill:#e6f3fc66;--group-ink:#286d94}.group.amber{--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.group.violet{--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}.group.green{--group-stroke:#80bba6;--group-fill:#e6f6ec66;--group-ink:#337a60}.group.slate{--group-stroke:#a0afbf;--group-fill:#edf1f666;--group-ink:#566577}
+[data-theme=dark] .group{background:color-mix(in srgb,var(--group-stroke) 9%,transparent);border-color:color-mix(in srgb,var(--group-stroke) 70%,transparent)}[data-theme=dark] .g-label{color:var(--color-ink-2)}
+.g-label{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;line-height:1.4;color:var(--group-ink);max-width:calc(100% - 28px)}
+.edges,svg.edges{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.edges .e{fill:none;stroke:var(--color-accent);stroke-width:1.7}.edges .n{fill:none;stroke:var(--color-neutral);stroke-width:1.45}.edge-halo{fill:none;stroke:var(--color-paper);stroke-width:5}.edges .el{font-family:var(--font-body);font-size:12px;fill:var(--color-neutral);paint-order:stroke;stroke:var(--color-paper);stroke-width:5;stroke-linejoin:round;letter-spacing:0}.edges .el.a{fill:var(--color-accent)}
+.node{position:absolute;width:148px;text-align:center;z-index:2}.node .tile{width:54px;height:54px;margin:0 auto;background:#fff;border:1px solid #c9d2db;border-radius:7px;box-shadow:0 1px 2px #23374b12;display:flex;align-items:center;justify-content:center}.node .tile img{max-width:34px;max-height:34px;width:34px;height:34px}.node .name,.node .role,.g-label{word-break:keep-all;overflow-wrap:normal}.node .name{font:700 14px/1.45 var(--font-body);color:var(--color-ink);margin-top:9px}.node .role{font:11px/1.5 var(--font-body);color:var(--color-muted);margin-top:3px;letter-spacing:0}.node .name span,.node .role span{background:var(--color-veil);box-shadow:3px 0 var(--color-veil),-3px 0 var(--color-veil)}
+.structure .node{width:132px}.structure .node .tile{width:60px;height:60px}.structure .node .name{font-size:14px;margin-top:7px}.structure .node .role{font-size:11px}.structure .edges .el{font-size:14px}.structure .group:nth-of-type(3n+2){--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.structure .group:nth-of-type(3n+3){--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}
+.legend{font:12px/1.6 var(--font-body);margin:14px 0;color:var(--color-muted);letter-spacing:0}.foot{font:11px/1.7 var(--font-body);margin-top:12px;color:var(--color-muted);letter-spacing:0}.foot a{color:inherit}.caption{font:13px/1.8 var(--font-body);max-width:1050px;margin:16px 0;color:var(--color-ink-2)}
+</style></head><body><main class="page"><div class="scroller"><div class="canvas structure" style="width:1160px;height:695px"><div class="diagram-title">키의 위치에서 시계 방향의 첫 서버를 찾는다</div><div class="diagram-kicker">CHAPTER 05 · STACK DIAGRAM</div><div style="position:absolute;left:0;top:85px;width:1160.0px;height:610.0px">
+<svg aria-hidden="true" class="edges" viewBox="0 0 1160 610"><defs><marker id="ar" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"></path></marker></defs><circle cx="360" cy="285" fill="none" r="155" stroke="var(--color-neutral)" stroke-width="2"></circle><text class="el" style="font-size:20px" text-anchor="middle" x="360" y="265">0~99</text><text class="el" style="font-size:14px" text-anchor="middle" x="360" y="297">숫자 증가: 시계 방향</text><path class="n" d="M283.59 179.83 A130 130 0 0 1 351.84 155.26" marker-end="url(#ar)"></path><circle cx="507.4137600257488" cy="237.10236587188314" fill="var(--color-ink)" r="12" stroke="var(--color-paper)" stroke-width="2"></circle><text class="el" style="font-size:16px" text-anchor="middle" x="548.3091902264404" y="228.8146351137604">A · 20</text><circle cx="360.0" cy="440.0" fill="var(--color-ink)" r="12" stroke="var(--color-paper)" stroke-width="2"></circle><text class="el" style="font-size:16px" text-anchor="middle" x="360.0" y="488.0">B · 50</text><circle cx="212.58623997425119" cy="237.10236587188317" fill="var(--color-ink)" r="12" stroke="var(--color-paper)" stroke-width="2"></circle><text class="el" style="font-size:16px" text-anchor="middle" x="171.69080977355958" y="228.81463511376043">C · 80</text><circle cx="451.10671410533337" cy="159.60236587188314" fill="var(--color-paper)" r="7" stroke="var(--color-ink)" stroke-width="2"></circle><text class="el" style="font-size:14px" text-anchor="middle" x="430.5342302750968" y="192.9179606750063">X 10</text><circle cx="485.39763412811686" cy="376.10671410533337" fill="var(--color-paper)" r="7" stroke="var(--color-ink)" stroke-width="2"></circle><text class="el" style="font-size:14px" text-anchor="middle" x="457.08203932499373" y="360.5342302750968">Y 35</text><circle cx="234.60236587188317" cy="376.10671410533337" fill="var(--color-paper)" r="7" stroke="var(--color-ink)" stroke-width="2"></circle><text class="el" style="font-size:14px" text-anchor="middle" x="262.9179606750063" y="360.5342302750968">Z 65</text><circle cx="268.89328589466663" cy="159.60236587188317" fill="var(--color-paper)" r="7" stroke="var(--color-ink)" stroke-width="2"></circle><text class="el" style="font-size:14px" text-anchor="middle" x="289.4657697249032" y="192.91796067500633">W 90</text><path class="n" d="M488.68 391.45 A167 167 0 0 1 380.93 450.68" marker-end="url(#ar)" style="stroke:var(--color-accent);stroke-width:2"></path><text class="el" data-note="true" style="font-size:21px" text-anchor="middle" x="870" y="125">같은 공간에 서버와 키를 배치</text><text class="el" style="font-size:16px" text-anchor="middle" x="870" y="200">X(10) → A(20)</text><text class="el" style="font-size:16px" text-anchor="middle" x="870" y="260">Y(35) → B(50)</text><text class="el" style="font-size:16px" text-anchor="middle" x="870" y="320">Z(65) → C(80)</text><text class="el" style="font-size:16px" text-anchor="middle" x="870" y="380">W(90) → 99 → 0 → A(20)</text><text class="el" style="font-size:20px" text-anchor="middle" x="580" y="550">Y에서 시계 방향으로 처음 만나는 서버는 B</text></svg>
+</div></div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">실제 네트워크 순회가 아니라 담당 서버를 계산하는 규칙이다. 99 다음은 0이다.</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: Lucide · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>

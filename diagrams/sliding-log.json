@@ -1,0 +1,30 @@
+{
+  "slug": "sliding-log",
+  "chapter": "04-rate-limiter",
+  "title": "이동 윈도 로그 · 최근 60초 안의 기록을 직접 센다",
+  "caption": "현재 100초, 허용 한도 3인 예시다. 그림은 허용 요청만 기록하는 변형이다.",
+  "mode": "structure",
+  "width": 1120.0,
+  "height": 560.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [
+    {
+      "label": "만료 기록 · 제거",
+      "x": 65.0,
+      "y": 100.0,
+      "w": 285.0,
+      "h": 250.0
+    },
+    {
+      "label": "최근 구간 (40초, 100초]",
+      "x": 400.0,
+      "y": 100.0,
+      "w": 665.0,
+      "h": 250.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:100px;width:285px;height:250px\"><div class=\"g-label\">만료 기록 · 제거</div></div><div class=\"group gb\" style=\"left:400px;top:100px;width:665px;height:250px\"><div class=\"g-label\">최근 구간 (40초, 100초]</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1120 560\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M105 260 H1040\"></path><circle cx=\"150\" cy=\"260\" fill=\"var(--color-muted)\" r=\"9\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"150\" y=\"300\">20초</text><circle cx=\"260\" cy=\"260\" fill=\"var(--color-muted)\" r=\"9\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"260\" y=\"300\">30초</text><circle cx=\"560\" cy=\"260\" fill=\"var(--color-accent)\" r=\"9\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"560\" y=\"300\">50초</text><circle cx=\"710\" cy=\"260\" fill=\"var(--color-accent)\" r=\"9\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"710\" y=\"300\">70초</text><circle cx=\"860\" cy=\"260\" fill=\"var(--color-accent)\" r=\"9\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"860\" y=\"300\">90초</text><circle cx=\"1000\" cy=\"260\" fill=\"var(--color-paper)\" r=\"11\" stroke=\"var(--color-ink)\" stroke-width=\"2\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"1000\" y=\"225\">새 요청</text><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"1000\" y=\"300\">100초</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"560\" y=\"450\">만료 제거 후 허용 기록 3개 → L=3이면 새 기록 없이 거부</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

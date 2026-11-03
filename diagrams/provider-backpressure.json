@@ -1,0 +1,152 @@
+{
+  "slug": "provider-backpressure",
+  "chapter": "10-notification",
+  "title": "작업자 수보다 전체 경로의 처리 능력을 본다",
+  "caption": "외부 한도가 병목이면 호출 속도를 낮추고 신규 작업과 재시도에 예산을 나눈다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 840.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "신규 알림 큐",
+      "role": "대기시간 · 유입률",
+      "icon": "icon3",
+      "x": 104.0,
+      "y": 95.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "재시도 큐",
+      "role": "예약량 · 만료",
+      "icon": "icon3",
+      "x": 104.0,
+      "y": 575.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "공유 전송 예산",
+      "role": "신규 + 재시도 합계",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 335.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "작업자 풀",
+      "role": "동시성 · 지연 · CPU",
+      "icon": "icon0",
+      "x": 934.0,
+      "y": 335.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "외부 업체",
+      "role": "계정 한도 · 429 · 오류",
+      "icon": "icon6",
+      "x": 934.0,
+      "y": 625.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n2",
+      "label": "새 작업",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "재시도",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "예산 안에서 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "업체 API 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n4",
+      "to": "n2",
+      "label": "혼잡 시 호출량 감소",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "비동기·작업 처리",
+    "서비스 처리",
+    "외부 시스템"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        100,
+        180
+      ],
+      "n1": [
+        100,
+        480
+      ],
+      "n2": [
+        450,
+        330
+      ],
+      "n3": [
+        800,
+        330
+      ],
+      "n4": [
+        1100,
+        330
+      ]
+    },
+    "groups": [
+      [
+        0,
+        110,
+        210,
+        510,
+        "신규·재시도 버퍼",
+        "violet"
+      ],
+      [
+        345,
+        260,
+        560,
+        230,
+        "공유 예산으로 호출량 제한",
+        "blue"
+      ],
+      [
+        995,
+        260,
+        210,
+        230,
+        "외부 전송 업체",
+        "amber"
+      ]
+    ],
+    "width": 1280,
+    "height": 740
+  }
+}

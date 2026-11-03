@@ -1,0 +1,185 @@
+{
+  "slug": "channel-routes",
+  "chapter": "10-notification",
+  "title": "채널에 따라 마지막 전달자가 달라진다",
+  "caption": "외부 업체의 접수 응답과 사용자의 확인은 서로 다른 단계다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 875.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "iOS 푸시",
+      "role": "우리 서버가 전송 요청",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "APNs",
+      "role": "외부 전달 서비스",
+      "icon": "apple",
+      "x": 514.0,
+      "y": 55.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "iOS 단말",
+      "role": "실제 도착은 별도 확인",
+      "icon": "icon5",
+      "x": 914.0,
+      "y": 55.0,
+      "group": "2"
+    },
+    {
+      "id": "n3",
+      "label": "안드로이드 푸시",
+      "role": "우리 서버가 전송 요청",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 260.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "FCM",
+      "role": "외부 전달 서비스",
+      "icon": "firebase",
+      "x": 514.0,
+      "y": 260.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "안드로이드 단말",
+      "role": "실제 도착은 별도 확인",
+      "icon": "icon5",
+      "x": 914.0,
+      "y": 260.0,
+      "group": "2"
+    },
+    {
+      "id": "n6",
+      "label": "SMS",
+      "role": "우리 서버가 전송 요청",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 465.0,
+      "group": "0"
+    },
+    {
+      "id": "n7",
+      "label": "SMS 업체",
+      "role": "외부 전달 서비스",
+      "icon": "icon6",
+      "x": 514.0,
+      "y": 465.0,
+      "group": "1"
+    },
+    {
+      "id": "n8",
+      "label": "문자 수신 단말",
+      "role": "실제 도착은 별도 확인",
+      "icon": "icon5",
+      "x": 914.0,
+      "y": 465.0,
+      "group": "2"
+    },
+    {
+      "id": "n9",
+      "label": "이메일",
+      "role": "우리 서버가 전송 요청",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 670.0,
+      "group": "0"
+    },
+    {
+      "id": "n10",
+      "label": "이메일 업체",
+      "role": "외부 전달 서비스",
+      "icon": "icon6",
+      "x": 514.0,
+      "y": 670.0,
+      "group": "1"
+    },
+    {
+      "id": "n11",
+      "label": "이메일 클라이언트",
+      "role": "실제 도착은 별도 확인",
+      "icon": "icon5",
+      "x": 914.0,
+      "y": 670.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "인증 · 대상 · 내용",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n3",
+      "to": "n4",
+      "label": "인증 · 대상 · 내용",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n4",
+      "to": "n5",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n6",
+      "to": "n7",
+      "label": "인증 · 대상 · 내용",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n7",
+      "to": "n8",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n9",
+      "to": "n10",
+      "label": "인증 · 대상 · 내용",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n10",
+      "to": "n11",
+      "label": "알림 전달",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 875\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M216 85 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"385\" y=\"70\">인증 · 대상 · 내용</text><path class=\"e\" d=\"M616 85 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"70\">알림 전달</text><path class=\"e\" d=\"M216 290 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"385\" y=\"275\">인증 · 대상 · 내용</text><path class=\"e\" d=\"M616 290 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"275\">알림 전달</text><path class=\"e\" d=\"M216 495 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"385\" y=\"480\">인증 · 대상 · 내용</text><path class=\"e\" d=\"M616 495 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"480\">알림 전달</text><path class=\"e\" d=\"M216 700 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"385\" y=\"685\">인증 · 대상 · 내용</text><path class=\"e\" d=\"M616 700 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"685\">알림 전달</text></svg><div class=\"node\" style=\"left:114px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>iOS 푸시</span></div><div class=\"role\"><span>우리 서버가 전송 요청</span></div></div><div class=\"node\" style=\"left:514px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyMDkiIGhlaWdodD0iMjU2IiB2aWV3Qm94PSIwIDAgODE0IDEwMDAiPjxwYXRoIGQ9Ik03ODguMSAzNDAuOWMtNS44IDQuNS0xMDguMiA2Mi4yLTEwOC4yIDE5MC41IDAgMTQ4LjQgMTMwLjMgMjAwLjkgMTM0LjIgMjAyLjItLjYgMy4yLTIwLjcgNzEuOS02OC43IDE0MS45LTQyLjggNjEuNi04Ny41IDEyMy4xLTE1NS41IDEyMy4xcy04NS41LTM5LjUtMTY0LTM5LjVjLTc2LjUgMC0xMDMuNyA0MC44LTE2NS45IDQwLjhzLTEwNS42LTU3LTE1NS41LTEyN0M0Ni43IDc5MC43IDAgNjYzIDAgNTQxLjhjMC0xOTQuNCAxMjYuNC0yOTcuNSAyNTAuOC0yOTcuNSA2Ni4xIDAgMTIxLjIgNDMuNCAxNjIuNyA0My40IDM5LjUgMCAxMDEuMS00NiAxNzYuMy00NiAyOC41IDAgMTMwLjkgMi42IDE5OC4zIDk5LjJ6bS0yMzQtMTgxLjVjMzEuMS0zNi45IDUzLjEtODguMSA1My4xLTEzOS4zIDAtNy4xLS42LTE0LjMtMS45LTIwLjEtNTAuNiAxLjktMTEwLjggMzMuNy0xNDcuMSA3NS44LTI4LjUgMzIuNC01NS4xIDgzLjYtNTUuMSAxMzUuNSAwIDcuOCAxLjMgMTUuNiAxLjkgMTguMSAzLjIuNiA4LjQgMS4zIDEzLjYgMS4zIDQ1LjQgMCAxMDIuNS0zMC40IDEzNS41LTcxLjN6Ii8+PC9zdmc+\"/></div><div class=\"name\"><span>APNs</span></div><div class=\"role\"><span>외부 전달 서비스</span></div></div><div class=\"node\" style=\"left:914px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>iOS 단말</span></div><div class=\"role\"><span>실제 도착은 별도 확인</span></div></div><div class=\"node\" style=\"left:114px;top:260px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>안드로이드 푸시</span></div><div class=\"role\"><span>우리 서버가 전송 요청</span></div></div><div class=\"node\" style=\"left:514px;top:260px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgNjAwIDYwMCI+PHBhdGggZmlsbD0iI0ZGOTEwMCIgZD0iTTIxMy45MTggNTYwLjQ5OWMyMy4yNDggOS4zNTcgNDguNDY5IDE0LjkwOSA3NC45NTIgMTUuODM0IDM1Ljg0IDEuMjUyIDY5LjkyMi02LjE1OCAxMDAuMzkxLTIwLjIzNC0zNi41MzctMTQuMzU1LTY5LjYyNy0zNS4zNDgtOTcuODY5LTYxLjQ0OC0xOC4zMDYgMjkuMzEtNDUuMzgyIDUyLjQ2Mi03Ny40NzQgNjUuODQ4WiIvPjxwYXRoIGZpbGw9IiNGRkM0MDAiIGQ9Ik0yOTEuMzg5IDQ5NC42NmMtNjQuNDY2LTU5LjYyMi0xMDMuNTc0LTE0NS45MTctMTAwLjI2OS0yNDAuNTY4LjEwOC0zLjA3My4yNy02LjE0NS40Ni05LjIxNmExNjYuOTkzIDE2Ni45OTMgMCAwIDAtMzYuMDA0LTUuMjQxIDE2Ny4wMDEgMTY3LjAwMSAwIDAgMC01MS4xODMgNi4xNTNjLTE3LjIxIDMwLjE0NS0yNy41OTQgNjQuNzMzLTI4Ljg4OCAxMDEuNzgxLTMuMzM5IDk1LjYxMSA1NC41MjIgMTc5LjE1NCAxMzguNDA5IDIxMi45MzkgMzIuMDkzLTEzLjM4NyA1OS4xNjgtMzYuNTEgNzcuNDc1LTY1Ljg0OFoiLz48cGF0aCBmaWxsPSIjRkY5MTAwIiBkPSJNMjkxLjM5IDQ5NC42NTdjMTQuOTg4LTIzLjk4NiAyNC4wNzUtNTIuMTA2IDI1LjEzMy04Mi40MDMgMi43ODMtNzkuNjk1LTUwLjc5Mi0xNDguMjUxLTEyNC45NDItMTY3LjM4MS0uMTkgMy4wNzEtLjM1MiA2LjE0My0uNDYgOS4yMTYtMy4zMDUgOTQuNjUxIDM1LjgwMyAxODAuOTQ2IDEwMC4yNjkgMjQwLjU2OFoiLz48cGF0aCBmaWxsPSIjREQyQzAwIiBkPSJNMzA4LjIzMSAyMC44NThDMjY2IDU0LjY5MSAyMzIuNjUyIDk5LjMwMiAyMTIuNDc1IDE1MC42OTNjLTExLjU1MSAyOS40MzYtMTguODEgNjEuMDU1LTIwLjkyOSA5NC4yIDc0LjE1IDE5LjEzIDEyNy43MjYgODcuNjg2IDEyNC45NDMgMTY3LjM4LTEuMDU4IDMwLjI5Ny0xMC4xNzIgNTguMzktMjUuMTM0IDgyLjQwNCAyOC4yNCAyNi4xMjcgNjEuMzMxIDQ3LjA5MyA5Ny44NjggNjEuNDQ3IDczLjMzNy0zMy45IDEyNS4zNy0xMDYuODQ2IDEyOC4zODMtMTkzLjEyNyAxLjk1Mi01NS45MDEtMTkuNTI2LTEwNS43MjQtNDkuODc1LTE0Ny43NzgtMzIuMDUxLTQ0LjQ3Ny0xNTkuNS0xOTQuMzYtMTU5LjUtMTk0LjM2WiIvPjwvc3ZnPg==\"/></div><div class=\"name\"><span>FCM</span></div><div class=\"role\"><span>외부 전달 서비스</span></div></div><div class=\"node\" style=\"left:914px;top:260px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>안드로이드 단말</span></div><div class=\"role\"><span>실제 도착은 별도 확인</span></div></div><div class=\"node\" style=\"left:114px;top:465px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>SMS</span></div><div class=\"role\"><span>우리 서버가 전송 요청</span></div></div><div class=\"node\" style=\"left:514px;top:465px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jbG91ZCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBhdGggZD0iTTE3LjUgMTlIOWE3IDcgMCAxIDEgNi43MS05aDEuNzlhNC41IDQuNSAwIDEgMSAwIDlaIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>SMS 업체</span></div><div class=\"role\"><span>외부 전달 서비스</span></div></div><div class=\"node\" style=\"left:914px;top:465px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>문자 수신 단말</span></div><div class=\"role\"><span>실제 도착은 별도 확인</span></div></div><div class=\"node\" style=\"left:114px;top:670px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>이메일</span></div><div class=\"role\"><span>우리 서버가 전송 요청</span></div></div><div class=\"node\" style=\"left:514px;top:670px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jbG91ZCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBhdGggZD0iTTE3LjUgMTlIOWE3IDcgMCAxIDEgNi43MS05aDEuNzlhNC41IDQuNSAwIDEgMSAwIDlaIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>이메일 업체</span></div><div class=\"role\"><span>외부 전달 서비스</span></div></div><div class=\"node\" style=\"left:914px;top:670px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>이메일 클라이언트</span></div><div class=\"role\"><span>실제 도착은 별도 확인</span></div></div>\n</div>",
+  "boundaries": [
+    "서비스 처리",
+    "외부 시스템",
+    "클라이언트·요청"
+  ],
+  "icon_sources": "Lucide / svgl"
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "quorum-overlap",
+  "chapter": "06-key-value-store",
+  "title": "정족수 · 완료된 쓰기와 후속 읽기의 집합이 겹친다",
+  "caption": "같은 고정 복제 집합의 후속 읽기 예시다. 동시에 진행 중인 쓰기는 생략했다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 680.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "A",
+      "role": "값 12",
+      "icon": "icon2",
+      "x": 84.0,
+      "y": 205.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "B",
+      "role": "값 12",
+      "icon": "icon2",
+      "x": 234.0,
+      "y": 205.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "C",
+      "role": "값 10",
+      "icon": "icon2",
+      "x": 384.0,
+      "y": 205.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "A",
+      "role": "값 12",
+      "icon": "icon2",
+      "x": 644.0,
+      "y": 205.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "B",
+      "role": "값 12",
+      "icon": "icon2",
+      "x": 794.0,
+      "y": 205.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "C",
+      "role": "값 10",
+      "icon": "icon2",
+      "x": 944.0,
+      "y": 205.0,
+      "group": "1"
+    }
+  ],
+  "edges": [],
+  "groups": [
+    {
+      "label": "1. 먼저 완료한 쓰기",
+      "x": 60.0,
+      "y": 60.0,
+      "w": 480.0,
+      "h": 480.0
+    },
+    {
+      "label": "2. 그 뒤의 읽기",
+      "x": 620.0,
+      "y": 60.0,
+      "w": 480.0,
+      "h": 480.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:60px;top:60px;width:480px;height:480px\"><div class=\"g-label\">1. 먼저 완료한 쓰기</div></div><div class=\"group gb\" style=\"left:620px;top:60px;width:480px;height:480px\"><div class=\"g-label\">2. 그 뒤의 읽기</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 680\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"300\" y=\"125\">쓰기 확인 집합 = {A, B}</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"860\" y=\"125\">후속 읽기 집합 = {B, C}</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"150\" y=\"370\">저장 확인</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"300\" y=\"370\">저장 확인</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"710\" y=\"370\">미참여</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"860\" y=\"370\">12 응답</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"1010\" y=\"370\">10 응답</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"450\" y=\"370\">미반영 가능</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"300\" y=\"465\">W=2를 채우고 성공 반환</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860\" y=\"465\">R=2 응답의 버전을 비교</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"615\">교집합 B는 완료된 쓰기를 앎 · N=3, R=2, W=2</text></svg><div class=\"node\" style=\"left:84px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A</span></div><div class=\"role\"><span>값 12</span></div></div><div class=\"node\" style=\"left:234px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>B</span></div><div class=\"role\"><span>값 12</span></div></div><div class=\"node\" style=\"left:384px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>C</span></div><div class=\"role\"><span>값 10</span></div></div><div class=\"node\" style=\"left:644px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A</span></div><div class=\"role\"><span>값 12</span></div></div><div class=\"node\" style=\"left:794px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>B</span></div><div class=\"role\"><span>값 12</span></div></div><div class=\"node\" style=\"left:944px;top:205px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>C</span></div><div class=\"role\"><span>값 10</span></div></div>\n</div>",
+  "boundaries": [
+    "1. 먼저 완료한 쓰기",
+    "2. 그 뒤의 읽기"
+  ],
+  "icon_sources": "Lucide"
+}

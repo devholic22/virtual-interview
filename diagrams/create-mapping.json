@@ -1,0 +1,27 @@
+{
+  "slug": "create-mapping",
+  "chapter": "08-url-shortener",
+  "title": "생성 경로 · 기존 매핑 확인과 새 매핑 저장을 분리한다",
+  "caption": "같은 긴 URL이면 같은 링크를 반환하는 책의 재사용 정책을 적용한 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 915.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "매핑 DB",
+      "role": "원래 URL로 조회",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 225.0,
+      "group": "0"
+    }
+  ],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 915\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"340\" x=\"410\" y=\"35\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"68\">긴 URL 생성 요청</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"102\">입력 검증 · 재사용 정책 적용</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"55\" y=\"440\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"250.0\" y=\"473\">없음 → 유일 ID 발급</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"250.0\" y=\"507\">정한 범위 안에서 Base62 변환</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"715\" y=\"440\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"910.0\" y=\"473\">있음 → 기존 링크 반환</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"910.0\" y=\"507\">기존 코드와 URL 재사용</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"55\" y=\"665\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"250.0\" y=\"698\">새 매핑을 영구 저장</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"250.0\" y=\"732\">코드·URL의 유일성 조건 확인</text><rect fill=\"var(--color-paper)\" height=\"95\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"715\" y=\"665\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"910.0\" y=\"698\">저장 확인 뒤 링크 반환</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"910.0\" y=\"732\">캐시 채우기는 보조 경로</text><path class=\"e\" d=\"M580 136 V219\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"690\" y=\"185\">기존 URL 조회</text><path class=\"e\" d=\"M540 331 L255 434\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"340\" y=\"380\">없음</text><path class=\"e\" d=\"M620 331 L910 434\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"820\" y=\"380\">있음</text><path class=\"e\" d=\"M250 541 V659\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"315\" y=\"610\">저장</text><path class=\"e\" d=\"M451 710 H709\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"690\">성공 확인</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"850\">동시 생성·응답 유실도 기존 매핑을 찾아 재사용할 수 있게 처리</text></svg><div class=\"node\" style=\"left:514px;top:225px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>매핑 DB</span></div><div class=\"role\"><span>원래 URL로 조회</span></div></div>\n</div>",
+  "boundaries": [
+    "데이터 보관"
+  ],
+  "icon_sources": "Lucide"
+}

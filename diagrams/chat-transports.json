@@ -1,0 +1,118 @@
+{
+  "slug": "chat-transports",
+  "chapter": "12-chat",
+  "title": "수신 방식 · 반복 조회에서 양방향 연결까지",
+  "caption": "시간은 위에서 아래로 흐른다. 예시 간격이며 실제 타임아웃·주기를 뜻하지 않는다.",
+  "mode": "structure",
+  "width": 1200.0,
+  "height": 1020.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "클라이언트",
+      "role": "수신 대기",
+      "icon": "icon5",
+      "x": 34.0,
+      "y": 95.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "서버",
+      "role": "메시지 보유",
+      "icon": "icon0",
+      "x": 234.0,
+      "y": 95.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "클라이언트",
+      "role": "수신 대기",
+      "icon": "icon5",
+      "x": 434.0,
+      "y": 95.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "서버",
+      "role": "메시지 보유",
+      "icon": "icon0",
+      "x": 634.0,
+      "y": 95.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "클라이언트",
+      "role": "수신 대기",
+      "icon": "icon5",
+      "x": 834.0,
+      "y": 95.0,
+      "group": "2"
+    },
+    {
+      "id": "n5",
+      "label": "서버",
+      "role": "메시지 보유",
+      "icon": "icon0",
+      "x": 1034.0,
+      "y": 95.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "새 메시지?",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n2",
+      "to": "n3",
+      "label": "수신 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e10",
+      "from": "n4",
+      "to": "n5",
+      "label": "HTTP 업그레이드",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "폴링",
+      "x": 15.0,
+      "y": 35.0,
+      "w": 370.0,
+      "h": 890.0
+    },
+    {
+      "label": "롱 폴링",
+      "x": 415.0,
+      "y": 35.0,
+      "w": 370.0,
+      "h": 890.0
+    },
+    {
+      "label": "WebSocket",
+      "x": 815.0,
+      "y": 35.0,
+      "w": 370.0,
+      "h": 890.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:15px;top:35px;width:370px;height:890px\"><div class=\"g-label\">폴링</div></div><div class=\"group gb\" style=\"left:415px;top:35px;width:370px;height:890px\"><div class=\"g-label\">롱 폴링</div></div><div class=\"group gb\" style=\"left:815px;top:35px;width:370px;height:890px\"><div class=\"g-label\">WebSocket</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1200 1020\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M100 220 V855 M300 220 V855\" fill=\"none\" stroke-dasharray=\"5 6\"></path><path class=\"n\" d=\"M500 220 V855 M700 220 V855\" fill=\"none\" stroke-dasharray=\"5 6\"></path><path class=\"n\" d=\"M900 220 V855 M1100 220 V855\" fill=\"none\" stroke-dasharray=\"5 6\"></path><path class=\"e\" d=\"M100 270 H294\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"255\">새 메시지?</text><path class=\"e\" d=\"M300 335 H106\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"365\">없음 또는 새 메시지</text><path class=\"e\" d=\"M100 470 H294\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"455\">새 메시지?</text><path class=\"e\" d=\"M300 535 H106\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"565\">없음 또는 새 메시지</text><path class=\"e\" d=\"M100 670 H294\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"655\">새 메시지?</text><path class=\"e\" d=\"M300 735 H106\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"200\" y=\"765\">없음 또는 새 메시지</text><path class=\"e\" d=\"M500 270 H694\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"600\" y=\"255\">수신 요청</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"600\" y=\"390\">응답 보류</text><path class=\"e\" d=\"M700 485 H506\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"600\" y=\"470\">새 메시지 응답</text><path class=\"e\" d=\"M500 620 H694\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"600\" y=\"605\">다음 수신 요청</text><path class=\"e\" d=\"M700 800 H506\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"600\" y=\"785\">타임아웃 응답</text><path class=\"e\" d=\"M900 270 H1094\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1000\" y=\"255\">HTTP 업그레이드</text><path class=\"e\" d=\"M1100 345 H906\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1000\" y=\"375\">수락 · 연결 유지</text><path class=\"e\" d=\"M1100 525 H906\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1000\" y=\"510\">서버 → 단말 메시지</text><path class=\"e\" d=\"M900 705 H1094\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"1000\" y=\"690\">단말 → 서버 메시지</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"600\" y=\"975\">롱 폴링의 다음 요청도 기존 TCP 연결을 재사용할 수 있다</text></svg><div class=\"node\" style=\"left:34px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>클라이언트</span></div><div class=\"role\"><span>수신 대기</span></div></div><div class=\"node\" style=\"left:234px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>서버</span></div><div class=\"role\"><span>메시지 보유</span></div></div><div class=\"node\" style=\"left:434px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>클라이언트</span></div><div class=\"role\"><span>수신 대기</span></div></div><div class=\"node\" style=\"left:634px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>서버</span></div><div class=\"role\"><span>메시지 보유</span></div></div><div class=\"node\" style=\"left:834px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>클라이언트</span></div><div class=\"role\"><span>수신 대기</span></div></div><div class=\"node\" style=\"left:1034px;top:95px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>서버</span></div><div class=\"role\"><span>메시지 보유</span></div></div>\n</div>",
+  "boundaries": [
+    "폴링",
+    "롱 폴링",
+    "WebSocket"
+  ],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "video-playback",
+  "chapter": "14-youtube",
+  "title": "재생 · 목록을 읽고 플레이어가 다음 구간 품질을 고른다",
+  "caption": "아래 구간 길이·품질은 설명용 예시다. 단말 지원과 인코딩 경계가 맞아야 전환할 수 있다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 1040.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "시청 단말",
+      "role": "재생 시작",
+      "icon": "icon5",
+      "x": 114.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "재생 API",
+      "role": "권한 · 목록 위치 응답",
+      "icon": "icon0",
+      "x": 514.0,
+      "y": 60.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "메타데이터",
+      "role": "ready · 활성 출력 버전",
+      "icon": "icon2",
+      "x": 914.0,
+      "y": 60.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "플레이어",
+      "role": "대역폭 · 버퍼 · 단말 지원",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 385.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "CDN",
+      "role": "목록 · 미디어 조각",
+      "icon": "icon6",
+      "x": 514.0,
+      "y": 385.0,
+      "group": "1"
+    },
+    {
+      "id": "n5",
+      "label": "재생용 원본",
+      "role": "매니페스트 · 출력 파일",
+      "icon": "icon2",
+      "x": 914.0,
+      "y": 385.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "재생 정보 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "상태 · 권한 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "받은 URL로 재생",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "목록 · 조각 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n4",
+      "to": "n3",
+      "label": "미디어 응답",
+      "kind": "secondary"
+    },
+    {
+      "id": "e5",
+      "from": "n4",
+      "to": "n5",
+      "label": "미스 시 원본 조회",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "다음 시간 구간의 품질 선택 예시",
+      "x": 65.0,
+      "y": 685.0,
+      "w": 1030.0,
+      "h": 285.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:685px;width:1030px;height:285px\"><div class=\"g-label\">다음 시간 구간의 품질 선택 예시</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 1040\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M216 90 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"380\" y=\"75\">재생 정보 요청</text><path class=\"e\" d=\"M616 90 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"75\">상태 · 권한 조회</text><path class=\"e\" d=\"M180 166 V379\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"300\" y=\"280\">받은 URL로 재생</text><path class=\"e\" d=\"M216 405 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"380\" y=\"390\">목록 · 조각 요청</text><path class=\"n\" d=\"M544 435 H216\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"380\" y=\"495\">미디어 응답</text><path class=\"e\" d=\"M616 415 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"400\">미스 시 원본 조회</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"1020\">품질을 바꿔도 같은 시간축의 이어지는 구간을 받아야 한다</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"195\" x=\"85\" y=\"765\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"182.5\" y=\"798\">0~4초 · 720p</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"182.5\" y=\"832\">첫 구간 재생</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"195\" x=\"350\" y=\"765\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"447.5\" y=\"798\">4~8초 · 360p</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"447.5\" y=\"832\">대역폭·버퍼 고려</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"195\" x=\"615\" y=\"765\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"712.5\" y=\"798\">8~12초 · 720p</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"712.5\" y=\"832\">상황 회복 후 선택</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"195\" x=\"880\" y=\"765\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"977.5\" y=\"798\">12~16초 · 720p</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"977.5\" y=\"832\">사용자 설정도 반영</text><path class=\"e\" d=\"M286 815 H344\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"310\" y=\"795\"></text><path class=\"e\" d=\"M551 815 H609\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"575\" y=\"795\"></text><path class=\"e\" d=\"M816 815 H874\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"840\" y=\"795\"></text></svg><div class=\"node\" style=\"left:114px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>시청 단말</span></div><div class=\"role\"><span>재생 시작</span></div></div><div class=\"node\" style=\"left:514px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>재생 API</span></div><div class=\"role\"><span>권한 · 목록 위치 응답</span></div></div><div class=\"node\" style=\"left:914px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>메타데이터</span></div><div class=\"role\"><span>ready · 활성 출력 버전</span></div></div><div class=\"node\" style=\"left:114px;top:385px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>플레이어</span></div><div class=\"role\"><span>대역폭 · 버퍼 · 단말 지원</span></div></div><div class=\"node\" style=\"left:514px;top:385px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jbG91ZCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBhdGggZD0iTTE3LjUgMTlIOWE3IDcgMCAxIDEgNi43MS05aDEuNzlhNC41IDQuNSAwIDEgMSAwIDlaIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>CDN</span></div><div class=\"role\"><span>목록 · 미디어 조각</span></div></div><div class=\"node\" style=\"left:914px;top:385px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>재생용 원본</span></div><div class=\"role\"><span>매니페스트 · 출력 파일</span></div></div>\n</div>",
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "limiter-placement",
+  "chapter": "04-rate-limiter",
+  "title": "업무를 실행하기 전에 요청량을 판정한다",
+  "caption": "제한 장치의 논리적 역할을 따로 표시한 예시다. 실제로는 게이트웨이 또는 앱 안에 둘 수 있다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 630.0,
+  "nodes": [
+    {
+      "id": "c",
+      "label": "클라이언트",
+      "role": "서버 측 제한을 우회할 수 없음",
+      "icon": "icon5",
+      "group": "0",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "gate",
+      "label": "처리율 제한 장치",
+      "role": "사용자·IP·API 규칙 판단",
+      "icon": "icon0",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "api",
+      "label": "API 서버 풀",
+      "role": "허용한 요청만 처리",
+      "icon": "icon0",
+      "group": "1",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "redis",
+      "label": "Redis",
+      "role": "증가·만료·판정을 원자적으로",
+      "icon": "redis",
+      "group": "2",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "c",
+      "to": "gate",
+      "label": "API 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "gate",
+      "to": "redis",
+      "label": "공유 상태 원자 판정",
+      "kind": "secondary"
+    },
+    {
+      "id": "e2",
+      "from": "gate",
+      "to": "api",
+      "label": "허용된 요청 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "gate",
+      "to": "c",
+      "label": "초과 시 429 응답",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "클라이언트",
+    "API 요청 처리",
+    "공유 제한 상태"
+  ],
+  "icon_sources": "Lucide / svgl"
+}

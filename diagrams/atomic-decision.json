@@ -1,0 +1,53 @@
+{
+  "slug": "atomic-decision",
+  "chapter": "04-rate-limiter",
+  "title": "공유 상태 · A의 판정 사이에 B가 끼어들지 않게 한다",
+  "caption": "Lua로 증가와 만료 설정을 함께 묶은 고정 윈도 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 790.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "제한 서버 A",
+      "role": "요청 A",
+      "icon": "icon0",
+      "x": 104.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "제한 서버 B",
+      "role": "요청 B",
+      "icon": "icon0",
+      "x": 504.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "같은 Redis 키",
+      "role": "초기 4 · 한도 5",
+      "icon": "redis",
+      "x": 934.0,
+      "y": 55.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n2",
+      "label": "1. 증가·판정 한 번 실행",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 790\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M170 175 V675\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M570 175 V675\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M1000 175 V675\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"e\" d=\"M175 245 H993\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"585.0\" y=\"231\">1. 증가·판정 한 번 실행</text><path class=\"n\" d=\"M995 340 H177\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"585.0\" y=\"326\">2. 결과 5 → 허용</text><path class=\"e\" d=\"M575 460 H993\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"785.0\" y=\"446\">3. 다음 증가·판정 실행</text><path class=\"n\" d=\"M995 555 H577\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"785.0\" y=\"541\">4. 결과 6 → 거부</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"585\" y=\"730\">각 명령 한 개뿐 아니라 필요한 판정 단위 전체를 함께 실행</text></svg><div class=\"node\" style=\"left:104px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>제한 서버 A</span></div><div class=\"role\"><span>요청 A</span></div></div><div class=\"node\" style=\"left:504px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>제한 서버 B</span></div><div class=\"role\"><span>요청 B</span></div></div><div class=\"node\" style=\"left:934px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIiB2aWV3Qm94PSIwIDAgMjU2IDIyMCI+CiAgPHBhdGggZD0iTTI0NiAxNjljLTEzLjcgNy04NC41IDM2LjItOTkuNSA0NC0xNS4xIDcuOS0yMy41IDcuOC0zNS40IDIuMUM5OS4yIDIwOS40IDI0IDE3OSAxMC4zIDE3Mi41IDMuNiAxNjkuMyAwIDE2Ni41IDAgMTY0di0yNnM5OC0yMS4zIDExMy45LTI3YzE1LjgtNS42IDIxLjMtNS44IDM0LjgtLjkgMTMuNCA1IDk0IDE5LjUgMTA3LjMgMjQuM1YxNjBjMCAyLjUtMyA1LjMtMTAgOSIgZmlsbD0iIzkxMjYyNiIvPgogIDxwYXRoIGQ9Ik0yNDYgMTQzLjJjLTEzLjcgNy4xLTg0LjUgMzYuMi05OS41IDQ0LTE1LjEgOC0yMy41IDcuOS0zNS40IDIuMi0xMS45LTUuNy04Ny4yLTM2LjEtMTAwLjgtNDIuNi0xMy41LTYuNS0xMy44LTExLS41LTE2LjIgMTMuNC01LjIgODguMi0zNC42IDEwNC00MC4zIDE2LTUuNiAyMS40LTUuOCAzNC45LTEgMTMuNCA1IDgzLjggMzMgOTcuMSAzNy45IDEzLjMgNC45IDEzLjggOC45LjIgMTYiIGZpbGw9IiNDNjMwMkIiLz4KICA8cGF0aCBkPSJNMjQ2IDEyN2MtMTMuNyA3LjItODQuNSAzNi4zLTk5LjUgNDQuMi0xNS4xIDcuOC0yMy41IDcuNy0zNS40IDItMTEuOS01LjYtODcuMi0zNi0xMDAuOC00Mi42LTYuNy0zLjItMTAuMy02LTEwLjMtOC41Vjk2LjJzOTgtMjEuMyAxMTMuOS0yN2MxNS44LTUuNyAyMS4zLTUuOSAzNC44LTEgMTMuNCA1IDk0IDE5LjUgMTA3LjMgMjQuNFYxMThjMCAyLjUtMyA1LjQtMTAgOSIgZmlsbD0iIzkxMjYyNiIvPgogIDxwYXRoIGQ9Ik0yNDYgMTAxLjRjLTEzLjcgNy04NC41IDM2LjItOTkuNSA0NC0xNS4xIDcuOS0yMy41IDcuOC0zNS40IDIuMUM5OS4yIDE0MS44IDI0IDExMS40IDEwLjMgMTA1Yy0xMy41LTYuNS0xMy44LTExLS41LTE2LjFDMjMuMiA4My41IDk4IDU0IDExMy44IDQ4LjVjMTYtNS43IDIxLjQtNiAzNC45LTEgMTMuNCA1IDgzLjggMzMgOTcuMSAzNy44IDEzLjMgNSAxMy44IDkgLjIgMTYiIGZpbGw9IiNDNjMwMkIiLz4KICA8cGF0aCBkPSJNMjQ2IDgzLjdjLTEzLjcgNy04NC41IDM2LjItOTkuNSA0NC0xNS4xIDcuOS0yMy41IDcuOC0zNS40IDIuMUM5OS4yIDEyNC4xIDI0IDkzLjcgMTAuMyA4Ny4yIDMuNiA4NCAwIDgxLjIgMCA3OC43di0yNnM5OC0yMS4zIDExMy45LTI3YzE1LjgtNS42IDIxLjMtNS44IDM0LjgtLjkgMTMuNCA1IDk0IDE5LjUgMTA3LjMgMjQuNHYyNS41YzAgMi41LTMgNS4zLTEwIDkiIGZpbGw9IiM5MTI2MjYiLz4KICA8cGF0aCBkPSJNMjQ2IDU4Yy0xMy43IDctODQuNSAzNi4xLTk5LjUgNDQtMTUuMSA3LjktMjMuNSA3LjgtMzUuNCAyQzk5LjIgOTguNSAyNCA2OCAxMC4zIDYxLjZjLTEzLjUtNi41LTEzLjgtMTEtLjUtMTYuMkMyMy4yIDQwLjEgOTggMTAuNyAxMTMuOCA1YzE2LTUuNiAyMS40LTUuOCAzNC45LS45IDEzLjQgNSA4My44IDMzIDk3LjEgMzcuOCAxMy4zIDQuOSAxMy44IDkgLjIgMTYiIGZpbGw9IiNDNjMwMkIiLz4KICA8cGF0aCBkPSJtMTU5LjMgMzIuOC0yMiAyLjItNSAxMS45LTgtMTMuMkw5OSAzMS40bDE5LTYuOS01LjgtMTAuNSAxNy44IDcgMTYuNy01LjUtNC41IDEwLjkgMTcgNi40TTEzMSA5MC4zbC00MS0xNyA1OC44LTkuMS0xNy44IDI2TTc0IDM5LjNjMTcuNSAwIDMxLjUgNS41IDMxLjUgMTIuMiAwIDYuOC0xNCAxMi4yLTMxLjQgMTIuMnMtMzEuNS01LjQtMzEuNS0xMi4yYzAtNi43IDE0LjEtMTIuMiAzMS41LTEyLjIiIGZpbGw9IiNGRkYiLz4KICA8cGF0aCBkPSJNMTg1LjMgMzYgMjIwIDQ5LjhsLTM0LjggMTMuN1YzNiIgZmlsbD0iIzYyMUIxQyIvPgogIDxwYXRoIGQ9Ik0xNDYuOCA1MS4yIDE4NS4zIDM2djI3LjVsLTMuOCAxLjUtMzQuNy0xMy44IiBmaWxsPSIjOUEyOTI4Ii8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>같은 Redis 키</span></div><div class=\"role\"><span>초기 4 · 한도 5</span></div></div>\n</div>",
+  "boundaries": [
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide / svgl"
+}

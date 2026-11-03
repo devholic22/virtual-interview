@@ -1,0 +1,77 @@
+{
+  "slug": "contact-registration",
+  "chapter": "10-notification",
+  "title": "사용자 한 명이 여러 단말의 토큰을 등록한다",
+  "caption": "앱에서 얻은 토큰을 인증된 API로 등록하고 계정 연결을 갱신한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 760.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "앱 · 사용자",
+      "role": "토큰 발급·로그인",
+      "icon": "icon5",
+      "x": 114.0,
+      "y": 80.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "로드 밸런서",
+      "role": "정상 API로 전달",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 80.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "등록 API",
+      "role": "인증 · 사용자 연결",
+      "icon": "icon0",
+      "x": 914.0,
+      "y": 80.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "사용자·단말 DB",
+      "role": "사용자 ID로 연결",
+      "icon": "icon2",
+      "x": 914.0,
+      "y": 385.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "등록 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "요청 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "연락처 · 토큰 갱신",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 760\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M216 110 H544\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"380\" y=\"95\">등록 요청</text><path class=\"e\" d=\"M616 110 H944\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780\" y=\"95\">요청 전달</text><path class=\"e\" d=\"M980 186 V379\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"840\" y=\"290\">연락처 · 토큰 갱신</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"270\" x=\"80\" y=\"390\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"215.0\" y=\"422\">사용자 U</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"215.0\" y=\"455\">이메일 · 전화번호</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"280\" x=\"435\" y=\"330\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"575.0\" y=\"362\">단말 A → 사용자 U</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"575.0\" y=\"395\">iOS 토큰 · 갱신 시각</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"280\" x=\"435\" y=\"525\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"575.0\" y=\"557\">단말 B → 사용자 U</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"575.0\" y=\"590\">Android 토큰 · 갱신 시각</text><path class=\"e\" d=\"M356 420 L429 380\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"390\" y=\"365\">1:N</text><path class=\"e\" d=\"M356 470 L429 565\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"390\" y=\"520\"></text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"580\" y=\"710\">로그아웃·계정 변경·토큰 교체를 반영한다</text></svg><div class=\"node\" style=\"left:114px;top:80px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>앱 · 사용자</span></div><div class=\"role\"><span>토큰 발급·로그인</span></div></div><div class=\"node\" style=\"left:514px;top:80px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1uZXR3b3JrIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB4PSIxNiIgeT0iMTYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxIiAvPgogIDxyZWN0IHg9IjIiIHk9IjE2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cmVjdCB4PSI5IiB5PSIyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cGF0aCBkPSJNNSAxNnYtM2ExIDEgMCAwIDEgMS0xaDEyYTEgMSAwIDAgMSAxIDF2MyIgLz4KICA8cGF0aCBkPSJNMTIgMTJWOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>로드 밸런서</span></div><div class=\"role\"><span>정상 API로 전달</span></div></div><div class=\"node\" style=\"left:914px;top:80px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>등록 API</span></div><div class=\"role\"><span>인증 · 사용자 연결</span></div></div><div class=\"node\" style=\"left:914px;top:385px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>사용자·단말 DB</span></div><div class=\"role\"><span>사용자 ID로 연결</span></div></div>\n</div>",
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide"
+}

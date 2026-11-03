@@ -1,0 +1,84 @@
+{
+  "slug": "downloader-policy",
+  "chapter": "09-web-crawler",
+  "title": "다운로더 · 정책과 주소를 확인한 뒤 문서를 가져온다",
+  "caption": "호스트의 실행 슬롯을 확보한 작업이다. robots와 DNS는 정책에 따라 캐시·갱신한다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 760.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "다운로더",
+      "role": "응답 크기·시간·리다이렉션 제한",
+      "icon": "icon0",
+      "x": 114.0,
+      "y": 310.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "robots 규칙 캐시",
+      "role": "origin · User-Agent 기준",
+      "icon": "icon1",
+      "x": 514.0,
+      "y": 65.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "DNS 해석·캐시",
+      "role": "TTL · 오류 · 비동기 해석",
+      "icon": "icon1",
+      "x": 514.0,
+      "y": 545.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "대상 웹 서버",
+      "role": "응답 · 상태 · 본문",
+      "icon": "icon6",
+      "x": 934.0,
+      "y": 310.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "① 허용 규칙 확인",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "② 접속 주소 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "③ HTTP · 원래 Host / TLS 이름 유지",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n0",
+      "label": "④ 제한 내 응답 수신",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리",
+    "데이터 보관",
+    "외부 시스템"
+  ],
+  "icon_sources": "Lucide"
+}

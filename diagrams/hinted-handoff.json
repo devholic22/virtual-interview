@@ -1,0 +1,94 @@
+{
+  "slug": "hinted-handoff",
+  "chapter": "06-key-value-store",
+  "title": "임시 위탁 · D가 B 몫을 보관하고 복구 뒤 전달한다",
+  "caption": "원래 복제본은 A·B·C다. B가 잠시 도달 불가능할 때 대체 노드 D를 쓰는 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 800.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "A",
+      "role": "정상 복제",
+      "icon": "icon2",
+      "x": 184.0,
+      "y": 145.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "B",
+      "role": "현재 도달 불가",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 145.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "C",
+      "role": "정상 복제",
+      "icon": "icon2",
+      "x": 844.0,
+      "y": 145.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "D · 임시 보관",
+      "role": "값 + 목적지 B의 힌트",
+      "icon": "icon2",
+      "x": 219.0,
+      "y": 450.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "복구된 B",
+      "role": "전달받은 버전 반영",
+      "icon": "icon2",
+      "x": 834.0,
+      "y": 450.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n3",
+      "to": "n4",
+      "label": "1. B 복구 후 재전송",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n4",
+      "to": "n3",
+      "label": "2. 전달 확인 뒤 임시 보관 정리",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "원래 복제 서버 · A와 C에는 정상 전달",
+      "x": 65.0,
+      "y": 70.0,
+      "w": 1030.0,
+      "h": 245.0
+    },
+    {
+      "label": "일시 장애 동안의 대체와 복구",
+      "x": 65.0,
+      "y": 370.0,
+      "w": 1030.0,
+      "h": 355.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:70px;width:1030px;height:245px\"><div class=\"g-label\">원래 복제 서버 · A와 C에는 정상 전달</div></div><div class=\"group gb\" style=\"left:65px;top:370px;width:1030px;height:355px\"><div class=\"g-label\">일시 장애 동안의 대체와 복구</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 800\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M620 155 L644 179 M620 179 L644 155\"></path><path class=\"e\" d=\"M321 480 H864\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"590\" y=\"460\">1. B 복구 후 재전송</text><path class=\"n\" d=\"M864 500 H321\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"590\" y=\"560\">2. 전달 확인 뒤 임시 보관 정리</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"675\">대체 집합의 쓰기와 다음 읽기가 반드시 겹치는 것은 아니다</text></svg><div class=\"node\" style=\"left:184px;top:145px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A</span></div><div class=\"role\"><span>정상 복제</span></div></div><div class=\"node\" style=\"left:514px;top:145px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>B</span></div><div class=\"role\"><span>현재 도달 불가</span></div></div><div class=\"node\" style=\"left:844px;top:145px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>C</span></div><div class=\"role\"><span>정상 복제</span></div></div><div class=\"node\" style=\"left:219px;top:450px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>D · 임시 보관</span></div><div class=\"role\"><span>값 + 목적지 B의 힌트</span></div></div><div class=\"node\" style=\"left:834px;top:450px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>복구된 B</span></div><div class=\"role\"><span>전달받은 버전 반영</span></div></div>\n</div>",
+  "boundaries": [
+    "원래 복제 서버 · A와 C에는 정상 전달",
+    "일시 장애 동안의 대체와 복구"
+  ],
+  "icon_sources": "Lucide"
+}

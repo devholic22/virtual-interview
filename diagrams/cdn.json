@@ -1,0 +1,99 @@
+{
+  "slug": "cdn",
+  "chapter": "01-scaling",
+  "title": "CDN · 적중과 원본 조회",
+  "caption": "책 p.13–17 참고. 적중하면 엣지에서 응답하고, 실패하면 원본을 조회한다. 사용자 응답선은 생략했다.",
+  "mode": "topology",
+  "width": 1120.0,
+  "height": 660.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "사용자 A",
+      "role": "정적 파일 요청",
+      "icon": "icon5",
+      "x": 104.0,
+      "y": 110.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "사용자 B",
+      "role": "같은 파일 요청",
+      "icon": "icon5",
+      "x": 104.0,
+      "y": 440.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "CDN",
+      "role": "적중: 원본 접근 없이 응답",
+      "icon": "icon6",
+      "x": 484.0,
+      "y": 260.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "원본 서버",
+      "role": "파일 · TTL 헤더",
+      "icon": "icon0",
+      "x": 874.0,
+      "y": 260.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n2",
+      "label": "① 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "② 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "③ miss 시 원본 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n2",
+      "label": "④ 파일 · 캐시 정책",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "CDN 엣지",
+      "x": 400.0,
+      "y": 190.0,
+      "w": 300.0,
+      "h": 250.0
+    },
+    {
+      "label": "원본",
+      "x": 820.0,
+      "y": 190.0,
+      "w": 245.0,
+      "h": 250.0
+    }
+  ],
+  "boundaries": [
+    "클라이언트·요청",
+    "CDN 엣지",
+    "원본"
+  ],
+  "icon_sources": "Lucide"
+}

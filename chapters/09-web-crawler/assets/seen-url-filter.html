@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels -->
-<head>
+<!DOCTYPE html><html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels --><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>블룸 필터는 예약 상태와 재수집 일정을 대신하지 않는다</title>
@@ -82,7 +80,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 
 .scroller { overflow-x: auto; border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); }
 /* CANVAS SIZE: set width/height here AND on svg.edges AND its viewBox — keep the three in sync */
-.canvas { position: relative; width: 1160px; height: 980px; background: var(--color-paper);
+.canvas { position: relative; width: 1200px; height: 610px; background: var(--color-paper);
   background-image:
     linear-gradient(var(--color-rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
@@ -133,7 +131,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 .node .name span, .node .role span { background: var(--color-veil); backdrop-filter: blur(1.5px);
   padding: 0 var(--space-xs); border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-svg.edges { position:absolute; inset:0; width:1160px; height:980px; pointer-events:none; }
+svg.edges { position:absolute; inset:0; width:1200px; height:610px; pointer-events:none; }
 .e  { stroke: var(--color-accent); stroke-width:1.6; fill:none; }   /* primary flow */
 .n  { stroke: var(--color-neutral); stroke-width:1.4; fill:none; }  /* internal */
 path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
@@ -155,32 +153,17 @@ path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
 .foot a { color: inherit; text-decoration-color: var(--color-rule-2); text-underline-offset: 2px; }
 .foot a:hover { color: var(--color-accent); }
 .e,.read,.n{stroke-width:1.5}.e,.n{stroke:var(--color-neutral)}.read{stroke:var(--color-accent);stroke-dasharray:6 5;fill:none}.el,.el.a{fill:var(--color-ink-2);font-family:var(--font-body)}.canvas{background-image:none}.node .role{font-family:var(--font-body)} </style>
-</head>
-<body>
-<div class="page">
-
-  <header class="head">
-    <div>
-      <div class="kicker">CHAPTER 09</div>
-      <h1>블룸 필터는 예약 상태와 재수집 일정을 대신하지 않는다</h1>
-    </div>
-    <p class="lede">정확한 탐색을 지향하는 예시다. 최초 발견과 현재 회차의 예약을 구분한다.</p>
-  </header>
-
-  <div class="scroller">
-  <div class="canvas">
-
-<svg class="edges" viewBox="0 0 1160 980" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect x="410" y="40" width="340" height="95" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="73" text-anchor="middle" style="font-size:19px">새로 발견한 URL</text><text class="el" x="580.0" y="107" text-anchor="middle" style="font-size:16px">대상 범위·동일성 확인</text><rect x="410" y="260" width="340" height="95" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="293" text-anchor="middle" style="font-size:19px">예약 집합의 블룸 필터</text><text class="el" x="580.0" y="327" text-anchor="middle" style="font-size:16px">요약일 뿐 실제 상태는 아님</text><rect x="805" y="480" width="300" height="95" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="955.0" y="513" text-anchor="middle" style="font-size:19px">양성도 실제 상태 확인</text><text class="el" x="955.0" y="547" text-anchor="middle" style="font-size:16px">미예약 URL의 오차 누락 방지</text><rect x="55" y="480" width="300" height="95" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="205.0" y="513" text-anchor="middle" style="font-size:19px">음성도 최종 예약 필요</text><text class="el" x="205.0" y="547" text-anchor="middle" style="font-size:16px">동시 발견·갱신 지연 고려</text><rect x="345" y="740" width="470" height="105" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="580.0" y="773" text-anchor="middle" style="font-size:19px">상태 저장소에서 원자적으로 예약</text><text class="el" x="580.0" y="807" text-anchor="middle" style="font-size:16px">새 작업이면 발행 · 이미 예약이면 합침</text><path class="e" d="M580 141 V254" marker-end="url(#ar)"/><text class="el a" x="680" y="200" text-anchor="middle">요약 조회</text><path class="e" d="M500 361 L205 474" marker-end="url(#ar)"/><text class="el a" x="295" y="410" text-anchor="middle">없음</text><path class="e" d="M660 361 L955 474" marker-end="url(#ar)"/><text class="el a" x="875" y="410" text-anchor="middle">있을 수 있음</text><path class="e" d="M205 581 L420 734" marker-end="url(#ar)"/><text class="el a" x="270" y="660" text-anchor="middle">예약 시도</text><path class="e" d="M955 581 L740 734" marker-end="url(#ar)"/><text class="el a" x="890" y="660" text-anchor="middle">기존 상태·시각 확인</text><text class="el" x="580" y="915" text-anchor="middle" style="font-size:20px">양성만 보고 버리면 미수집 페이지와 그 뒤의 링크를 놓칠 수 있다</text></svg>
-  </div>
-  </div>
-
-<div class="legend">거짓 양성을 허용한 근사 탐색은 별도의 품질 타협 · 필터만으로 큐 중복 등록 방지 불가</div>
-
-  <div class="foot">
-    <span>9장 학습용 재구성 · 정확한 탐색을 지향하는 예시다. 최초 발견과 현재 회차의 예약을 구분한다.</span>
-    <span>icons: Lucide · made with <a href="https://github.com/caru-ini/stack-diagram" target="_blank" rel="noopener">stack-diagram</a></span>
-  </div>
-
-</div>
-</body>
-</html>
+<style>
+body{padding:24px;background:var(--color-paper);font-family:var(--font-body)}
+.page{max-width:100%;margin:auto;width:fit-content}.head{display:none}.scroller{max-width:100%;overflow:auto;border:1px solid var(--color-rule-2);border-radius:8px}.canvas{position:relative;background-color:var(--color-paper);background-image:linear-gradient(var(--color-rule) 1px,transparent 1px),linear-gradient(90deg,var(--color-rule) 1px,transparent 1px);background-size:20px 20px;overflow:visible}
+.diagram-title{position:absolute;left:30px;top:22px;font-size:20px;font-weight:750;letter-spacing:-.02em;color:var(--color-ink)}.diagram-kicker{position:absolute;left:30px;top:55px;font:11px var(--font-mono);color:var(--color-muted)}
+.group{position:absolute;border:1.3px solid var(--group-stroke);background:var(--group-fill);border-radius:6px;z-index:0}.group.blue,.group.gb{--group-stroke:#78b3d0;--group-fill:#e6f3fc66;--group-ink:#286d94}.group.amber{--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.group.violet{--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}.group.green{--group-stroke:#80bba6;--group-fill:#e6f6ec66;--group-ink:#337a60}.group.slate{--group-stroke:#a0afbf;--group-fill:#edf1f666;--group-ink:#566577}
+[data-theme=dark] .group{background:color-mix(in srgb,var(--group-stroke) 9%,transparent);border-color:color-mix(in srgb,var(--group-stroke) 70%,transparent)}[data-theme=dark] .g-label{color:var(--color-ink-2)}
+.g-label{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;line-height:1.4;color:var(--group-ink);max-width:calc(100% - 28px)}
+.edges,svg.edges{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.edges .e{fill:none;stroke:var(--color-accent);stroke-width:1.7}.edges .n{fill:none;stroke:var(--color-neutral);stroke-width:1.45}.edge-halo{fill:none;stroke:var(--color-paper);stroke-width:5}.edges .el{font-family:var(--font-body);font-size:12px;fill:var(--color-neutral);paint-order:stroke;stroke:var(--color-paper);stroke-width:5;stroke-linejoin:round;letter-spacing:0}.edges .el.a{fill:var(--color-accent)}
+.node{position:absolute;width:148px;text-align:center;z-index:2}.node .tile{width:54px;height:54px;margin:0 auto;background:#fff;border:1px solid #c9d2db;border-radius:7px;box-shadow:0 1px 2px #23374b12;display:flex;align-items:center;justify-content:center}.node .tile img{max-width:34px;max-height:34px;width:34px;height:34px}.node .name,.node .role,.g-label{word-break:keep-all;overflow-wrap:normal}.node .name{font:700 14px/1.45 var(--font-body);color:var(--color-ink);margin-top:9px}.node .role{font:11px/1.5 var(--font-body);color:var(--color-muted);margin-top:3px;letter-spacing:0}.node .name span,.node .role span{background:var(--color-veil);box-shadow:3px 0 var(--color-veil),-3px 0 var(--color-veil)}
+.structure .node{width:132px}.structure .node .tile{width:60px;height:60px}.structure .node .name{font-size:14px;margin-top:7px}.structure .node .role{font-size:11px}.structure .edges .el{font-size:14px}.structure .group:nth-of-type(3n+2){--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.structure .group:nth-of-type(3n+3){--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}
+.legend{font:12px/1.6 var(--font-body);margin:14px 0;color:var(--color-muted);letter-spacing:0}.foot{font:11px/1.7 var(--font-body);margin-top:12px;color:var(--color-muted);letter-spacing:0}.foot a{color:inherit}.caption{font:13px/1.8 var(--font-body);max-width:1050px;margin:16px 0;color:var(--color-ink-2)}
+</style></head><body><main class="page"><div class="scroller"><div class="canvas structure" style="width:1160px;height:1065px"><div class="diagram-title">블룸 필터는 예약 상태와 재수집 일정을 대신하지 않는다</div><div class="diagram-kicker">CHAPTER 09 · STACK DIAGRAM</div><div style="position:absolute;left:0;top:85px;width:1160.0px;height:980.0px">
+<svg aria-hidden="true" class="edges" viewBox="0 0 1160 980"><defs><marker id="ar" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"></path></marker></defs><rect fill="var(--color-paper)" height="95" rx="12" stroke="var(--color-neutral)" width="340" x="410" y="40"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="73">새로 발견한 URL</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="107">대상 범위·동일성 확인</text><rect fill="var(--color-paper)" height="95" rx="12" stroke="var(--color-neutral)" width="340" x="410" y="260"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="293">예약 집합의 블룸 필터</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="327">요약일 뿐 실제 상태는 아님</text><rect fill="var(--color-paper)" height="95" rx="12" stroke="var(--color-neutral)" width="300" x="805" y="480"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="955.0" y="513">양성도 실제 상태 확인</text><text class="el" style="font-size:16px" text-anchor="middle" x="955.0" y="547">미예약 URL의 오차 누락 방지</text><rect fill="var(--color-paper)" height="95" rx="12" stroke="var(--color-neutral)" width="300" x="55" y="480"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="205.0" y="513">음성도 최종 예약 필요</text><text class="el" style="font-size:16px" text-anchor="middle" x="205.0" y="547">동시 발견·갱신 지연 고려</text><rect fill="var(--color-paper)" height="105" rx="12" stroke="var(--color-neutral)" width="470" x="345" y="740"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="580.0" y="773">상태 저장소에서 원자적으로 예약</text><text class="el" style="font-size:16px" text-anchor="middle" x="580.0" y="807">새 작업이면 발행 · 이미 예약이면 합침</text><path class="e" d="M580 141 V254" marker-end="url(#ar)" data-edge="s0"></path><text class="el a" text-anchor="middle" x="616.0625" y="202" data-edge="s0">요약 조회</text><path class="e" d="M500 361 L205 474" marker-end="url(#ar)" data-edge="s1"></path><text class="el a" text-anchor="middle" x="352.5" y="404.5" data-edge="s1">없음</text><path class="e" d="M660 361 L955 474" marker-end="url(#ar)" data-edge="s2"></path><text class="el a" text-anchor="middle" x="875" y="410" data-edge="s2">있을 수 있음</text><path class="e" d="M205 581 L420 734" marker-end="url(#ar)" data-edge="s3"></path><text class="el a" text-anchor="middle" x="270" y="660" data-edge="s3">예약 시도</text><path class="e" d="M955 581 L740 734" marker-end="url(#ar)" data-edge="s4"></path><text class="el a" text-anchor="middle" x="890" y="660" data-edge="s4">기존 상태·시각 확인</text><text class="el" style="font-size:20px" text-anchor="middle" x="580" y="915">양성만 보고 버리면 미수집 페이지와 그 뒤의 링크를 놓칠 수 있다</text></svg>
+</div></div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">정확한 탐색을 지향하는 예시다. 최초 발견과 현재 회차의 예약을 구분한다.</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: Lucide · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>

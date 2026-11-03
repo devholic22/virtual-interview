@@ -1,0 +1,15 @@
+{
+  "slug": "feed-pagination",
+  "chapter": "11-news-feed",
+  "title": "다음 페이지 · 숫자 위치보다 마지막 정렬 키를 잇는다",
+  "caption": "예시 P번호는 생성 시각 순서와 일치한다고 가정한다. 실제 커서는 시각과 동률 기준을 함께 쓴다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 900.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 900\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"105\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"1020\" x=\"70\" y=\"50\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"83\">처음 목록: P105 · P104 · P103 · P102 · P101 · P100</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"117\">첫 페이지로 P105 · P104 · P103을 받았다</text><rect fill=\"var(--color-paper)\" height=\"105\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"1020\" x=\"70\" y=\"280\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"313\">새 글 도착: P106 · P105 · P104 · P103 · P102 · P101 · P100</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"347\">같은 숫자 위치가 가리키는 항목이 달라졌다</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"470\" x=\"65\" y=\"570\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"300.0\" y=\"603\">offset=3 → P103 · P102 · P101</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"300.0\" y=\"637\">앞에서 받은 P103이 다시 나온다</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"470\" x=\"625\" y=\"570\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860.0\" y=\"603\">P103보다 오래된 키 → P102 · P101 · P100</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"860.0\" y=\"637\">마지막 정렬 키 뒤의 범위를 읽는다</text><path class=\"e\" d=\"M580 161 V274\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"690\" y=\"230\">P106 삽입</text><path class=\"e\" d=\"M440 391 L300 564\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"330\" y=\"485\">위치 기준</text><path class=\"e\" d=\"M720 391 L860 564\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"870\" y=\"485\">키 경계 기준</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"790\">커서는 늦은 팬아웃·삭제까지 고정하는 스냅샷을 자동으로 만들지는 않는다</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"845\">혼합 후보에도 같은 경계 적용 · 중복 제거 · 권한 필터링 후 반환</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

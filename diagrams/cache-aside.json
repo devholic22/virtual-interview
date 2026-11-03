@@ -1,0 +1,125 @@
+{
+  "slug": "cache-aside",
+  "chapter": "01-scaling",
+  "title": "캐시 적중과 실패",
+  "caption": "책 p.11 참고. 적중 시 DB 접근 없음. 실패 시 앱이 DB 조회 후 캐시를 채운다.",
+  "mode": "topology",
+  "width": 1120.0,
+  "height": 740.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "애플리케이션",
+      "role": "적중·실패 판단",
+      "icon": "icon0",
+      "x": 229.0,
+      "y": 200.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "캐시",
+      "role": "조회 결과 / 없음",
+      "icon": "icon1",
+      "x": 749.0,
+      "y": 200.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "원본 DB",
+      "role": "원본 데이터",
+      "icon": "icon2",
+      "x": 229.0,
+      "y": 545.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "① 조회\n⑤ 캐시 채움",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n0",
+      "label": "② 값 또는 미존재",
+      "kind": "secondary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n2",
+      "label": "③ 실패 시 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n2",
+      "to": "n0",
+      "label": "④ DB 결과",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "① 조회 → ② 결과 확인",
+      "x": 160.0,
+      "y": 120.0,
+      "w": 790.0,
+      "h": 255.0
+    },
+    {
+      "label": "원본 저장소",
+      "x": 160.0,
+      "y": 485.0,
+      "w": 270.0,
+      "h": 195.0
+    }
+  ],
+  "boundaries": [
+    "① 조회 → ② 결과 확인",
+    "원본 저장소"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        160,
+        180
+      ],
+      "n1": [
+        550,
+        180
+      ],
+      "n2": [
+        160,
+        460
+      ]
+    },
+    "groups": [
+      [
+        440,
+        110,
+        220,
+        210,
+        "캐시 계층",
+        "blue"
+      ],
+      [
+        50,
+        390,
+        220,
+        210,
+        "원본 데이터",
+        "amber"
+      ]
+    ],
+    "width": 800,
+    "height": 660
+  }
+}

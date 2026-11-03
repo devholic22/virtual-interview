@@ -1,0 +1,321 @@
+{
+  "slug": "notification-architecture",
+  "chapter": "10-notification",
+  "title": "접수와 전송을 나누고 채널별로 확장한다",
+  "caption": "논리 구조다. API·작업자·DB·큐 각각의 고가용성 구성은 별도로 필요하다.",
+  "mode": "topology",
+  "width": 1460.0,
+  "height": 880.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "알림 API 풀",
+      "role": "검증 · 접수 · 작업 생성",
+      "icon": "icon0",
+      "x": 84.0,
+      "y": 350.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "요청 서비스들",
+      "role": "주문 · 예약 작업",
+      "icon": "icon0",
+      "x": 84.0,
+      "y": 70.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "DB · 캐시",
+      "role": "기록 · 연락처 · 설정",
+      "icon": "icon2",
+      "x": 84.0,
+      "y": 700.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "iOS 큐",
+      "role": "대기 · 채널 격리",
+      "icon": "icon3",
+      "x": 404.0,
+      "y": 65.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "iOS 작업자",
+      "role": "제한 · 전송 · 재시도",
+      "icon": "icon0",
+      "x": 694.0,
+      "y": 65.0,
+      "group": "2"
+    },
+    {
+      "id": "n5",
+      "label": "APNs",
+      "role": "외부 전달",
+      "icon": "apple",
+      "x": 984.0,
+      "y": 65.0,
+      "group": "3"
+    },
+    {
+      "id": "n6",
+      "label": "iOS 단말",
+      "role": "채널별 사용자",
+      "icon": "icon5",
+      "x": 1259.0,
+      "y": 65.0,
+      "group": "4"
+    },
+    {
+      "id": "n7",
+      "label": "Android 큐",
+      "role": "대기 · 채널 격리",
+      "icon": "icon3",
+      "x": 404.0,
+      "y": 275.0,
+      "group": "1"
+    },
+    {
+      "id": "n8",
+      "label": "Android 작업자",
+      "role": "제한 · 전송 · 재시도",
+      "icon": "icon0",
+      "x": 694.0,
+      "y": 275.0,
+      "group": "2"
+    },
+    {
+      "id": "n9",
+      "label": "FCM",
+      "role": "외부 전달",
+      "icon": "firebase",
+      "x": 984.0,
+      "y": 275.0,
+      "group": "3"
+    },
+    {
+      "id": "n10",
+      "label": "Android 단말",
+      "role": "채널별 사용자",
+      "icon": "icon5",
+      "x": 1259.0,
+      "y": 275.0,
+      "group": "4"
+    },
+    {
+      "id": "n11",
+      "label": "SMS 큐",
+      "role": "대기 · 채널 격리",
+      "icon": "icon3",
+      "x": 404.0,
+      "y": 485.0,
+      "group": "1"
+    },
+    {
+      "id": "n12",
+      "label": "SMS 작업자",
+      "role": "제한 · 전송 · 재시도",
+      "icon": "icon0",
+      "x": 694.0,
+      "y": 485.0,
+      "group": "2"
+    },
+    {
+      "id": "n13",
+      "label": "SMS 업체",
+      "role": "외부 전달",
+      "icon": "icon6",
+      "x": 984.0,
+      "y": 485.0,
+      "group": "3"
+    },
+    {
+      "id": "n14",
+      "label": "문자 수신 단말",
+      "role": "채널별 사용자",
+      "icon": "icon5",
+      "x": 1259.0,
+      "y": 485.0,
+      "group": "4"
+    },
+    {
+      "id": "n15",
+      "label": "이메일 큐",
+      "role": "대기 · 채널 격리",
+      "icon": "icon3",
+      "x": 404.0,
+      "y": 695.0,
+      "group": "1"
+    },
+    {
+      "id": "n16",
+      "label": "이메일 작업자",
+      "role": "제한 · 전송 · 재시도",
+      "icon": "icon0",
+      "x": 694.0,
+      "y": 695.0,
+      "group": "2"
+    },
+    {
+      "id": "n17",
+      "label": "이메일 업체",
+      "role": "외부 전달",
+      "icon": "icon6",
+      "x": 984.0,
+      "y": 695.0,
+      "group": "3"
+    },
+    {
+      "id": "n18",
+      "label": "이메일 클라이언트",
+      "role": "채널별 사용자",
+      "icon": "icon5",
+      "x": 1259.0,
+      "y": 695.0,
+      "group": "4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n1",
+      "to": "n0",
+      "label": "알림 요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "조회 · 기록",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n0",
+      "to": "n3",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "메시지 소비",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n4",
+      "to": "n5",
+      "label": "업체 API 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n5",
+      "to": "n6",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n0",
+      "to": "n7",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n7",
+      "to": "n8",
+      "label": "메시지 소비",
+      "kind": "primary"
+    },
+    {
+      "id": "e8",
+      "from": "n8",
+      "to": "n9",
+      "label": "업체 API 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e9",
+      "from": "n9",
+      "to": "n10",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e10",
+      "from": "n0",
+      "to": "n11",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e11",
+      "from": "n11",
+      "to": "n12",
+      "label": "메시지 소비",
+      "kind": "primary"
+    },
+    {
+      "id": "e12",
+      "from": "n12",
+      "to": "n13",
+      "label": "업체 API 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e13",
+      "from": "n13",
+      "to": "n14",
+      "label": "알림 전달",
+      "kind": "primary"
+    },
+    {
+      "id": "e14",
+      "from": "n0",
+      "to": "n15",
+      "label": "",
+      "kind": "primary"
+    },
+    {
+      "id": "e15",
+      "from": "n15",
+      "to": "n16",
+      "label": "메시지 소비",
+      "kind": "primary"
+    },
+    {
+      "id": "e16",
+      "from": "n16",
+      "to": "n17",
+      "label": "업체 API 호출",
+      "kind": "primary"
+    },
+    {
+      "id": "e17",
+      "from": "n17",
+      "to": "n18",
+      "label": "알림 전달",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "요청 진입",
+    "채널별 버퍼",
+    "채널별 전송",
+    "외부 전송 업체",
+    "사용자 단말"
+  ],
+  "row_step": 160,
+  "column_step": 280,
+  "icon_sources": "Lucide / svgl"
+}

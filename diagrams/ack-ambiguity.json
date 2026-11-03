@@ -1,0 +1,15 @@
+{
+  "slug": "ack-ambiguity",
+  "chapter": "10-notification",
+  "title": "전송은 되었지만 응답이 사라진 경우",
+  "caption": "업체의 중복 제거가 없는 경우 재시도로 두 번째 전송이 생길 수 있다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 820.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 820\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"180\" y=\"55\">작업자</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"590\" y=\"55\">외부 업체</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"1000\" y=\"55\">사용자 단말</text><path class=\"e\" d=\"M180 150 H584\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"380\" y=\"135\">① 요청 K</text><path class=\"e\" d=\"M596 230 H994\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"790\" y=\"215\">② 첫 전송</text><path class=\"e\" d=\"M590 330 H240\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"400\" y=\"315\">③ 성공 응답 유실 ×</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"180\" y=\"410\">타임아웃 · 처리 여부 모름</text><path class=\"e\" d=\"M180 490 H584\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"380\" y=\"475\">④ 같은 작업 K 재시도</text><path class=\"e\" d=\"M596 600 H994\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"790\" y=\"585\">⑤ 중복 제거가 없다면 다시 전송</text><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"580\" y=\"755\">다시 안 보내면 누락 위험 / 다시 보내면 중복 위험</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "token-bucket",
+  "chapter": "04-rate-limiter",
+  "title": "토큰 버킷 · 남은 권한만큼 즉시 허용한다",
+  "caption": "용량 B=4, 공급률 r=초당 2개, 요청당 토큰 1개인 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 730.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "요청 6개",
+      "role": "충전 전 한꺼번에 도착",
+      "icon": "icon5",
+      "x": 94.0,
+      "y": 350.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "토큰 버킷",
+      "role": "보충 · 검사 · 차감",
+      "icon": "icon2",
+      "x": 484.0,
+      "y": 350.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "시간 경과",
+      "role": "초당 2개 · 최대 4개",
+      "icon": "icon1",
+      "x": 484.0,
+      "y": 60.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "허용",
+      "role": "남은 토큰이 충분함",
+      "icon": "icon0",
+      "x": 934.0,
+      "y": 210.0,
+      "group": "0"
+    },
+    {
+      "id": "n4",
+      "label": "거부",
+      "role": "토큰 부족 · 429",
+      "icon": "icon0",
+      "x": 934.0,
+      "y": 520.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "요청당 1개 필요",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n2",
+      "to": "n1",
+      "label": "용량까지만 보충",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n3",
+      "label": "토큰 있음",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n1",
+      "to": "n4",
+      "label": "토큰 없음",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "boundaries": [
+    "서비스 처리"
+  ],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 730\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"e\" d=\"M196 380 H514\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"350\" y=\"365\">요청당 1개 필요</text><path class=\"e\" d=\"M550 166 V344\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"660\" y=\"260\">용량까지만 보충</text><path class=\"e\" d=\"M586 365 L964 240\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"790\" y=\"270\">토큰 있음</text><path class=\"e\" d=\"M586 395 L964 550\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"790\" y=\"500\">토큰 없음</text><text class=\"el\" style=\"font-size:17px\" text-anchor=\"middle\" x=\"550\" y=\"675\">가득 찬 상태의 동시 6건 → 4건 허용 · 2건 거부</text></svg><div class=\"node\" style=\"left:94px;top:350px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>요청 6개</span></div><div class=\"role\"><span>충전 전 한꺼번에 도착</span></div></div><div class=\"node\" style=\"left:484px;top:350px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>토큰 버킷</span></div><div class=\"role\"><span>보충 · 검사 · 차감</span></div></div><div class=\"node\" style=\"left:484px;top:60px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS16YXAiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xNS45MTQgNGExLjUgMS41IDAgMDAtMi40NzQtMS41NjFsLTkgOUExLjUgMS41IDAgMDA1LjUgMTRoNC4wMDJhLjUuNSAwIDAxLjQ3MS42NjZMOC4wODYgMjBhMS41IDEuNSAwIDAwMi40NzUgMS41Nmw5LTlBMS41IDEuNSAwIDAwMTguNSAxMGgtMy45OTdhLjUuNSAwIDAxLS40NzItLjY2N3oiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>시간 경과</span></div><div class=\"role\"><span>초당 2개 · 최대 4개</span></div></div><div class=\"node\" style=\"left:934px;top:210px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>허용</span></div><div class=\"role\"><span>남은 토큰이 충분함</span></div></div><div class=\"node\" style=\"left:934px;top:520px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>거부</span></div><div class=\"role\"><span>토큰 부족 · 429</span></div></div>\n</div>",
+  "icon_sources": "Lucide"
+}

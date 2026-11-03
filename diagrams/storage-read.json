@@ -1,0 +1,115 @@
+{
+  "slug": "storage-read",
+  "chapter": "06-key-value-store",
+  "title": "한 복제 노드의 읽기 · 후보를 모아 버전과 삭제 정보를 병합한다",
+  "caption": "블룸 필터는 SSTable을 건너뛸지 판단한다. 디스크의 값 자체를 보관하는 자료구조는 아니다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 940.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "읽기 처리",
+      "role": "product:42 조회",
+      "icon": "icon0",
+      "x": 169.0,
+      "y": 115.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "Memtable",
+      "role": "관련 변경 확인",
+      "icon": "icon1",
+      "x": 834.0,
+      "y": 115.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "블룸 필터",
+      "role": "없음 / 있을 수 있음",
+      "icon": "icon4",
+      "x": 169.0,
+      "y": 435.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "후보 SSTable들",
+      "role": "인덱스 · 값 확인",
+      "icon": "icon2",
+      "x": 834.0,
+      "y": 435.0,
+      "group": "2"
+    },
+    {
+      "id": "n4",
+      "label": "결과 병합",
+      "role": "버전 · 삭제 표시 반영",
+      "icon": "icon0",
+      "x": 504.0,
+      "y": 760.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "메모리 확인",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n0",
+      "to": "n2",
+      "label": "디스크 후보 검사",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "있을 수 있음 → 파일 확인",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n3",
+      "to": "n4",
+      "label": "디스크 후보",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n1",
+      "to": "n4",
+      "label": "메모리 후보",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "메모리의 후보 확인",
+      "x": 65.0,
+      "y": 55.0,
+      "w": 1030.0,
+      "h": 230.0
+    },
+    {
+      "label": "파일 후보 검사",
+      "x": 65.0,
+      "y": 375.0,
+      "w": 1030.0,
+      "h": 250.0
+    }
+  ],
+  "boundaries": [
+    "조회 제어",
+    "메모리",
+    "디스크"
+  ],
+  "icon_sources": "Lucide"
+}

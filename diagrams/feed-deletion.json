@@ -1,0 +1,15 @@
+{
+  "slug": "feed-deletion",
+  "chapter": "11-news-feed",
+  "title": "삭제 · 읽기 차단과 목록 청소를 분리한다",
+  "caption": "늦게 온 팬아웃·캐시 재충전이 삭제 상태를 되돌리지 않도록 버전과 표식을 고려한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 900.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 900\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"105\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"360\" x=\"400\" y=\"45\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"78\">글 P 삭제 요청</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"112\">작성자 권한 확인</text><rect fill=\"var(--color-paper)\" height=\"105\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"360\" x=\"400\" y=\"265\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"298\">원본 삭제 상태 기록</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"332\">삭제 표식 · 버전</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"440\" x=\"60\" y=\"560\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"280.0\" y=\"593\">읽기에서 P 제외</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"280.0\" y=\"627\">최신 삭제·권한 상태 확인 / 콘텐츠 캐시 반영</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"440\" x=\"660\" y=\"560\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"880.0\" y=\"593\">피드 목록 정리</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"880.0\" y=\"627\">여러 수신자 목록의 P를 비동기로 제거</text><path class=\"e\" d=\"M580 156 V259\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"710\" y=\"215\">삭제 의무 기록</text><path class=\"e\" d=\"M470 376 L280 554\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"310\" y=\"465\">접근 차단 경로</text><path class=\"e\" d=\"M690 376 L880 554\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"865\" y=\"465\">이벤트 · 재시도</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"775\">목록 청소가 끝나기 전에도 오래된 참조로 원문을 보여주지 않는다</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"835\">비공개 미디어의 CDN·원본 경로도 별도로 접근 제어한다</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "load-balancer",
+  "chapter": "01-scaling",
+  "title": "웹 서버 두 대에 요청을 나눈다",
+  "caption": "로드 밸런서의 분산만 먼저 살펴본다. DB 읽기·쓰기 분리는 다음 절에서 추가한다.",
+  "mode": "topology",
+  "width": 1120.0,
+  "height": 590.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "사용자",
+      "role": "서비스 주소로 요청",
+      "icon": "icon5",
+      "x": 494.0,
+      "y": 30.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "로드 밸런서",
+      "role": "정상 서버 선택",
+      "icon": "icon4",
+      "x": 494.0,
+      "y": 190.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "웹 서버 1",
+      "role": "상품 요청 처리",
+      "icon": "icon0",
+      "x": 284.0,
+      "y": 400.0,
+      "group": "2"
+    },
+    {
+      "id": "n3",
+      "label": "웹 서버 2",
+      "role": "상품 요청 처리",
+      "icon": "icon0",
+      "x": 704.0,
+      "y": 400.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "분산",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n3",
+      "label": "분산",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "웹 서버 · 요청을 나누어 처리",
+      "x": 200.0,
+      "y": 330.0,
+      "w": 720.0,
+      "h": 205.0
+    }
+  ],
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리",
+    "웹 서버 · 요청을 나누어 처리"
+  ],
+  "icon_sources": "Lucide"
+}

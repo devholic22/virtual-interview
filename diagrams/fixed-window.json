@@ -1,0 +1,30 @@
+{
+  "slug": "fixed-window",
+  "chapter": "04-rate-limiter",
+  "title": "고정 윈도 · 각 칸의 한도와 최근 구간의 한도는 다르다",
+  "caption": "분 경계 주변을 확대해 개념적으로 표시했다. 가로축은 실제 시간 비례가 아니다.",
+  "mode": "structure",
+  "width": 1120.0,
+  "height": 560.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [
+    {
+      "label": "12:00분 · 한도 5",
+      "x": 80.0,
+      "y": 70.0,
+      "w": 480.0,
+      "h": 330.0
+    },
+    {
+      "label": "12:01분 · 한도 5",
+      "x": 560.0,
+      "y": 70.0,
+      "w": 480.0,
+      "h": 330.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:80px;top:70px;width:480px;height:330px\"><div class=\"g-label\">12:00분 · 한도 5</div></div><div class=\"group gb\" style=\"left:560px;top:70px;width:480px;height:330px\"><div class=\"g-label\">12:01분 · 한도 5</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1120 560\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M560 125 V420\"></path><circle cx=\"520\" cy=\"160\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"520\" cy=\"200\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"520\" cy=\"240\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"520\" cy=\"280\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"520\" cy=\"320\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"600\" cy=\"160\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"600\" cy=\"200\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"600\" cy=\"240\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"600\" cy=\"280\" fill=\"var(--color-accent)\" r=\"8\"></circle><circle cx=\"600\" cy=\"320\" fill=\"var(--color-accent)\" r=\"8\"></circle><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"500\" y=\"440\">12:00:59.9</text><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"650\" y=\"440\">12:01:00.1</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"560\" y=\"495\">경계 앞 5건 + 경계 뒤 5건 = 0.2초에 10건</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

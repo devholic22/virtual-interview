@@ -1,0 +1,69 @@
+{
+  "slug": "cap-partition",
+  "chapter": "06-key-value-store",
+  "title": "분할 중 · 양쪽 요청을 계속 받으면 값이 갈릴 수 있다",
+  "caption": "C 쪽에서 12 쓰기를 성공시켰다고 가정한다. A·B는 그 사실을 확인할 수 없다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 800.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "A",
+      "role": "가격 10",
+      "icon": "icon2",
+      "x": 224.0,
+      "y": 190.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "B",
+      "role": "가격 10",
+      "icon": "icon2",
+      "x": 224.0,
+      "y": 440.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "C",
+      "role": "가격 12 · 성공 가정",
+      "icon": "icon2",
+      "x": 824.0,
+      "y": 315.0,
+      "group": "1"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "서로 통신 가능",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "연결 가능한 A·B 쪽",
+      "x": 65.0,
+      "y": 100.0,
+      "w": 460.0,
+      "h": 525.0
+    },
+    {
+      "label": "고립된 C 쪽",
+      "x": 685.0,
+      "y": 100.0,
+      "w": 410.0,
+      "h": 525.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:100px;width:460px;height:525px\"><div class=\"g-label\">연결 가능한 A·B 쪽</div></div><div class=\"group gb\" style=\"left:685px;top:100px;width:410px;height:525px\"><div class=\"g-label\">고립된 C 쪽</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 800\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M290 296 V434\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"390\" y=\"375\">서로 통신 가능</text><path class=\"n\" d=\"M605 120 V610\" style=\"stroke-dasharray:8 7\"></path><path class=\"n\" d=\"M535 350 H580 M630 350 H675 M593 338 L617 362 M593 362 L617 338\"></path><text class=\"el\" style=\"font-size:15px\" text-anchor=\"middle\" x=\"605\" y=\"320\">전달 불가</text><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"580\" y=\"690\">A가 즉시 10 반환 → 완료된 12를 보지 못함</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"738\">최신 여부를 확인할 때까지 거부·대기 → 모든 요청의 성공은 보장 못 함</text></svg><div class=\"node\" style=\"left:224px;top:190px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>A</span></div><div class=\"role\"><span>가격 10</span></div></div><div class=\"node\" style=\"left:224px;top:440px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>B</span></div><div class=\"role\"><span>가격 10</span></div></div><div class=\"node\" style=\"left:824px;top:315px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>C</span></div><div class=\"role\"><span>가격 12 · 성공 가정</span></div></div>\n</div>",
+  "boundaries": [
+    "연결 가능한 A·B 쪽",
+    "고립된 C 쪽"
+  ],
+  "icon_sources": "Lucide"
+}

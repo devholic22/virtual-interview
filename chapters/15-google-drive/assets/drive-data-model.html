@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels -->
-<head>
+<!DOCTYPE html><html lang="ko"><!-- set lang to the label language, e.g. "ja" for Japanese labels --><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>파일의 최신 포인터와 버전별 블록 순서를 구분한다</title>
@@ -82,7 +80,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 
 .scroller { overflow-x: auto; border: 1px solid var(--color-rule-2); border-radius: var(--radius-card); }
 /* CANVAS SIZE: set width/height here AND on svg.edges AND its viewBox — keep the three in sync */
-.canvas { position: relative; width: 1200px; height: 1090px; background: var(--color-paper);
+.canvas { position: relative; width: 1200px; height: 610px; background: var(--color-paper);
   background-image:
     linear-gradient(var(--color-rule) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
@@ -133,7 +131,7 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 
 .node .name span, .node .role span { background: var(--color-veil); backdrop-filter: blur(1.5px);
   padding: 0 var(--space-xs); border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-svg.edges { position:absolute; inset:0; width:1200px; height:1090px; pointer-events:none; }
+svg.edges { position:absolute; inset:0; width:1200px; height:610px; pointer-events:none; }
 .e  { stroke: var(--color-accent); stroke-width:1.6; fill:none; }   /* primary flow */
 .n  { stroke: var(--color-neutral); stroke-width:1.4; fill:none; }  /* internal */
 path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
@@ -155,32 +153,17 @@ path.aws { stroke: var(--color-ink); stroke-width:1.6; fill:none; }
 .foot a { color: inherit; text-decoration-color: var(--color-rule-2); text-underline-offset: 2px; }
 .foot a:hover { color: var(--color-accent); }
 .e,.read,.n{stroke-width:1.5}.e,.n{stroke:var(--color-neutral)}.read{stroke:var(--color-accent);stroke-dasharray:6 5;fill:none}.el,.el.a{fill:var(--color-ink-2);font-family:var(--font-body)}.canvas{background-image:none}.node .role{font-family:var(--font-body)} </style>
-</head>
-<body>
-<div class="page">
-
-  <header class="head">
-    <div>
-      <div class="kicker">CHAPTER 15</div>
-      <h1>파일의 최신 포인터와 버전별 블록 순서를 구분한다</h1>
-    </div>
-    <p class="lede">책의 여섯 중심 테이블을 바탕으로 버전-블록 관계를 분리했다. 권한·로그 등 일부 필드는 생략했다.</p>
-  </header>
-
-  <div class="scroller">
-  <div class="canvas">
-
-<svg class="edges" viewBox="0 0 1200 1090" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs><rect x="100" y="55" width="280" height="115" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="240.0" y="88" text-anchor="middle" style="font-size:19px">user</text><text class="el" x="240.0" y="122" text-anchor="middle" style="font-size:16px">user_id · 사용자 정보</text><rect x="470" y="55" width="300" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="620.0" y="88" text-anchor="middle" style="font-size:19px">namespace</text><text class="el" x="620.0" y="122" text-anchor="middle" style="font-size:16px">namespace_id · owner · shared</text><rect x="900" y="55" width="270" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="1035.0" y="88" text-anchor="middle" style="font-size:19px">file</text><text class="el" x="1035.0" y="122" text-anchor="middle" style="font-size:16px">file_id · latest_version</text><rect x="70" y="365" width="320" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="230.0" y="398" text-anchor="middle" style="font-size:19px">device</text><text class="el" x="230.0" y="432" text-anchor="middle" style="font-size:16px">device_id · user_id · cursor</text><rect x="900" y="415" width="270" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="1035.0" y="448" text-anchor="middle" style="font-size:19px">file_version</text><text class="el" x="1035.0" y="482" text-anchor="middle" style="font-size:16px">version_id · base · status</text><rect x="900" y="760" width="270" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="1035.0" y="793" text-anchor="middle" style="font-size:19px">버전-블록 순서</text><text class="el" x="1035.0" y="827" text-anchor="middle" style="font-size:16px">version · index · block_id</text><rect x="470" y="760" width="300" height="135" rx="12" fill="var(--color-paper)" stroke="var(--color-neutral)"/><text class="el" x="620.0" y="793" text-anchor="middle" style="font-size:19px">block</text><text class="el" x="620.0" y="827" text-anchor="middle" style="font-size:16px">hash · length · object_key</text><path class="e" d="M386 110 H464" marker-end="url(#ar)"/><text class="el a" x="425" y="90" text-anchor="middle">1:N</text><path class="e" d="M776 110 H894" marker-end="url(#ar)"/><text class="el a" x="835" y="90" text-anchor="middle">1:N</text><path class="e" d="M240 176 V359" marker-end="url(#ar)"/><text class="el a" x="320" y="280" text-anchor="middle">1:N</text><path class="e" d="M1035 196 V409" marker-end="url(#ar)"/><text class="el a" x="1110" y="310" text-anchor="middle">1:N</text><path class="e" d="M396 435 L894 465" marker-end="url(#ar)"/><text class="el a" x="650" y="420" text-anchor="middle">작성 단말 → 버전</text><path class="e" d="M1035 556 V754" marker-end="url(#ar)"/><text class="el a" x="1110" y="660" text-anchor="middle">1:N</text><path class="e" d="M894 815 H776" marker-end="url(#ar)"/><text class="el a" x="835" y="795" text-anchor="middle">N:1</text><text class="el" x="580" y="1020" text-anchor="middle" style="font-size:20px">불변 블록을 여러 버전에서 재사용하려고 순서 관계를 분리한 확장 모델</text></svg>
-  </div>
-  </div>
-
-<div class="legend">화살표: 요청·데이터·변경 의무 / 반환·복제 일부 생략 / 구성은 논리적 역할</div>
-
-  <div class="foot">
-    <span>15장 학습용 재구성 · 책의 여섯 중심 테이블을 바탕으로 버전-블록 관계를 분리했다. 권한·로그 등 일부 필드는 생략했다.</span>
-    <span>icons: Lucide · made with <a href="https://github.com/caru-ini/stack-diagram" target="_blank" rel="noopener">stack-diagram</a></span>
-  </div>
-
-</div>
-</body>
-</html>
+<style>
+body{padding:24px;background:var(--color-paper);font-family:var(--font-body)}
+.page{max-width:100%;margin:auto;width:fit-content}.head{display:none}.scroller{max-width:100%;overflow:auto;border:1px solid var(--color-rule-2);border-radius:8px}.canvas{position:relative;background-color:var(--color-paper);background-image:linear-gradient(var(--color-rule) 1px,transparent 1px),linear-gradient(90deg,var(--color-rule) 1px,transparent 1px);background-size:20px 20px;overflow:visible}
+.diagram-title{position:absolute;left:30px;top:22px;font-size:20px;font-weight:750;letter-spacing:-.02em;color:var(--color-ink)}.diagram-kicker{position:absolute;left:30px;top:55px;font:11px var(--font-mono);color:var(--color-muted)}
+.group{position:absolute;border:1.3px solid var(--group-stroke);background:var(--group-fill);border-radius:6px;z-index:0}.group.blue,.group.gb{--group-stroke:#78b3d0;--group-fill:#e6f3fc66;--group-ink:#286d94}.group.amber{--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.group.violet{--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}.group.green{--group-stroke:#80bba6;--group-fill:#e6f6ec66;--group-ink:#337a60}.group.slate{--group-stroke:#a0afbf;--group-fill:#edf1f666;--group-ink:#566577}
+[data-theme=dark] .group{background:color-mix(in srgb,var(--group-stroke) 9%,transparent);border-color:color-mix(in srgb,var(--group-stroke) 70%,transparent)}[data-theme=dark] .g-label{color:var(--color-ink-2)}
+.g-label{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;line-height:1.4;color:var(--group-ink);max-width:calc(100% - 28px)}
+.edges,svg.edges{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}.edges .e{fill:none;stroke:var(--color-accent);stroke-width:1.7}.edges .n{fill:none;stroke:var(--color-neutral);stroke-width:1.45}.edge-halo{fill:none;stroke:var(--color-paper);stroke-width:5}.edges .el{font-family:var(--font-body);font-size:12px;fill:var(--color-neutral);paint-order:stroke;stroke:var(--color-paper);stroke-width:5;stroke-linejoin:round;letter-spacing:0}.edges .el.a{fill:var(--color-accent)}
+.node{position:absolute;width:148px;text-align:center;z-index:2}.node .tile{width:54px;height:54px;margin:0 auto;background:#fff;border:1px solid #c9d2db;border-radius:7px;box-shadow:0 1px 2px #23374b12;display:flex;align-items:center;justify-content:center}.node .tile img{max-width:34px;max-height:34px;width:34px;height:34px}.node .name,.node .role,.g-label{word-break:keep-all;overflow-wrap:normal}.node .name{font:700 14px/1.45 var(--font-body);color:var(--color-ink);margin-top:9px}.node .role{font:11px/1.5 var(--font-body);color:var(--color-muted);margin-top:3px;letter-spacing:0}.node .name span,.node .role span{background:var(--color-veil);box-shadow:3px 0 var(--color-veil),-3px 0 var(--color-veil)}
+.structure .node{width:132px}.structure .node .tile{width:60px;height:60px}.structure .node .name{font-size:14px;margin-top:7px}.structure .node .role{font-size:11px}.structure .edges .el{font-size:14px}.structure .group:nth-of-type(3n+2){--group-stroke:#c6a16b;--group-fill:#fcf1dd66;--group-ink:#8f642d}.structure .group:nth-of-type(3n+3){--group-stroke:#aaa0d7;--group-fill:#f0ecfc66;--group-ink:#6e55a0}
+.legend{font:12px/1.6 var(--font-body);margin:14px 0;color:var(--color-muted);letter-spacing:0}.foot{font:11px/1.7 var(--font-body);margin-top:12px;color:var(--color-muted);letter-spacing:0}.foot a{color:inherit}.caption{font:13px/1.8 var(--font-body);max-width:1050px;margin:16px 0;color:var(--color-ink-2)}
+</style></head><body><main class="page"><div class="scroller"><div class="canvas structure" style="width:1200px;height:1175px"><div class="diagram-title">파일의 최신 포인터와 버전별 블록 순서를 구분한다</div><div class="diagram-kicker">CHAPTER 15 · STACK DIAGRAM</div><div style="position:absolute;left:0;top:85px;width:1200.0px;height:1090.0px">
+<svg aria-hidden="true" class="edges" viewBox="0 0 1200 1090"><defs><marker id="ar" markerHeight="6.5" markerWidth="6.5" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"></path></marker></defs><rect fill="var(--color-paper)" height="115" rx="12" stroke="var(--color-neutral)" width="280" x="100" y="55"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="240.0" y="88">user</text><text class="el" style="font-size:16px" text-anchor="middle" x="240.0" y="122">user_id · 사용자 정보</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="300" x="470" y="55"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="620.0" y="88">namespace</text><text class="el" style="font-size:16px" text-anchor="middle" x="620.0" y="122">namespace_id · owner · shared</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="270" x="900" y="55"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="1035.0" y="88">file</text><text class="el" style="font-size:16px" text-anchor="middle" x="1035.0" y="122">file_id · latest_version</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="320" x="70" y="365"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="230.0" y="398">device</text><text class="el" style="font-size:16px" text-anchor="middle" x="230.0" y="432">device_id · user_id · cursor</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="270" x="900" y="415"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="1035.0" y="448">file_version</text><text class="el" style="font-size:16px" text-anchor="middle" x="1035.0" y="482">version_id · base · status</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="270" x="900" y="760"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="1035.0" y="793">버전-블록 순서</text><text class="el" style="font-size:16px" text-anchor="middle" x="1035.0" y="827">version · index · block_id</text><rect fill="var(--color-paper)" height="135" rx="12" stroke="var(--color-neutral)" width="300" x="470" y="760"></rect><text class="el" style="font-size:19px" text-anchor="middle" x="620.0" y="793">block</text><text class="el" style="font-size:16px" text-anchor="middle" x="620.0" y="827">hash · length · object_key</text><path class="e" d="M386 110 H464" marker-end="url(#ar)" data-edge="s0"></path><text class="el a" text-anchor="middle" x="425" y="90" data-edge="s0">1:N</text><path class="e" d="M776 110 H894" marker-end="url(#ar)" data-edge="s1"></path><text class="el a" text-anchor="middle" x="835" y="90" data-edge="s1">1:N</text><path class="e" d="M240 176 V359" marker-end="url(#ar)" data-edge="s2"></path><text class="el a" text-anchor="middle" x="259.15625" y="272" data-edge="s2">1:N</text><path class="e" d="M1035 196 V409" marker-end="url(#ar)" data-edge="s3"></path><text class="el a" text-anchor="middle" x="1054.15625" y="307" data-edge="s3">1:N</text><path class="e" d="M396 435 L894 465" marker-end="url(#ar)" data-edge="s4"></path><text class="el a" text-anchor="middle" x="645" y="437" data-edge="s4">작성 단말 → 버전</text><path class="e" d="M1035 556 V754" marker-end="url(#ar)" data-edge="s5"></path><text class="el a" text-anchor="middle" x="1054.15625" y="659.5" data-edge="s5">1:N</text><path class="e" d="M894 815 H776" marker-end="url(#ar)" data-edge="s6"></path><text class="el a" text-anchor="middle" x="835" y="795" data-edge="s6">N:1</text><text class="el" style="font-size:20px" text-anchor="middle" x="580" y="1020">불변 블록을 여러 버전에서 재사용하려고 순서 관계를 분리한 확장 모델</text></svg>
+</div></div></div><div class="legend">파랑 실선: 주요 요청·데이터 흐름 · 회색 실선: 보조 경로 · 점선: 도식에 표시한 비동기·제어 관계 · 그룹: 논리적 역할 경계</div><p class="caption">책의 여섯 중심 테이블을 바탕으로 버전-블록 관계를 분리했다. 권한·로그 등 일부 필드는 생략했다.</p><footer class="foot">책의 설계 범위를 바탕으로 재구성 · icons: Lucide · made with <a href="https://stack-diagram.com/">stack-diagram</a></footer></main></body></html>

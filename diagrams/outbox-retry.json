@@ -1,0 +1,63 @@
+{
+  "slug": "outbox-retry",
+  "chapter": "01-scaling",
+  "title": "Outbox · 커밋 직후 앱이 중단되어도 전달 의도가 남는다",
+  "caption": "학습용 순서도 · 위에서 아래로 시간이 흐른다.",
+  "mode": "structure",
+  "width": 1240.0,
+  "height": 990.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "애플리케이션",
+      "role": "요청 처리",
+      "icon": "icon0",
+      "x": 74.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "DB",
+      "role": "상품 + Outbox",
+      "icon": "icon2",
+      "x": 394.0,
+      "y": 55.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "전달기",
+      "role": "독립 프로세스",
+      "icon": "icon0",
+      "x": 714.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n3",
+      "label": "브로커",
+      "role": "전달 확인",
+      "icon": "icon3",
+      "x": 1034.0,
+      "y": 55.0,
+      "group": "0"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "1. 상품 변경 + Outbox 기록을 함께 COMMIT",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1240 990\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M140 175 V880\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M460 175 V880\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M780 175 V880\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M1100 175 V880\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"e\" d=\"M145 235 H453\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"300.0\" y=\"221\">1. 상품 변경 + Outbox 기록을 함께 COMMIT</text><path class=\"n\" d=\"M455 320 H147\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"300.0\" y=\"306\">2. 커밋 성공 · 직후 앱 중단</text><path class=\"n\" d=\"M775 405 H467\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"620.0\" y=\"391\">3. 미전달 Outbox 조회</text><path class=\"e\" d=\"M465 490 H773\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"620.0\" y=\"476\">4. 이벤트 반환</text><path class=\"e\" d=\"M785 575 H1093\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"940.0\" y=\"561\">5. 이벤트 발행</text><path class=\"n\" d=\"M1095 660 H787\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"940.0\" y=\"646\">6. 접수 확인 · 진행 기록 전 전달기 중단</text><path class=\"n\" d=\"M775 745 H467\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"620.0\" y=\"731\">7. 재시작 후 아직 미전달인 이벤트 조회</text><path class=\"e\" d=\"M785 830 H1093\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"940.0\" y=\"816\">8. 같은 event_id 재발행 가능</text><text class=\"el\" style=\"font-size:16px;font-weight:600\" text-anchor=\"middle\" x=\"620\" y=\"940\">결과: 누락 복구 가능 / 중복 전달은 소비자의 멱등성으로 처리</text></svg><div class=\"node\" style=\"left:74px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>애플리케이션</span></div><div class=\"role\"><span>요청 처리</span></div></div><div class=\"node\" style=\"left:394px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>DB</span></div><div class=\"role\"><span>상품 + Outbox</span></div></div><div class=\"node\" style=\"left:714px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>전달기</span></div><div class=\"role\"><span>독립 프로세스</span></div></div><div class=\"node\" style=\"left:1034px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LW9yZGVyZWQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxwYXRoIGQ9Ik0xMSA1aDEwIiAvPgogIDxwYXRoIGQ9Ik0xMSAxMmgxMCIgLz4KICA8cGF0aCBkPSJNMTEgMTloMTAiIC8+CiAgPHBhdGggZD0iTTQgNGgxdjUiIC8+CiAgPHBhdGggZD0iTTQgOWgyIiAvPgogIDxwYXRoIGQ9Ik02LjUgMjBIMy40YzAtMSAyLjYtMS45MjUgMi42LTMuNWExLjUgMS41IDAgMCAwLTIuNi0xLjAyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>브로커</span></div><div class=\"role\"><span>전달 확인</span></div></div>\n</div>",
+  "boundaries": [
+    "서비스 처리",
+    "데이터 보관"
+  ],
+  "icon_sources": "Lucide"
+}

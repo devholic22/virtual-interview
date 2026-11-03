@@ -1,0 +1,181 @@
+{
+  "slug": "redirect-cache",
+  "chapter": "08-url-shortener",
+  "title": "조회 경로 · 여러 서버가 값 캐시와 원본 DB를 함께 쓴다",
+  "caption": "캐시는 short_code → long_url의 실제 값을 보관한다. DB 미스 경로는 조회 서버 B만 표시했다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 1040.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "브라우저",
+      "role": "GET /abc123Z",
+      "icon": "icon5",
+      "x": 514.0,
+      "y": 20.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "로드 밸런서",
+      "role": "정상 조회 서버 선택",
+      "icon": "icon4",
+      "x": 514.0,
+      "y": 185.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "조회 서버 A",
+      "role": "매핑 조회 · Location 응답",
+      "icon": "icon0",
+      "x": 184.0,
+      "y": 385.0,
+      "group": "2"
+    },
+    {
+      "id": "n3",
+      "label": "조회 서버 B",
+      "role": "매핑 조회 · Location 응답",
+      "icon": "icon0",
+      "x": 844.0,
+      "y": 385.0,
+      "group": "2"
+    },
+    {
+      "id": "n4",
+      "label": "값 캐시",
+      "role": "코드 → 실제 URL",
+      "icon": "icon1",
+      "x": 514.0,
+      "y": 650.0,
+      "group": "3"
+    },
+    {
+      "id": "n5",
+      "label": "원본 매핑 DB",
+      "role": "없을 때 조회 · 내구성",
+      "icon": "icon2",
+      "x": 844.0,
+      "y": 860.0,
+      "group": "3"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "분산",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n3",
+      "label": "분산",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n2",
+      "to": "n4",
+      "label": "캐시 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n3",
+      "to": "n4",
+      "label": "캐시 조회",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n3",
+      "to": "n5",
+      "label": "캐시 미스 때 DB 조회",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "조회 서버 계층",
+      "x": 65.0,
+      "y": 320.0,
+      "w": 1030.0,
+      "h": 210.0
+    }
+  ],
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리",
+    "조회 서버 계층",
+    "데이터 보관"
+  ],
+  "icon_sources": "Lucide",
+  "layout": {
+    "positions": {
+      "n0": [
+        100,
+        180
+      ],
+      "n1": [
+        400,
+        180
+      ],
+      "n2": [
+        700,
+        180
+      ],
+      "n3": [
+        700,
+        480
+      ],
+      "n4": [
+        1050,
+        180
+      ],
+      "n5": [
+        1050,
+        480
+      ]
+    },
+    "groups": [
+      [
+        0,
+        110,
+        510,
+        205,
+        "리다이렉션 요청",
+        "blue"
+      ],
+      [
+        595,
+        110,
+        210,
+        510,
+        "무상태 조회 서버",
+        "violet"
+      ],
+      [
+        945,
+        110,
+        210,
+        510,
+        "매핑 캐시·원본",
+        "amber"
+      ]
+    ],
+    "width": 1240,
+    "height": 760
+  }
+}

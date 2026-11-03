@@ -1,0 +1,15 @@
+{
+  "slug": "base62-conversion",
+  "chapter": "08-url-shortener",
+  "title": "Base62 · 유일한 정수의 표기를 짧게 바꾼다",
+  "caption": "나머지의 문자를 정한 알파벳으로 바꾸고 역순으로 읽는다. 해시가 아니다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 710.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 710\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"580\" y=\"60\">문자 순서: 0~9 → a~z → A~Z</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"280\" y=\"155\">나누는 수</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"580\" y=\"155\">몫</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"880\" y=\"155\">나머지 → 문자</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"280\" y=\"245\">11157 ÷ 62</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"580\" y=\"245\">179</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"880\" y=\"245\">59 → X</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"280\" y=\"355\">179 ÷ 62</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"580\" y=\"355\">2</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"880\" y=\"355\">55 → T</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"280\" y=\"465\">2 ÷ 62</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"580\" y=\"465\">0</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"880\" y=\"465\">2 → 2</text><text class=\"el\" style=\"font-size:23px\" text-anchor=\"middle\" x=\"580\" y=\"585\">나머지를 아래에서 위로 읽으면 2 → T → X</text><text class=\"el\" style=\"font-size:22px\" text-anchor=\"middle\" x=\"580\" y=\"650\">2 × 62² + 55 × 62 + 59 = 11157</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "storage-write",
+  "chapter": "06-key-value-store",
+  "title": "한 복제 노드의 쓰기 · 로그로 복구하고 메모리에서 모은다",
+  "caption": "① 로그 기록 → ② Memtable 반영 → ③ 이후 SSTable 플러시라는 개념적 순서다.",
+  "mode": "topology",
+  "width": 1160.0,
+  "height": 770.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "쓰기 요청",
+      "role": "한 복제 노드에 도착",
+      "icon": "icon5",
+      "x": 79.0,
+      "y": 95.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "쓰기 처리",
+      "role": "정책에 따른 확인",
+      "icon": "icon0",
+      "x": 504.0,
+      "y": 100.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "Memtable",
+      "role": "아직 플러시 전인 쓰기",
+      "icon": "icon1",
+      "x": 854.0,
+      "y": 100.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "커밋 로그",
+      "role": "순차 기록 · 복구 재생",
+      "icon": "icon2",
+      "x": 504.0,
+      "y": 470.0,
+      "group": "2"
+    },
+    {
+      "id": "n4",
+      "label": "SSTable",
+      "role": "정렬된 불변 파일",
+      "icon": "icon2",
+      "x": 854.0,
+      "y": 470.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n3",
+      "label": "① 로그 기록",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n2",
+      "label": "② 메모리 반영",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n2",
+      "to": "n4",
+      "label": "③ 이후 플러시",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "메모리",
+      "x": 350.0,
+      "y": 40.0,
+      "w": 745.0,
+      "h": 255.0
+    },
+    {
+      "label": "디스크",
+      "x": 350.0,
+      "y": 390.0,
+      "w": 745.0,
+      "h": 300.0
+    }
+  ],
+  "boundaries": [
+    "요청",
+    "메모리",
+    "내구성 저장"
+  ],
+  "icon_sources": "Lucide"
+}

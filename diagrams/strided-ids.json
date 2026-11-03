@@ -1,0 +1,52 @@
+{
+  "slug": "strided-ids",
+  "chapter": "07-unique-id",
+  "title": "간격을 나눈 자동 증가 · 각자 다른 수열을 만든다",
+  "caption": "k=2를 같은 간격으로 사용하고 시작 나머지를 나눈 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 620.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "DB A",
+      "role": "시작 1 · 증가 2",
+      "icon": "icon2",
+      "x": 234.0,
+      "y": 125.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "DB B",
+      "role": "시작 2 · 증가 2",
+      "icon": "icon2",
+      "x": 794.0,
+      "y": 125.0,
+      "group": "1"
+    }
+  ],
+  "edges": [],
+  "groups": [
+    {
+      "label": "발급 서버 A",
+      "x": 65.0,
+      "y": 60.0,
+      "w": 470.0,
+      "h": 350.0
+    },
+    {
+      "label": "발급 서버 B",
+      "x": 625.0,
+      "y": 60.0,
+      "w": 470.0,
+      "h": 350.0
+    }
+  ],
+  "canvas": "<div class=\"canvas\">\n<div class=\"group gb\" style=\"left:65px;top:60px;width:470px;height:350px\"><div class=\"g-label\">발급 서버 A</div></div><div class=\"group gb\" style=\"left:625px;top:60px;width:470px;height:350px\"><div class=\"g-label\">발급 서버 B</div></div><svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 620\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><text class=\"el\" style=\"font-size:25px\" text-anchor=\"middle\" x=\"300\" y=\"305\">1, 3, 5, 7, …</text><text class=\"el\" style=\"font-size:25px\" text-anchor=\"middle\" x=\"860\" y=\"305\">2, 4, 6, 8, …</text><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"580\" y=\"465\">서로 겹치지 않아도 전체 요청의 시간순 증가와는 다르다</text><text class=\"el\" style=\"font-size:18px\" text-anchor=\"middle\" x=\"580\" y=\"535\">간격을 3으로 바꿀 때: B의 2 + 3 = 5 → A가 이미 쓴 값일 수 있음</text></svg><div class=\"node\" style=\"left:234px;top:125px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>DB A</span></div><div class=\"role\"><span>시작 1 · 증가 2</span></div></div><div class=\"node\" style=\"left:794px;top:125px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>DB B</span></div><div class=\"role\"><span>시작 2 · 증가 2</span></div></div>\n</div>",
+  "boundaries": [
+    "발급 서버 A",
+    "발급 서버 B"
+  ],
+  "icon_sources": "Lucide"
+}

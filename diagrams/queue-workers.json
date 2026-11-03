@@ -1,0 +1,108 @@
+{
+  "slug": "queue-workers",
+  "chapter": "01-scaling",
+  "title": "메시지 큐 · 생산자와 소비자",
+  "caption": "책 p.23–25 참고. 접수와 처리를 분리하며 각 계층의 서버 수를 독립적으로 늘릴 수 있다.",
+  "mode": "topology",
+  "width": 1120.0,
+  "height": 650.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "웹 서버 1",
+      "role": "작업 접수",
+      "icon": "icon0",
+      "x": 129.0,
+      "y": 150.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "웹 서버 2",
+      "role": "작업 접수",
+      "icon": "icon0",
+      "x": 129.0,
+      "y": 415.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "메시지 큐",
+      "role": "유입 완충 · 내구성",
+      "icon": "icon3",
+      "x": 494.0,
+      "y": 280.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "작업 서버 1",
+      "role": "작업 처리",
+      "icon": "icon0",
+      "x": 859.0,
+      "y": 150.0,
+      "group": "2"
+    },
+    {
+      "id": "n4",
+      "label": "작업 서버 2",
+      "role": "작업 처리",
+      "icon": "icon0",
+      "x": 859.0,
+      "y": 415.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n2",
+      "label": "접수",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "접수",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n2",
+      "to": "n3",
+      "label": "작업 메시지 소비",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n2",
+      "to": "n4",
+      "label": "작업 메시지 소비",
+      "kind": "primary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "웹 계층",
+      "x": 65.0,
+      "y": 65.0,
+      "w": 265.0,
+      "h": 510.0
+    },
+    {
+      "label": "작업 계층",
+      "x": 790.0,
+      "y": 65.0,
+      "w": 265.0,
+      "h": 510.0
+    }
+  ],
+  "boundaries": [
+    "생산자",
+    "작업 버퍼",
+    "소비자"
+  ],
+  "icon_sources": "Lucide"
+}

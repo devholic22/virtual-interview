@@ -1,0 +1,55 @@
+{
+  "slug": "retry-idempotency",
+  "chapter": "04-rate-limiter",
+  "title": "중간 통신 실패 · 접수와 업무 완료를 구분한다",
+  "caption": "게이트웨이의 수신만으로 주문 완료가 보장되지는 않는다. 동일 키 재시도 예시다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 1090.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "클라이언트",
+      "role": "업무 키 K1",
+      "icon": "icon5",
+      "x": 94.0,
+      "y": 55.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "게이트웨이",
+      "role": "요청 전달",
+      "icon": "icon4",
+      "x": 494.0,
+      "y": 55.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "주문 API + DB",
+      "role": "주문 · K1 결과 저장",
+      "icon": "icon2",
+      "x": 934.0,
+      "y": 55.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "1. 주문 K1 요청",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 1090\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><path class=\"n\" d=\"M160 175 V970\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M560 175 V970\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"n\" d=\"M1000 175 V970\" style=\"stroke-dasharray:4 7;opacity:.3\"></path><path class=\"e\" d=\"M165 235 H553\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"360.0\" y=\"221\">1. 주문 K1 요청</text><path class=\"e\" d=\"M565 325 H993\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780.0\" y=\"311\">2. K1 전달</text><path class=\"n\" d=\"M995 415 H567\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"780.0\" y=\"401\">3. 주문 저장 완료 · 결과 응답</text><path class=\"n\" d=\"M555 505 H330\"></path><path class=\"n\" d=\"M320 495 L340 515 M320 515 L340 495\"></path><text class=\"el\" style=\"font-size:14px\" text-anchor=\"middle\" x=\"580\" y=\"488\">4. 응답 유실 · 클라이언트는 결과를 모름</text><path class=\"e\" d=\"M165 595 H553\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"360.0\" y=\"581\">5. 같은 K1로 재시도</text><path class=\"e\" d=\"M565 685 H993\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"780.0\" y=\"671\">6. 같은 K1 전달</text><path class=\"n\" d=\"M995 775 H567\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"780.0\" y=\"761\">7. 기존 결과 재사용</text><path class=\"n\" d=\"M555 865 H167\" marker-end=\"url(#ar)\"></path><text class=\"el\" text-anchor=\"middle\" x=\"360.0\" y=\"851\">8. 같은 주문 결과 반환</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580\" y=\"1020\">응답을 잃어도 업무를 중복 실행하지 않도록 결과를 보관하는 설계 예시</text></svg><div class=\"node\" style=\"left:94px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>클라이언트</span></div><div class=\"role\"><span>업무 키 K1</span></div></div><div class=\"node\" style=\"left:494px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1uZXR3b3JrIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB4PSIxNiIgeT0iMTYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxIiAvPgogIDxyZWN0IHg9IjIiIHk9IjE2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cmVjdCB4PSI5IiB5PSIyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgLz4KICA8cGF0aCBkPSJNNSAxNnYtM2ExIDEgMCAwIDEgMS0xaDEyYTEgMSAwIDAgMSAxIDF2MyIgLz4KICA8cGF0aCBkPSJNMTIgMTJWOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>게이트웨이</span></div><div class=\"role\"><span>요청 전달</span></div></div><div class=\"node\" style=\"left:934px;top:55px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>주문 API + DB</span></div><div class=\"role\"><span>주문 · K1 결과 저장</span></div></div>\n</div>",
+  "boundaries": [
+    "클라이언트·요청",
+    "서비스 처리",
+    "데이터 보관"
+  ],
+  "icon_sources": "Lucide"
+}

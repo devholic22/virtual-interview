@@ -1,0 +1,15 @@
+{
+  "slug": "worker-ownership",
+  "chapter": "07-unique-id",
+  "title": "생성기 ID 재사용 · 재시작과 교체도 유일성 조건에 포함한다",
+  "caption": "같은 조합을 쓰는 두 프로세스가 동시에 번호를 만들지 않게 한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 740.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 740\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"95\" y=\"90\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"290.0\" y=\"123\">기존 프로세스 P · (센터 1, 서버 2)</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"290.0\" y=\"157\">t=1000, s=0을 이미 발급</text><rect fill=\"var(--color-paper)\" height=\"100\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"390\" x=\"675\" y=\"90\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"870.0\" y=\"123\">새 프로세스 Q · 같은 조합</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"870.0\" y=\"157\">상태를 0부터 시작하면 중복 위험</text><path class=\"e\" d=\"M491 140 H669\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"120\">교체 요청</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"860\" x=\"150\" y=\"375\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"408\">같은 조합의 이전 발급자가 계속 동작하지 못하게 한다</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"442\">중지·소유권 확인 + 마지막 사용 시각 또는 예약 범위의 복구 정책</text><path class=\"e\" d=\"M300 196 L440 369\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"285\" y=\"285\">이전 소유권 정리</text><path class=\"e\" d=\"M870 196 L720 369\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"880\" y=\"285\">새 발급은 조건 확인 후</text><text class=\"el\" style=\"font-size:21px\" text-anchor=\"middle\" x=\"580\" y=\"600\">소유권이 안 겹쳐도 같은 과거 시각·일련번호를 재사용하면 안 된다</text><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580\" y=\"665\">임대 만료만으로 이전 프로세스가 즉시 멈췄다고 가정하지 않는다</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

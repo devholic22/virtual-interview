@@ -1,0 +1,15 @@
+{
+  "slug": "hash-ownership",
+  "chapter": "09-web-crawler",
+  "title": "안정 해시 · 담당 변경을 줄이고 상태 인계는 따로 한다",
+  "caption": "표시한 매핑은 예시다. 새로운 소유자가 생겨도 모든 호스트를 재배치하지 않도록 한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 790.0,
+  "nodes": [],
+  "edges": [],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 790\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"470\" x=\"65\" y=\"90\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"300.0\" y=\"123\">기존 소유자 배치</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"300.0\" y=\"157\">호스트 a·b → A / 호스트 c → B</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"470\" x=\"625\" y=\"90\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"860.0\" y=\"123\">작업자 D가 추가된 배치</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"860.0\" y=\"157\">호스트 a → A / b → D / c → B</text><path class=\"e\" d=\"M541 145 H619\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"125\">구성 변경</text><rect fill=\"var(--color-paper)\" height=\"115\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"860\" x=\"150\" y=\"425\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"458\">담당이 바뀐 호스트 b의 상태를 안전하게 인계</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"492\">대기 URL · 최근 요청 시각 · 진행 중 토큰 · 이전 소유자 실행 제어</text><path class=\"e\" d=\"M300 211 L440 419\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"285\" y=\"320\">기존 상태</text><path class=\"e\" d=\"M860 211 L720 419\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"895\" y=\"320\">새 소유자 준비</text><text class=\"el\" style=\"font-size:22px\" text-anchor=\"middle\" x=\"580\" y=\"650\">안정 해시: 관련 없는 키의 담당 변경을 줄이는 역할</text><text class=\"el\" style=\"font-size:20px\" text-anchor=\"middle\" x=\"580\" y=\"720\">데이터 전송·복구·인계·핫 호스트의 속도 제한은 별도 설계</text></svg>\n</div>",
+  "boundaries": [],
+  "icon_sources": "Lucide"
+}

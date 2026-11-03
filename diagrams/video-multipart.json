@@ -1,0 +1,55 @@
+{
+  "slug": "video-multipart",
+  "chapter": "14-youtube",
+  "title": "파일 파트를 병렬로 전송하고 실패한 부분만 다시 보낸다",
+  "caption": "전송 파트 경계는 GOP·프레임 경계와 달라도 된다. 업로드 ID와 완료 파트를 추적한다.",
+  "mode": "structure",
+  "width": 1160.0,
+  "height": 1060.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "클라이언트",
+      "role": "세션 · 파트 상태 유지",
+      "icon": "icon5",
+      "x": 514.0,
+      "y": 45.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "원본 저장소",
+      "role": "완료된 파트 검증",
+      "icon": "icon2",
+      "x": 514.0,
+      "y": 690.0,
+      "group": "1"
+    },
+    {
+      "id": "n2",
+      "label": "객체 완성",
+      "role": "이후 원본 검사·처리",
+      "icon": "icon0",
+      "x": 514.0,
+      "y": 920.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e6",
+      "from": "n1",
+      "to": "n2",
+      "label": "전부 확인 후 완성",
+      "kind": "primary"
+    }
+  ],
+  "groups": [],
+  "canvas": "<div class=\"canvas\">\n<svg aria-hidden=\"true\" class=\"edges\" viewbox=\"0 0 1160 1060\"><defs><marker id=\"ar\" markerheight=\"6.5\" markerwidth=\"6.5\" orient=\"auto-start-reverse\" refx=\"8\" refy=\"5\" viewbox=\"0 0 10 10\"><path d=\"M0 0 L10 5 L0 10 z\" fill=\"context-stroke\"></path></marker></defs><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"300\" x=\"65\" y=\"350\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"215.0\" y=\"383\">파트 1</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"215.0\" y=\"417\">독립 전송 · 완료 확인</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"300\" x=\"430\" y=\"350\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"580.0\" y=\"383\">파트 2</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"580.0\" y=\"417\">실패한 파트만 재전송</text><rect fill=\"var(--color-paper)\" height=\"110\" rx=\"12\" stroke=\"var(--color-neutral)\" width=\"300\" x=\"795\" y=\"350\"></rect><text class=\"el\" style=\"font-size:19px\" text-anchor=\"middle\" x=\"945.0\" y=\"383\">파트 3</text><text class=\"el\" style=\"font-size:16px\" text-anchor=\"middle\" x=\"945.0\" y=\"417\">독립 전송 · 완료 확인</text><path class=\"e\" d=\"M560 151 L215 344\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"215\" y=\"260\">제한된 병렬 업로드</text><path class=\"e\" d=\"M580 151 L580 344\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"260\">제한된 병렬 업로드</text><path class=\"e\" d=\"M600 151 L945 344\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"945\" y=\"260\">제한된 병렬 업로드</text><path class=\"e\" d=\"M215 466 L560 684\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"215\" y=\"585\">파트 검증 완료</text><path class=\"e\" d=\"M580 466 L580 684\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"580\" y=\"585\">파트 검증 완료</text><path class=\"e\" d=\"M945 466 L600 684\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"945\" y=\"585\">파트 검증 완료</text><path class=\"e\" d=\"M580 796 V914\" marker-end=\"url(#ar)\"></path><text class=\"el a\" text-anchor=\"middle\" x=\"725\" y=\"860\">전부 확인 후 완성</text></svg><div class=\"node\" style=\"left:514px;top:45px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiMzZDQ2NjAiCiAgc3Ryb2tlLXdpZHRoPSIxLjciCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTkgMjF2LTJhNCA0IDAgMCAwLTQtNEg5YTQgNCAwIDAgMC00IDR2MiIgLz4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIC8+Cjwvc3ZnPgo=\"/></div><div class=\"name\"><span>클라이언트</span></div><div class=\"role\"><span>세션 · 파트 상태 유지</span></div></div><div class=\"node\" style=\"left:514px;top:690px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kYXRhYmFzZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSIjM2Q0NjYwIgogIHN0cm9rZS13aWR0aD0iMS43IgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iNSIgcng9IjkiIHJ5PSIzIiAvPgogIDxwYXRoIGQ9Ik0zIDVWMTlBOSAzIDAgMCAwIDIxIDE5VjUiIC8+CiAgPHBhdGggZD0iTTMgMTJBOSAzIDAgMCAwIDIxIDEyIiAvPgo8L3N2Zz4K\"/></div><div class=\"name\"><span>원본 저장소</span></div><div class=\"role\"><span>완료된 파트 검증</span></div></div><div class=\"node\" style=\"left:514px;top:920px\"><div class=\"tile\"><img alt=\"\" src=\"data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYxLjY2LjAgLSBJU0MgLS0+CjxzdmcKICBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zZXJ2ZXIiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzNkNDY2MCIKICBzdHJva2Utd2lkdGg9IjEuNyIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSI4IiB4PSIyIiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjgiIHg9IjIiIHk9IjE0IiByeD0iMiIgcnk9IjIiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iNiIgeTI9IjYiIC8+CiAgPGxpbmUgeDE9IjYiIHgyPSI2LjAxIiB5MT0iMTgiIHkyPSIxOCIgLz4KPC9zdmc+Cg==\"/></div><div class=\"name\"><span>객체 완성</span></div><div class=\"role\"><span>이후 원본 검사·처리</span></div></div>\n</div>",
+  "boundaries": [
+    "클라이언트·요청",
+    "데이터 보관",
+    "서비스 처리"
+  ],
+  "icon_sources": "Lucide"
+}

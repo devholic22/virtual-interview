@@ -1,0 +1,145 @@
+{
+  "slug": "replication",
+  "chapter": "01-scaling",
+  "title": "로드 밸런서 · 읽기와 쓰기 분리",
+  "caption": "책 p.6–10 참고. 짧은 직선으로 연결하며 교차하는 선은 서로 연결되지 않는다.",
+  "mode": "topology",
+  "width": 1120.0,
+  "height": 840.0,
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "사용자",
+      "role": "HTTP 요청",
+      "icon": "icon5",
+      "x": 494.0,
+      "y": 30.0,
+      "group": "0"
+    },
+    {
+      "id": "n1",
+      "label": "로드 밸런서",
+      "role": "정상 서버 선택",
+      "icon": "icon4",
+      "x": 494.0,
+      "y": 190.0,
+      "group": "0"
+    },
+    {
+      "id": "n2",
+      "label": "웹 서버 1",
+      "role": "읽기·쓰기 분리",
+      "icon": "icon0",
+      "x": 284.0,
+      "y": 390.0,
+      "group": "1"
+    },
+    {
+      "id": "n3",
+      "label": "웹 서버 2",
+      "role": "읽기·쓰기 분리",
+      "icon": "icon0",
+      "x": 704.0,
+      "y": 390.0,
+      "group": "1"
+    },
+    {
+      "id": "n4",
+      "label": "주 DB",
+      "role": "쓰기 처리",
+      "icon": "icon2",
+      "x": 284.0,
+      "y": 675.0,
+      "group": "2"
+    },
+    {
+      "id": "n5",
+      "label": "읽기 복제본",
+      "role": "읽기 처리",
+      "icon": "icon2",
+      "x": 704.0,
+      "y": 675.0,
+      "group": "2"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "n0",
+      "to": "n1",
+      "label": "요청",
+      "kind": "primary"
+    },
+    {
+      "id": "e1",
+      "from": "n1",
+      "to": "n2",
+      "label": "분산",
+      "kind": "primary"
+    },
+    {
+      "id": "e2",
+      "from": "n1",
+      "to": "n3",
+      "label": "분산",
+      "kind": "primary"
+    },
+    {
+      "id": "e3",
+      "from": "n2",
+      "to": "n4",
+      "label": "쓰기",
+      "kind": "primary"
+    },
+    {
+      "id": "e4",
+      "from": "n3",
+      "to": "n5",
+      "label": "읽기",
+      "kind": "primary"
+    },
+    {
+      "id": "e5",
+      "from": "n2",
+      "to": "n5",
+      "label": "읽기",
+      "kind": "primary"
+    },
+    {
+      "id": "e6",
+      "from": "n3",
+      "to": "n4",
+      "label": "쓰기",
+      "kind": "primary"
+    },
+    {
+      "id": "e7",
+      "from": "n4",
+      "to": "n5",
+      "label": "변경 로그 복제",
+      "kind": "secondary"
+    }
+  ],
+  "groups": [
+    {
+      "label": "웹 계층",
+      "x": 200.0,
+      "y": 330.0,
+      "w": 720.0,
+      "h": 195.0
+    },
+    {
+      "label": "데이터 계층",
+      "x": 200.0,
+      "y": 620.0,
+      "w": 720.0,
+      "h": 180.0
+    }
+  ],
+  "boundaries": [
+    "요청 진입",
+    "무상태 웹 계층",
+    "주·복제 DB"
+  ],
+  "icon_sources": "Lucide"
+}
